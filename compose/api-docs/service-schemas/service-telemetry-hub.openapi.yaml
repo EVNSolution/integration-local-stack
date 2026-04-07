@@ -1,0 +1,260 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Telemetry Hub API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-telemetry-hub.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /ingest/raw/:
+    post:
+      operationId: ingest_raw_create
+      tags:
+      - ingest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawIngest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RawIngest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RawIngest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryRawIngestResponse'
+          description: ''
+  /terminals/{terminal_id}/latest-location/:
+    get:
+      operationId: terminals_latest_location_retrieve
+      parameters:
+      - in: path
+        name: terminal_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - terminals
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocationSnapshot'
+          description: ''
+  /vehicles/{vehicle_id}/latest-diagnostics/:
+    get:
+      operationId: vehicles_latest_diagnostics_list
+      parameters:
+      - in: path
+        name: vehicle_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiagnosticEvent'
+          description: ''
+  /vehicles/{vehicle_id}/latest-location/:
+    get:
+      operationId: vehicles_latest_location_retrieve
+      parameters:
+      - in: path
+        name: vehicle_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocationSnapshot'
+          description: ''
+components:
+  schemas:
+    DiagnosticEvent:
+      type: object
+      properties:
+        diagnostic_event_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_id:
+          type: string
+          format: uuid
+        terminal_id:
+          type: string
+          format: uuid
+        event_code:
+          type: string
+          maxLength: 100
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        event_message:
+          type: string
+        captured_at:
+          type: string
+          format: date-time
+          readOnly: true
+        event_status:
+          $ref: '#/components/schemas/EventStatusEnum'
+      required:
+      - captured_at
+      - diagnostic_event_id
+      - event_code
+      - event_message
+      - event_status
+      - severity
+      - terminal_id
+      - vehicle_id
+    EventStatusEnum:
+      enum:
+      - open
+      - cleared
+      type: string
+      description: |-
+        * `open` - open
+        * `cleared` - cleared
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    RawIngest:
+      type: object
+      properties:
+        source_terminal_id:
+          type: string
+          format: uuid
+          nullable: true
+        source_vehicle_id:
+          type: string
+          format: uuid
+          nullable: true
+        message_topic:
+          type: string
+          maxLength: 255
+        message_type:
+          type: string
+          maxLength: 100
+        payload_json: {}
+        received_at:
+          type: string
+          format: date-time
+      required:
+      - message_topic
+      - message_type
+      - payload_json
+      - received_at
+    SeverityEnum:
+      enum:
+      - info
+      - warning
+      - critical
+      type: string
+      description: |-
+        * `info` - info
+        * `warning` - warning
+        * `critical` - critical
+    SnapshotStatusEnum:
+      enum:
+      - fresh
+      - stale
+      - unavailable
+      type: string
+      description: |-
+        * `fresh` - fresh
+        * `stale` - stale
+        * `unavailable` - unavailable
+    TelemetryRawIngestResponse:
+      type: object
+      properties:
+        telemetry_raw_ingest_id:
+          type: string
+          format: uuid
+          readOnly: true
+        source_terminal_id:
+          type: string
+          format: uuid
+          nullable: true
+        source_vehicle_id:
+          type: string
+          format: uuid
+          nullable: true
+        message_topic:
+          type: string
+          maxLength: 255
+        message_type:
+          type: string
+          maxLength: 100
+        payload_json: {}
+        received_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - message_topic
+      - message_type
+      - payload_json
+      - received_at
+      - telemetry_raw_ingest_id
+    VehicleLocationSnapshot:
+      type: object
+      properties:
+        vehicle_id:
+          type: string
+          format: uuid
+        terminal_id:
+          type: string
+          format: uuid
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        captured_at:
+          type: string
+          format: date-time
+          readOnly: true
+        snapshot_status:
+          $ref: '#/components/schemas/SnapshotStatusEnum'
+      required:
+      - captured_at
+      - lat
+      - lng
+      - terminal_id
+      - vehicle_id

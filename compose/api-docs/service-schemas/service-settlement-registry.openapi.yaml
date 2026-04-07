@@ -1,0 +1,580 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Settlement Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-settlement-registry.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /policies/:
+    get:
+      operationId: policies_list
+      tags:
+      - policies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementPolicy'
+          description: ''
+    post:
+      operationId: policies_create
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicy'
+          description: ''
+  /policies/{policy_id}/:
+    get:
+      operationId: policies_retrieve
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy.
+        required: true
+      tags:
+      - policies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicy'
+          description: ''
+    put:
+      operationId: policies_update
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy.
+        required: true
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicy'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicy'
+          description: ''
+    patch:
+      operationId: policies_partial_update
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy.
+        required: true
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicy'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicy'
+          description: ''
+    delete:
+      operationId: policies_destroy
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy.
+        required: true
+      tags:
+      - policies
+      responses:
+        '204':
+          description: No response body
+  /policy-assignments/:
+    get:
+      operationId: policy_assignments_list
+      tags:
+      - policy-assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementPolicyAssignment'
+          description: ''
+    post:
+      operationId: policy_assignments_create
+      tags:
+      - policy-assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyAssignment'
+          description: ''
+  /policy-assignments/{assignment_id}/:
+    get:
+      operationId: policy_assignments_retrieve
+      parameters:
+      - in: path
+        name: assignment_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy assignment.
+        required: true
+      tags:
+      - policy-assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyAssignment'
+          description: ''
+    put:
+      operationId: policy_assignments_update
+      parameters:
+      - in: path
+        name: assignment_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy assignment.
+        required: true
+      tags:
+      - policy-assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyAssignment'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyAssignment'
+          description: ''
+    patch:
+      operationId: policy_assignments_partial_update
+      parameters:
+      - in: path
+        name: assignment_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy assignment.
+        required: true
+      tags:
+      - policy-assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyAssignment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyAssignment'
+          description: ''
+    delete:
+      operationId: policy_assignments_destroy
+      parameters:
+      - in: path
+        name: assignment_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy assignment.
+        required: true
+      tags:
+      - policy-assignments
+      responses:
+        '204':
+          description: No response body
+  /policy-versions/:
+    get:
+      operationId: policy_versions_list
+      tags:
+      - policy-versions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementPolicyVersion'
+          description: ''
+    post:
+      operationId: policy_versions_create
+      tags:
+      - policy-versions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyVersion'
+          description: ''
+  /policy-versions/{policy_version_id}/:
+    get:
+      operationId: policy_versions_retrieve
+      parameters:
+      - in: path
+        name: policy_version_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy version.
+        required: true
+      tags:
+      - policy-versions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyVersion'
+          description: ''
+    put:
+      operationId: policy_versions_update
+      parameters:
+      - in: path
+        name: policy_version_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy version.
+        required: true
+      tags:
+      - policy-versions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementPolicyVersion'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyVersion'
+          description: ''
+    patch:
+      operationId: policy_versions_partial_update
+      parameters:
+      - in: path
+        name: policy_version_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy version.
+        required: true
+      tags:
+      - policy-versions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementPolicyVersion'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementPolicyVersion'
+          description: ''
+    delete:
+      operationId: policy_versions_destroy
+      parameters:
+      - in: path
+        name: policy_version_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement policy version.
+        required: true
+      tags:
+      - policy-versions
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    PatchedSettlementPolicy:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_code:
+          type: string
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 128
+        status:
+          $ref: '#/components/schemas/Status65dEnum'
+        description:
+          type: string
+    PatchedSettlementPolicyAssignment:
+      type: object
+      properties:
+        assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_version_id:
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        effective_start_date:
+          type: string
+          format: date
+        effective_end_date:
+          type: string
+          format: date
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Status65dEnum'
+    PatchedSettlementPolicyVersion:
+      type: object
+      properties:
+        policy_version_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_id:
+          type: string
+          format: uuid
+        version_number:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        rule_payload: {}
+        status:
+          $ref: '#/components/schemas/SettlementPolicyVersionStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+    SettlementPolicy:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_code:
+          type: string
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 128
+        status:
+          $ref: '#/components/schemas/Status65dEnum'
+        description:
+          type: string
+      required:
+      - name
+      - policy_code
+      - policy_id
+      - status
+    SettlementPolicyAssignment:
+      type: object
+      properties:
+        assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_version_id:
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        effective_start_date:
+          type: string
+          format: date
+        effective_end_date:
+          type: string
+          format: date
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Status65dEnum'
+      required:
+      - assignment_id
+      - company_id
+      - effective_start_date
+      - fleet_id
+      - policy_version_id
+      - status
+    SettlementPolicyVersion:
+      type: object
+      properties:
+        policy_version_id:
+          type: string
+          format: uuid
+          readOnly: true
+        policy_id:
+          type: string
+          format: uuid
+        version_number:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        rule_payload: {}
+        status:
+          $ref: '#/components/schemas/SettlementPolicyVersionStatusEnum'
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - policy_id
+      - policy_version_id
+      - status
+      - version_number
+    SettlementPolicyVersionStatusEnum:
+      enum:
+      - draft
+      - published
+      - retired
+      type: string
+      description: |-
+        * `draft` - draft
+        * `published` - published
+        * `retired` - retired
+    Status65dEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: |-
+        * `active` - active
+        * `inactive` - inactive

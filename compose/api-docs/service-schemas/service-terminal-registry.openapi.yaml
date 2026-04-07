@@ -1,0 +1,385 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Terminal Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-terminal-registry.
+paths:
+  /:
+    get:
+      operationId: root_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerminalRegistry'
+          description: ''
+    post:
+      operationId: root_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TerminalRegistry'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TerminalRegistry'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TerminalRegistry'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalRegistry'
+          description: ''
+  /{terminal_id}/:
+    get:
+      operationId: root_retrieve
+      parameters:
+      - in: path
+        name: terminal_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalRegistry'
+          description: ''
+    patch:
+      operationId: root_partial_update
+      parameters:
+      - in: path
+        name: terminal_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalRegistry'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalRegistry'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalRegistry'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalRegistry'
+          description: ''
+  /check-imei/:
+    get:
+      operationId: check_imei_retrieve
+      parameters:
+      - in: query
+        name: imei
+        schema:
+          type: string
+      tags:
+      - check-imei
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckImeiResult'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /installations/:
+    get:
+      operationId: installations_list
+      tags:
+      - installations
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerminalInstallation'
+          description: ''
+    post:
+      operationId: installations_create
+      tags:
+      - installations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TerminalInstallation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TerminalInstallation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TerminalInstallation'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalInstallation'
+          description: ''
+  /installations/{terminal_installation_id}/:
+    get:
+      operationId: installations_retrieve
+      parameters:
+      - in: path
+        name: terminal_installation_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - installations
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalInstallation'
+          description: ''
+    patch:
+      operationId: installations_partial_update
+      parameters:
+      - in: path
+        name: terminal_installation_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - installations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalInstallation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalInstallation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTerminalInstallation'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TerminalInstallation'
+          description: ''
+components:
+  schemas:
+    CheckImeiResult:
+      type: object
+      properties:
+        imei:
+          type: string
+        exists:
+          type: boolean
+      required:
+      - exists
+      - imei
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    InstallationStatusEnum:
+      enum:
+      - installed
+      - removed
+      type: string
+      description: |-
+        * `installed` - installed
+        * `removed` - removed
+    PatchedTerminalInstallation:
+      type: object
+      properties:
+        terminal_installation_id:
+          type: string
+          format: uuid
+          readOnly: true
+        terminal_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        installation_status:
+          $ref: '#/components/schemas/InstallationStatusEnum'
+        installed_at:
+          type: string
+          format: date-time
+        removed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedTerminalRegistry:
+      type: object
+      properties:
+        terminal_id:
+          type: string
+          format: uuid
+          readOnly: true
+        manufacturer_company_id:
+          type: string
+          format: uuid
+        imei:
+          type: string
+          maxLength: 64
+        iccid:
+          type: string
+          maxLength: 64
+        firmware_version:
+          type: string
+          maxLength: 64
+        protocol_version:
+          type: string
+          maxLength: 64
+        app_version:
+          type: string
+          maxLength: 64
+        terminal_status:
+          $ref: '#/components/schemas/TerminalStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    TerminalInstallation:
+      type: object
+      properties:
+        terminal_installation_id:
+          type: string
+          format: uuid
+          readOnly: true
+        terminal_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        installation_status:
+          $ref: '#/components/schemas/InstallationStatusEnum'
+        installed_at:
+          type: string
+          format: date-time
+        removed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - installation_status
+      - installed_at
+      - terminal_id
+      - terminal_installation_id
+      - updated_at
+      - vehicle_id
+    TerminalRegistry:
+      type: object
+      properties:
+        terminal_id:
+          type: string
+          format: uuid
+          readOnly: true
+        manufacturer_company_id:
+          type: string
+          format: uuid
+        imei:
+          type: string
+          maxLength: 64
+        iccid:
+          type: string
+          maxLength: 64
+        firmware_version:
+          type: string
+          maxLength: 64
+        protocol_version:
+          type: string
+          maxLength: 64
+        app_version:
+          type: string
+          maxLength: 64
+        terminal_status:
+          $ref: '#/components/schemas/TerminalStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - app_version
+      - created_at
+      - firmware_version
+      - iccid
+      - imei
+      - manufacturer_company_id
+      - protocol_version
+      - terminal_id
+      - terminal_status
+      - updated_at
+    TerminalStatusEnum:
+      enum:
+      - active
+      - inactive
+      - retired
+      type: string
+      description: |-
+        * `active` - active
+        * `inactive` - inactive
+        * `retired` - retired

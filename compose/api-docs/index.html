@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CLEVER Current MSA API Docs</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@3.38.0/swagger-ui.css" />
+    <style>
+      html {
+        box-sizing: border-box;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background: #fafafa;
+      }
+
+      .topbar {
+        padding: 14px 18px;
+        border-bottom: 1px solid #ddd;
+        background: #0f172a;
+        color: #fff;
+      }
+
+      .topbar a,
+      .topbar code {
+        color: #93c5fd;
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #cbd5e1;
+      }
+
+      .legend {
+        display: grid;
+        gap: 6px;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="title">CLEVER Current MSA API Docs</div>
+      <div class="subtitle">
+        source: current runtime docs + local service routes · spec: <a href="./clever-unified.openapi.yaml">clever-unified.openapi.yaml</a>
+      </div>
+      <div class="legend">
+        <div>tag = active runtime repo name</div>
+        <div>path = current gateway prefix + current service local route</div>
+        <div>included = active HTTP services only</div>
+        <div>excluded = legacy monolith namespace, empty shell, internal-only worker</div>
+        <div>reader guide: <code>docs/mappings/08-current-msa-api-docs-reading-guide.md</code></div>
+      </div>
+    </div>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@3.38.0/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@3.38.0/swagger-ui-standalone-preset.js"></script>
+    <script>
+      SwaggerUIBundle({
+        url: "./clever-unified.openapi.yaml",
+        dom_id: "#swagger-ui",
+        presets: [SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout",
+        deepLinking: true,
+        displayOperationId: true,
+        filter: true,
+      });
+    </script>
+  </body>
+</html>

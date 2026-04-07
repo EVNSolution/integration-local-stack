@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Vehicle Operations View API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-vehicle-operations-view.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /vehicles/:
+    get:
+      operationId: vehicles_list
+      tags:
+      - vehicles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleOpsSummary'
+          description: ''
+  /vehicles/{vehicle_ref}/:
+    get:
+      operationId: vehicles_retrieve
+      parameters:
+      - in: path
+        name: vehicle_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - vehicles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleOpsSummary'
+          description: ''
+components:
+  schemas:
+    AccessStatusEnum:
+      enum:
+      - active
+      - suspended
+      - ended
+      type: string
+      description: |-
+        * `active` - active
+        * `suspended` - suspended
+        * `ended` - ended
+    AssignmentStatusEnum:
+      enum:
+      - assigned
+      type: string
+      description: '* `assigned` - assigned'
+    EventStatusEnum:
+      enum:
+      - open
+      - cleared
+      type: string
+      description: |-
+        * `open` - open
+        * `cleared` - cleared
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    InstallationStatusEnum:
+      enum:
+      - installed
+      - removed
+      type: string
+      description: |-
+        * `installed` - installed
+        * `removed` - removed
+    NullEnum:
+      enum:
+      - null
+    SeverityEnum:
+      enum:
+      - info
+      - warning
+      - critical
+      type: string
+      description: |-
+        * `info` - info
+        * `warning` - warning
+        * `critical` - critical
+    SnapshotStatusEnum:
+      enum:
+      - fresh
+      - stale
+      - unavailable
+      type: string
+      description: |-
+        * `fresh` - fresh
+        * `stale` - stale
+        * `unavailable` - unavailable
+    VehicleOpsAssignment:
+      type: object
+      properties:
+        driver_vehicle_assignment_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        assignment_status:
+          $ref: '#/components/schemas/AssignmentStatusEnum'
+        assigned_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - assigned_at
+      - assignment_status
+      - driver_id
+      - driver_vehicle_assignment_id
+    VehicleOpsCompany:
+      type: object
+      properties:
+        company_id:
+          type: string
+          format: uuid
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+      required:
+      - company_id
+      - company_name
+    VehicleOpsCurrentTerminal:
+      type: object
+      properties:
+        terminal_id:
+          type: string
+          format: uuid
+        installation_status:
+          $ref: '#/components/schemas/InstallationStatusEnum'
+        installed_at:
+          type: string
+          format: date-time
+          nullable: true
+        imei:
+          type: string
+          nullable: true
+        iccid:
+          type: string
+          nullable: true
+        firmware_version:
+          type: string
+          nullable: true
+        protocol_version:
+          type: string
+          nullable: true
+        app_version:
+          type: string
+          nullable: true
+      required:
+      - app_version
+      - firmware_version
+      - iccid
+      - imei
+      - installation_status
+      - installed_at
+      - protocol_version
+      - terminal_id
+    VehicleOpsLatestDiagnostic:
+      type: object
+      properties:
+        event_code:
+          type: string
+          nullable: true
+        severity:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/SeverityEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        event_status:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/EventStatusEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        captured_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - captured_at
+      - event_code
+      - event_status
+      - severity
+    VehicleOpsLatestLocation:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          nullable: true
+        lng:
+          type: number
+          format: double
+          nullable: true
+        captured_at:
+          type: string
+          format: date-time
+          nullable: true
+        snapshot_status:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/SnapshotStatusEnum'
+          - $ref: '#/components/schemas/NullEnum'
+      required:
+      - captured_at
+      - lat
+      - lng
+      - snapshot_status
+    VehicleOpsOperatorCompany:
+      type: object
+      properties:
+        company_id:
+          type: string
+          format: uuid
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+        access_status:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/AccessStatusEnum'
+          - $ref: '#/components/schemas/NullEnum'
+      required:
+      - company_id
+      - company_name
+    VehicleOpsSummary:
+      type: object
+      properties:
+        vehicle_id:
+          type: string
+          format: uuid
+        route_no:
+          type: integer
+        plate_number:
+          type: string
+        vin:
+          type: string
+        vehicle_status:
+          $ref: '#/components/schemas/VehicleStatusEnum'
+        manufacturer_company:
+          $ref: '#/components/schemas/VehicleOpsCompany'
+        active_operator_company:
+          $ref: '#/components/schemas/VehicleOpsOperatorCompany'
+        current_assignment:
+          allOf:
+          - $ref: '#/components/schemas/VehicleOpsAssignment'
+          nullable: true
+        current_terminal:
+          allOf:
+          - $ref: '#/components/schemas/VehicleOpsCurrentTerminal'
+          nullable: true
+        telemetry:
+          $ref: '#/components/schemas/VehicleOpsTelemetry'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningsEnum'
+      required:
+      - active_operator_company
+      - current_assignment
+      - current_terminal
+      - manufacturer_company
+      - plate_number
+      - route_no
+      - telemetry
+      - vehicle_id
+      - vehicle_status
+      - vin
+      - warnings
+    VehicleOpsTelemetry:
+      type: object
+      properties:
+        latest_location:
+          $ref: '#/components/schemas/VehicleOpsLatestLocation'
+        latest_diagnostic:
+          $ref: '#/components/schemas/VehicleOpsLatestDiagnostic'
+      required:
+      - latest_diagnostic
+      - latest_location
+    VehicleStatusEnum:
+      enum:
+      - active
+      - inactive
+      - retired
+      type: string
+      description: |-
+        * `active` - active
+        * `inactive` - inactive
+        * `retired` - retired
+    WarningsEnum:
+      enum:
+      - manufacturer_company_name_missing
+      - active_operator_company_name_missing
+      - current_terminal_missing
+      - current_terminal_unavailable
+      - latest_location_missing
+      - latest_diagnostic_missing
+      type: string
+      description: |-
+        * `manufacturer_company_name_missing` - manufacturer_company_name_missing
+        * `active_operator_company_name_missing` - active_operator_company_name_missing
+        * `current_terminal_missing` - current_terminal_missing
+        * `current_terminal_unavailable` - current_terminal_unavailable
+        * `latest_location_missing` - latest_location_missing
+        * `latest_diagnostic_missing` - latest_diagnostic_missing

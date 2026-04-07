@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Settlement Operations View API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-settlement-operations-view.
+paths:
+  /drivers/{driver_id}/latest-settlement/:
+    get:
+      operationId: drivers_latest_settlement_retrieve
+      parameters:
+      - in: path
+        name: driver_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - drivers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverLatestSettlement'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /items/:
+    get:
+      operationId: items_list
+      tags:
+      - items
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementItem'
+          description: ''
+  /items/{settlement_item_id}/:
+    get:
+      operationId: items_retrieve
+      parameters:
+      - in: path
+        name: settlement_item_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - items
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementItem'
+          description: ''
+  /runs/:
+    get:
+      operationId: runs_list
+      tags:
+      - runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementRun'
+          description: ''
+  /runs/{settlement_run_id}/:
+    get:
+      operationId: runs_retrieve
+      parameters:
+      - in: path
+        name: settlement_run_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementRun'
+          description: ''
+components:
+  schemas:
+    DriverLatestSettlement:
+      type: object
+      properties:
+        driver_id:
+          type: string
+          format: uuid
+        delivery_history_present:
+          type: boolean
+          nullable: true
+        attendance_inferred_from_delivery_history:
+          type: boolean
+          nullable: true
+        latest_settlement:
+          allOf:
+          - $ref: '#/components/schemas/LatestSettlementSummary'
+          nullable: true
+      required:
+      - attendance_inferred_from_delivery_history
+      - delivery_history_present
+      - driver_id
+      - latest_settlement
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    LatestSettlementSummary:
+      type: object
+      properties:
+        settlement_run_id:
+          type: string
+          format: uuid
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        status:
+          type: string
+        payout_status:
+          type: string
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+      required:
+      - amount
+      - payout_status
+      - period_end
+      - period_start
+      - settlement_run_id
+      - status
+    SettlementItem:
+      type: object
+      properties:
+        settlement_item_id:
+          type: string
+          format: uuid
+        settlement_run_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        payout_status:
+          type: string
+      required:
+      - amount
+      - driver_id
+      - payout_status
+      - settlement_item_id
+      - settlement_run_id
+    SettlementRun:
+      type: object
+      properties:
+        settlement_run_id:
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        status:
+          type: string
+      required:
+      - company_id
+      - fleet_id
+      - period_end
+      - period_start
+      - settlement_run_id
+      - status

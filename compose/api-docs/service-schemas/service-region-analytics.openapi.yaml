@@ -1,0 +1,432 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Region Analytics API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-region-analytics.
+paths:
+  /daily-statistics/:
+    get:
+      operationId: daily_statistics_list
+      tags:
+      - daily-statistics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegionDailyStatistic'
+          description: ''
+    post:
+      operationId: daily_statistics_create
+      tags:
+      - daily-statistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionDailyStatistic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegionDailyStatistic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegionDailyStatistic'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDailyStatistic'
+          description: ''
+  /daily-statistics/{region_daily_statistic_id}/:
+    get:
+      operationId: daily_statistics_retrieve
+      parameters:
+      - in: path
+        name: region_daily_statistic_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - daily-statistics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDailyStatistic'
+          description: ''
+    patch:
+      operationId: daily_statistics_partial_update
+      parameters:
+      - in: path
+        name: region_daily_statistic_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - daily-statistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionDailyStatistic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionDailyStatistic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionDailyStatistic'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionDailyStatistic'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /performance-summaries/:
+    get:
+      operationId: performance_summaries_list
+      tags:
+      - performance-summaries
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegionPerformanceSummary'
+          description: ''
+    post:
+      operationId: performance_summaries_create
+      tags:
+      - performance-summaries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegionPerformanceSummary'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegionPerformanceSummary'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegionPerformanceSummary'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionPerformanceSummary'
+          description: ''
+  /performance-summaries/{region_performance_summary_id}/:
+    get:
+      operationId: performance_summaries_retrieve
+      parameters:
+      - in: path
+        name: region_performance_summary_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - performance-summaries
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionPerformanceSummary'
+          description: ''
+    patch:
+      operationId: performance_summaries_partial_update
+      parameters:
+      - in: path
+        name: region_performance_summary_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - performance-summaries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionPerformanceSummary'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionPerformanceSummary'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRegionPerformanceSummary'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionPerformanceSummary'
+          description: ''
+components:
+  schemas:
+    DifficultyLevelSnapshotEnum:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
+      description: |-
+        * `low` - low
+        * `medium` - medium
+        * `high` - high
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedRegionDailyStatistic:
+      type: object
+      properties:
+        region_daily_statistic_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_id:
+          type: string
+          format: uuid
+        region_code_snapshot:
+          type: string
+          maxLength: 64
+        service_date:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        completed_delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        exception_delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        total_distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total_base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        average_delivery_minutes:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedRegionPerformanceSummary:
+      type: object
+      properties:
+        region_performance_summary_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_id:
+          type: string
+          format: uuid
+        region_code_snapshot:
+          type: string
+          maxLength: 64
+        difficulty_level_snapshot:
+          $ref: '#/components/schemas/DifficultyLevelSnapshotEnum'
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        completion_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        productivity_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
+        cost_per_delivery:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    RegionDailyStatistic:
+      type: object
+      properties:
+        region_daily_statistic_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_id:
+          type: string
+          format: uuid
+        region_code_snapshot:
+          type: string
+          maxLength: 64
+        service_date:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        completed_delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        exception_delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        total_distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total_base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        average_delivery_minutes:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - average_delivery_minutes
+      - completed_delivery_count
+      - created_at
+      - delivery_count
+      - region_code_snapshot
+      - region_daily_statistic_id
+      - region_id
+      - service_date
+      - total_base_amount
+      - total_distance_km
+      - updated_at
+    RegionPerformanceSummary:
+      type: object
+      properties:
+        region_performance_summary_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_id:
+          type: string
+          format: uuid
+        region_code_snapshot:
+          type: string
+          maxLength: 64
+        difficulty_level_snapshot:
+          $ref: '#/components/schemas/DifficultyLevelSnapshotEnum'
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        completion_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        productivity_score:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
+        cost_per_delivery:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - completion_rate
+      - cost_per_delivery
+      - created_at
+      - delivery_count
+      - difficulty_level_snapshot
+      - period_end
+      - period_start
+      - productivity_score
+      - region_code_snapshot
+      - region_id
+      - region_performance_summary_id
+      - updated_at

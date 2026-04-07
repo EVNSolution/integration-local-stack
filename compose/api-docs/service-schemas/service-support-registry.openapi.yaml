@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Support Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-support-registry.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /ticket-responses/:
+    get:
+      operationId: ticket_responses_list
+      tags:
+      - ticket-responses
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupportTicketResponse'
+          description: ''
+    post:
+      operationId: ticket_responses_create
+      tags:
+      - ticket-responses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicketResponse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupportTicketResponse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupportTicketResponse'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportTicketResponse'
+          description: ''
+  /tickets/:
+    get:
+      operationId: tickets_list
+      tags:
+      - tickets
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupportTicket'
+          description: ''
+    post:
+      operationId: tickets_create
+      tags:
+      - tickets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportTicket'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupportTicket'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupportTicket'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportTicket'
+          description: ''
+  /tickets/{ticket_ref}/:
+    get:
+      operationId: tickets_retrieve
+      parameters:
+      - in: path
+        name: ticket_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - tickets
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportTicket'
+          description: ''
+    patch:
+      operationId: tickets_partial_update
+      parameters:
+      - in: path
+        name: ticket_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - tickets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSupportTicket'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSupportTicket'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSupportTicket'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportTicket'
+          description: ''
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedSupportTicket:
+      type: object
+      properties:
+        ticket_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+        requester_account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        priority:
+          $ref: '#/components/schemas/PriorityEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PriorityEnum:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
+      description: |-
+        * `low` - low
+        * `medium` - medium
+        * `high` - high
+    StatusEnum:
+      enum:
+      - open
+      - in_progress
+      - resolved
+      - closed
+      type: string
+      description: |-
+        * `open` - open
+        * `in_progress` - in_progress
+        * `resolved` - resolved
+        * `closed` - closed
+    SupportTicket:
+      type: object
+      properties:
+        ticket_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+        requester_account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        priority:
+          $ref: '#/components/schemas/PriorityEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - body
+      - created_at
+      - priority
+      - requester_account_id
+      - route_no
+      - status
+      - ticket_id
+      - title
+      - updated_at
+    SupportTicketResponse:
+      type: object
+      properties:
+        response_id:
+          type: string
+          format: uuid
+          readOnly: true
+        ticket_id:
+          type: string
+          format: uuid
+        author_account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        author_role:
+          type: string
+          readOnly: true
+        body:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - author_account_id
+      - author_role
+      - body
+      - created_at
+      - response_id
+      - ticket_id
+      - updated_at

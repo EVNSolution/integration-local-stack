@@ -1,0 +1,199 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Telemetry Dead Letter API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-telemetry-dead-letter.
+paths:
+  /:
+    get:
+      operationId: root_list
+      parameters:
+      - in: query
+        name: failed_at_from
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: failed_at_to
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: failure_class
+        schema:
+          type: string
+          minLength: 1
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: source_service
+        schema:
+          type: string
+          minLength: 1
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTelemetryDeadLetterList'
+          description: ''
+  /{telemetry_dead_letter_id}/:
+    get:
+      operationId: root_retrieve
+      parameters:
+      - in: path
+        name: telemetry_dead_letter_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryDeadLetter'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /ingest/:
+    post:
+      operationId: ingest_create
+      tags:
+      - ingest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelemetryDeadLetter'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TelemetryDeadLetter'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TelemetryDeadLetter'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryDeadLetter'
+          description: ''
+components:
+  schemas:
+    FailureClassEnum:
+      enum:
+      - parse_error
+      - hub_4xx
+      - hub_5xx_retry_exhausted
+      - connection_failure_retry_exhausted
+      - timeout_retry_exhausted
+      type: string
+      description: |-
+        * `parse_error` - Parse Error
+        * `hub_4xx` - Hub 4xx
+        * `hub_5xx_retry_exhausted` - Hub 5xx Retry Exhausted
+        * `connection_failure_retry_exhausted` - Connection Failure Retry Exhausted
+        * `timeout_retry_exhausted` - Timeout Retry Exhausted
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PaginatedTelemetryDeadLetterList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TelemetryDeadLetter'
+    TelemetryDeadLetter:
+      type: object
+      properties:
+        telemetry_dead_letter_id:
+          type: string
+          format: uuid
+          readOnly: true
+        source_service:
+          type: string
+          maxLength: 128
+        message_topic:
+          type: string
+          maxLength: 255
+        source_terminal_id:
+          type: string
+          format: uuid
+          nullable: true
+        source_vehicle_id:
+          type: string
+          format: uuid
+          nullable: true
+        message_type:
+          type: string
+          nullable: true
+          maxLength: 128
+        payload_json: {}
+        received_at:
+          type: string
+          format: date-time
+        failure_class:
+          $ref: '#/components/schemas/FailureClassEnum'
+        error_message:
+          type: string
+        retry_attempts:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        failure_fingerprint:
+          type: string
+          maxLength: 255
+        failed_at:
+          type: string
+          format: date-time
+      required:
+      - error_message
+      - failed_at
+      - failure_class
+      - failure_fingerprint
+      - message_topic
+      - payload_json
+      - received_at
+      - retry_attempts
+      - source_service
+      - telemetry_dead_letter_id

@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Dispatch Operations View API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-dispatch-operations-view.
+paths:
+  /board/:
+    get:
+      operationId: board_list
+      parameters:
+      - in: query
+        name: dispatch_date
+        schema:
+          type: string
+          format: date
+        required: true
+      - in: query
+        name: fleet_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - board
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DispatchOpsBoardRow'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /summary/:
+    get:
+      operationId: summary_retrieve
+      parameters:
+      - in: query
+        name: dispatch_date
+        schema:
+          type: string
+          format: date
+        required: true
+      - in: query
+        name: fleet_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - summary
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchOpsSummary'
+          description: ''
+components:
+  schemas:
+    DispatchOpsBoardRow:
+      type: object
+      properties:
+        dispatch_date:
+          type: string
+          format: date
+        vehicle_schedule_id:
+          type: string
+          nullable: true
+        dispatch_assignment_id:
+          type: string
+          nullable: true
+        shift_slot:
+          type: string
+          nullable: true
+        vehicle_id:
+          type: string
+          nullable: true
+        plate_number:
+          type: string
+          nullable: true
+        planned_driver_kind:
+          type: string
+          nullable: true
+        outsourced_driver_id:
+          type: string
+          nullable: true
+        planned_driver_id:
+          type: string
+          nullable: true
+        planned_driver_name:
+          type: string
+          nullable: true
+        current_driver_id:
+          type: string
+          nullable: true
+        current_driver_name:
+          type: string
+          nullable: true
+        dispatch_status:
+          $ref: '#/components/schemas/DispatchStatusEnum'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarningsEnum'
+      required:
+      - dispatch_date
+      - dispatch_status
+      - vehicle_id
+      - warnings
+    DispatchOpsSummary:
+      type: object
+      properties:
+        dispatch_date:
+          type: string
+          format: date
+        fleet_id:
+          type: string
+          format: uuid
+        planned_volume:
+          type: integer
+        planned_assignment_count:
+          type: integer
+        matched_count:
+          type: integer
+        not_started_count:
+          type: integer
+        dispatch_unit_changed_count:
+          type: integer
+        unplanned_current_count:
+          type: integer
+      required:
+      - dispatch_date
+      - dispatch_unit_changed_count
+      - fleet_id
+      - matched_count
+      - not_started_count
+      - planned_assignment_count
+      - planned_volume
+      - unplanned_current_count
+    DispatchStatusEnum:
+      enum:
+      - matched
+      - not_started
+      - dispatch_unit_changed
+      - unplanned_current
+      type: string
+      description: |-
+        * `matched` - matched
+        * `not_started` - not_started
+        * `dispatch_unit_changed` - dispatch_unit_changed
+        * `unplanned_current` - unplanned_current
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    WarningsEnum:
+      enum:
+      - vehicle_lookup_failed
+      - planned_driver_lookup_failed
+      - planned_outsourced_driver_lookup_failed
+      - current_driver_lookup_failed
+      - current_assignment_source_unavailable
+      type: string
+      description: |-
+        * `vehicle_lookup_failed` - vehicle_lookup_failed
+        * `planned_driver_lookup_failed` - planned_driver_lookup_failed
+        * `planned_outsourced_driver_lookup_failed` - planned_outsourced_driver_lookup_failed
+        * `current_driver_lookup_failed` - current_driver_lookup_failed
+        * `current_assignment_source_unavailable` - current_assignment_source_unavailable

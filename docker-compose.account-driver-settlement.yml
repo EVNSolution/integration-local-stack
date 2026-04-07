@@ -1,0 +1,550 @@
+x-bootstrap-command: &bootstrap_command
+  - sh
+  - -c
+  - while true; do sleep 3600; done
+
+services:
+  gateway:
+    build:
+      context: ../edge-api-gateway
+    depends_on:
+      - admin-front
+      - account-auth-api
+      - driver-profile-api
+      - personnel-document-registry-api
+      - settlement-payroll-api
+      - settlement-registry-api
+      - delivery-record-api
+      - settlement-ops-api
+      - organization-master-api
+      - vehicle-asset-api
+      - dispatch-registry-api
+      - region-registry-api
+      - region-analytics-api
+      - announcement-registry-api
+      - support-registry-api
+      - notification-hub-api
+      - terminal-registry-api
+      - driver-vehicle-assignment-api
+      - telemetry-hub-api
+      - telemetry-dead-letter-api
+      - vehicle-ops-api
+      - dispatch-ops-api
+      - driver-ops-api
+    ports:
+      - "8080:8080"
+
+  admin-front:
+    build:
+      context: ../front-admin-console
+    env_file:
+      - ./infra/env/admin-front.env.example
+    expose:
+      - "5174"
+
+  account-auth-api:
+    build:
+      context: ../service-account-access
+    env_file:
+      - ./infra/env/account-auth.env.example
+    depends_on:
+      - account-db
+      - redis
+    expose:
+      - "8000"
+
+  driver-profile-api:
+    build:
+      context: ../service-driver-profile
+    env_file:
+      - ./infra/env/driver-profile.env.example
+    depends_on:
+      - driver-db
+    expose:
+      - "8000"
+
+  personnel-document-registry-api:
+    build:
+      context: ../service-personnel-document-registry
+    env_file:
+      - ./infra/env/personnel-document-registry.env.example
+    depends_on:
+      - personnel-document-db
+      - driver-profile-api
+    expose:
+      - "8000"
+
+  settlement-payroll-api:
+    build:
+      context: ../service-settlement-payroll
+    env_file:
+      - ./infra/env/settlement-payroll.env.example
+    depends_on:
+      - settlement-db
+    expose:
+      - "8000"
+
+  settlement-registry-api:
+    build:
+      context: ../service-settlement-registry
+    env_file:
+      - ./infra/env/settlement-registry.env.example
+    depends_on:
+      - settlement-registry-db
+      - organization-master-api
+    expose:
+      - "8000"
+
+  delivery-record-api:
+    build:
+      context: ../service-delivery-record
+    env_file:
+      - ./infra/env/delivery-record.env.example
+    depends_on:
+      - delivery-record-db
+      - organization-master-api
+      - driver-profile-api
+    expose:
+      - "8000"
+
+  settlement-ops-api:
+    build:
+      context: ../service-settlement-operations-view
+    env_file:
+      - ./infra/env/settlement-ops.env.example
+    depends_on:
+      - settlement-payroll-api
+      - delivery-record-api
+    expose:
+      - "8000"
+
+  organization-master-api:
+    build:
+      context: ../service-organization-registry
+    env_file:
+      - ./infra/env/organization-master.env.example
+    depends_on:
+      - org-db
+    expose:
+      - "8000"
+
+  vehicle-asset-api:
+    build:
+      context: ../service-vehicle-registry
+    env_file:
+      - ./infra/env/vehicle-asset.env.example
+    depends_on:
+      - vehicle-db
+    expose:
+      - "8000"
+
+  dispatch-registry-api:
+    build:
+      context: ../service-dispatch-registry
+    env_file:
+      - ./infra/env/dispatch-registry.env.example
+    depends_on:
+      - dispatch-registry-db
+      - vehicle-asset-api
+      - driver-profile-api
+    expose:
+      - "8000"
+
+  region-registry-api:
+    build:
+      context: ../service-region-registry
+    env_file:
+      - ./infra/env/region-registry.env.example
+    depends_on:
+      - region-registry-db
+    expose:
+      - "8000"
+
+  region-analytics-api:
+    build:
+      context: ../service-region-analytics
+    env_file:
+      - ./infra/env/region-analytics.env.example
+    depends_on:
+      - region-analytics-db
+    expose:
+      - "8000"
+
+  announcement-registry-api:
+    build:
+      context: ../service-announcement-registry
+    env_file:
+      - ./infra/env/announcement-registry.env.example
+    depends_on:
+      - announcement-registry-db
+    expose:
+      - "8000"
+
+  support-registry-api:
+    build:
+      context: ../service-support-registry
+    env_file:
+      - ./infra/env/support-registry.env.example
+    depends_on:
+      - support-registry-db
+    expose:
+      - "8000"
+
+  notification-hub-api:
+    build:
+      context: ../service-notification-hub
+    env_file:
+      - ./infra/env/notification-hub.env.example
+    depends_on:
+      - notification-hub-db
+    expose:
+      - "8000"
+
+  terminal-registry-api:
+    build:
+      context: ../service-terminal-registry
+    env_file:
+      - ./infra/env/terminal-registry.env.example
+    depends_on:
+      - terminal-db
+      - vehicle-asset-api
+    expose:
+      - "8000"
+
+  telemetry-hub-api:
+    build:
+      context: ../service-telemetry-hub
+    env_file:
+      - ./infra/env/telemetry-hub.env.example
+    environment:
+      TELEMETRY_HUB_INGEST_KEY: local-telemetry-ingest-key
+    depends_on:
+      - telemetry-db
+    expose:
+      - "8000"
+
+  mqtt-broker:
+    build:
+      context: .
+      dockerfile: ./infra/docker/mqtt-broker/Dockerfile
+    command: ["mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:1883:1883"
+
+  telemetry-listener:
+    build:
+      context: ../service-telemetry-listener
+    env_file:
+      - ./infra/env/telemetry-listener.env.example
+    depends_on:
+      mqtt-broker:
+        condition: service_started
+      telemetry-hub-api:
+        condition: service_started
+      telemetry-dead-letter-api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  telemetry-dead-letter-api:
+    build:
+      context: ../service-telemetry-dead-letter
+    env_file:
+      - ./infra/env/telemetry-dead-letter.env.example
+    depends_on:
+      telemetry-dead-letter-db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/', timeout=2)"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    expose:
+      - "8000"
+
+  driver-vehicle-assignment-api:
+    build:
+      context: ../service-vehicle-assignment
+    env_file:
+      - ./infra/env/driver-vehicle-assignment.env.example
+    depends_on:
+      assignment-db:
+        condition: service_healthy
+      vehicle-asset-api:
+        condition: service_started
+      driver-profile-api:
+        condition: service_started
+    expose:
+      - "8000"
+
+  vehicle-ops-api:
+    build:
+      context: ../service-vehicle-operations-view
+    env_file:
+      - ./infra/env/vehicle-ops.env.example
+    depends_on:
+      - vehicle-asset-api
+      - driver-vehicle-assignment-api
+      - organization-master-api
+      - terminal-registry-api
+      - telemetry-hub-api
+    expose:
+      - "8000"
+
+  dispatch-ops-api:
+    build:
+      context: ../service-dispatch-operations-view
+    env_file:
+      - ./infra/env/dispatch-ops.env.example
+    depends_on:
+      - dispatch-registry-api
+      - driver-vehicle-assignment-api
+      - vehicle-asset-api
+      - driver-profile-api
+    expose:
+      - "8000"
+
+  driver-ops-api:
+    build:
+      context: ../service-driver-operations-view
+    env_file:
+      - ./infra/env/driver-ops.env.example
+    depends_on:
+      - account-auth-api
+      - driver-profile-api
+      - personnel-document-registry-api
+      - settlement-ops-api
+      - organization-master-api
+    expose:
+      - "8000"
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    expose:
+      - "6379"
+
+  account-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: account_auth
+      POSTGRES_USER: account_auth
+      POSTGRES_PASSWORD: account_auth
+    expose:
+      - "5432"
+
+  driver-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: driver_profile
+      POSTGRES_USER: driver_profile
+      POSTGRES_PASSWORD: driver_profile
+    expose:
+      - "5432"
+
+  personnel-document-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: personnel_document_registry
+      POSTGRES_USER: personnel_document_registry
+      POSTGRES_PASSWORD: personnel_document_registry
+    expose:
+      - "5432"
+
+  settlement-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: settlement
+      POSTGRES_USER: settlement
+      POSTGRES_PASSWORD: settlement
+    expose:
+      - "5432"
+
+  settlement-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: settlement_registry
+      POSTGRES_USER: settlement_registry
+      POSTGRES_PASSWORD: settlement_registry
+    expose:
+      - "5432"
+
+  delivery-record-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: delivery_record
+      POSTGRES_USER: delivery_record
+      POSTGRES_PASSWORD: delivery_record
+    expose:
+      - "5432"
+
+  org-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: organization_master
+      POSTGRES_USER: organization_master
+      POSTGRES_PASSWORD: organization_master
+    expose:
+      - "5432"
+
+  vehicle-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vehicle_asset
+      POSTGRES_USER: vehicle_asset
+      POSTGRES_PASSWORD: vehicle_asset
+    expose:
+      - "5432"
+
+  dispatch-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: dispatch_registry
+      POSTGRES_USER: dispatch_registry
+      POSTGRES_PASSWORD: dispatch_registry
+    expose:
+      - "5432"
+
+  region-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: region_registry
+      POSTGRES_USER: region_registry
+      POSTGRES_PASSWORD: region_registry
+    expose:
+      - "5432"
+
+  region-analytics-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: region_analytics
+      POSTGRES_USER: region_analytics
+      POSTGRES_PASSWORD: region_analytics
+    expose:
+      - "5432"
+
+  announcement-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: announcement_registry
+      POSTGRES_USER: announcement_registry
+      POSTGRES_PASSWORD: announcement_registry
+    expose:
+      - "5432"
+
+  support-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: support_registry
+      POSTGRES_USER: support_registry
+      POSTGRES_PASSWORD: support_registry
+    expose:
+      - "5432"
+
+  notification-hub-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: notification_hub
+      POSTGRES_USER: notification_hub
+      POSTGRES_PASSWORD: notification_hub
+    expose:
+      - "5432"
+
+  assignment-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: driver_vehicle_assignment
+      POSTGRES_USER: driver_vehicle_assignment
+      POSTGRES_PASSWORD: driver_vehicle_assignment
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U driver_vehicle_assignment -d driver_vehicle_assignment
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    expose:
+      - "5432"
+
+  terminal-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: terminal_registry
+      POSTGRES_USER: terminal_registry
+      POSTGRES_PASSWORD: terminal_registry
+    expose:
+      - "5432"
+
+  telemetry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: telemetry_hub
+      POSTGRES_USER: telemetry_hub
+      POSTGRES_PASSWORD: telemetry_hub
+    expose:
+      - "5432"
+
+  telemetry-dead-letter-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: telemetry_dead_letter
+      POSTGRES_USER: telemetry_dead_letter
+      POSTGRES_PASSWORD: telemetry_dead_letter
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U telemetry_dead_letter -d telemetry_dead_letter
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    expose:
+      - "5432"
+
+  seed-runner:
+    build:
+      context: ../..
+      dockerfile: ./development/integration-local-stack/infra/docker/seed-runner/Dockerfile
+    depends_on:
+      - account-db
+      - driver-db
+      - personnel-document-db
+      - settlement-db
+      - settlement-registry-db
+      - delivery-record-db
+      - org-db
+      - vehicle-db
+      - dispatch-registry-db
+      - region-registry-db
+      - region-analytics-db
+      - announcement-registry-db
+      - support-registry-db
+      - notification-hub-db
+      - terminal-db
+      - telemetry-db
+      - telemetry-dead-letter-db
+      - assignment-db
+      - redis
+      - account-auth-api
+      - driver-profile-api
+      - personnel-document-registry-api
+      - settlement-payroll-api
+      - settlement-registry-api
+      - delivery-record-api
+      - organization-master-api
+      - vehicle-asset-api
+      - dispatch-registry-api
+      - region-registry-api
+      - region-analytics-api
+      - announcement-registry-api
+      - support-registry-api
+      - notification-hub-api
+      - terminal-registry-api
+      - telemetry-hub-api
+      - telemetry-dead-letter-api
+      - driver-ops-api
+    command: ["/usr/local/bin/run-seed.sh"]

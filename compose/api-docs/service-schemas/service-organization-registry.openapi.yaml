@@ -1,0 +1,339 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Organization Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-organization-registry.
+paths:
+  /companies/:
+    get:
+      operationId: companies_list
+      tags:
+      - companies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+          description: ''
+    post:
+      operationId: companies_create
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Company'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+  /companies/{company_ref}/:
+    get:
+      operationId: companies_retrieve
+      parameters:
+      - in: path
+        name: company_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - companies
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    put:
+      operationId: companies_update
+      parameters:
+      - in: path
+        name: company_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Company'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    patch:
+      operationId: companies_partial_update
+      parameters:
+      - in: path
+        name: company_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - companies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    delete:
+      operationId: companies_destroy
+      parameters:
+      - in: path
+        name: company_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - companies
+      responses:
+        '204':
+          description: No response body
+  /fleets/:
+    get:
+      operationId: fleets_list
+      tags:
+      - fleets
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Fleet'
+          description: ''
+    post:
+      operationId: fleets_create
+      tags:
+      - fleets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fleet'
+          description: ''
+  /fleets/{fleet_ref}/:
+    get:
+      operationId: fleets_retrieve
+      parameters:
+      - in: path
+        name: fleet_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - fleets
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fleet'
+          description: ''
+    put:
+      operationId: fleets_update
+      parameters:
+      - in: path
+        name: fleet_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - fleets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Fleet'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fleet'
+          description: ''
+    patch:
+      operationId: fleets_partial_update
+      parameters:
+      - in: path
+        name: fleet_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - fleets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFleet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFleet'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFleet'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fleet'
+          description: ''
+    delete:
+      operationId: fleets_destroy
+      parameters:
+      - in: path
+        name: fleet_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - fleets
+      responses:
+        '204':
+          description: No response body
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    Company:
+      type: object
+      properties:
+        company_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - company_id
+      - name
+      - route_no
+    Fleet:
+      type: object
+      properties:
+        fleet_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        company_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 255
+      required:
+      - company_id
+      - fleet_id
+      - name
+      - route_no
+    PatchedCompany:
+      type: object
+      properties:
+        company_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        name:
+          type: string
+          maxLength: 255
+    PatchedFleet:
+      type: object
+      properties:
+        fleet_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        company_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 255

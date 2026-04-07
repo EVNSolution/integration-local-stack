@@ -1,0 +1,406 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Settlement Payroll API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-settlement-payroll.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /items/:
+    get:
+      operationId: items_list
+      tags:
+      - items
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementItem'
+          description: ''
+    post:
+      operationId: items_create
+      tags:
+      - items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementItem'
+          description: ''
+  /items/{settlement_item_id}/:
+    get:
+      operationId: items_retrieve
+      parameters:
+      - in: path
+        name: settlement_item_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement item.
+        required: true
+      tags:
+      - items
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementItem'
+          description: ''
+    put:
+      operationId: items_update
+      parameters:
+      - in: path
+        name: settlement_item_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement item.
+        required: true
+      tags:
+      - items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementItem'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementItem'
+          description: ''
+    patch:
+      operationId: items_partial_update
+      parameters:
+      - in: path
+        name: settlement_item_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement item.
+        required: true
+      tags:
+      - items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementItem'
+          description: ''
+    delete:
+      operationId: items_destroy
+      parameters:
+      - in: path
+        name: settlement_item_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement item.
+        required: true
+      tags:
+      - items
+      responses:
+        '204':
+          description: No response body
+  /runs/:
+    get:
+      operationId: runs_list
+      tags:
+      - runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementRun'
+          description: ''
+    post:
+      operationId: runs_create
+      tags:
+      - runs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementRun'
+          description: ''
+  /runs/{settlement_run_id}/:
+    get:
+      operationId: runs_retrieve
+      parameters:
+      - in: path
+        name: settlement_run_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement run.
+        required: true
+      tags:
+      - runs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementRun'
+          description: ''
+    put:
+      operationId: runs_update
+      parameters:
+      - in: path
+        name: settlement_run_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement run.
+        required: true
+      tags:
+      - runs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SettlementRun'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementRun'
+          description: ''
+    patch:
+      operationId: runs_partial_update
+      parameters:
+      - in: path
+        name: settlement_run_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement run.
+        required: true
+      tags:
+      - runs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementRun'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementRun'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSettlementRun'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementRun'
+          description: ''
+    delete:
+      operationId: runs_destroy
+      parameters:
+      - in: path
+        name: settlement_run_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this settlement run.
+        required: true
+      tags:
+      - runs
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedSettlementItem:
+      type: object
+      properties:
+        settlement_item_id:
+          type: string
+          format: uuid
+          readOnly: true
+        settlement_run_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        payout_status:
+          type: string
+          maxLength: 32
+    PatchedSettlementRun:
+      type: object
+      properties:
+        settlement_run_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+    SettlementItem:
+      type: object
+      properties:
+        settlement_item_id:
+          type: string
+          format: uuid
+          readOnly: true
+        settlement_run_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        payout_status:
+          type: string
+          maxLength: 32
+      required:
+      - amount
+      - driver_id
+      - payout_status
+      - settlement_item_id
+      - settlement_run_id
+    SettlementRun:
+      type: object
+      properties:
+        settlement_run_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        period_start:
+          type: string
+          format: date
+        period_end:
+          type: string
+          format: date
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+      required:
+      - company_id
+      - fleet_id
+      - period_end
+      - period_start
+      - settlement_run_id
+      - status
+    StatusEnum:
+      enum:
+      - draft
+      - calculated
+      - reviewed
+      - approved
+      - paid
+      - closed
+      type: string
+      description: |-
+        * `draft` - Draft
+        * `calculated` - Calculated
+        * `reviewed` - Reviewed
+        * `approved` - Approved
+        * `paid` - Paid
+        * `closed` - Closed

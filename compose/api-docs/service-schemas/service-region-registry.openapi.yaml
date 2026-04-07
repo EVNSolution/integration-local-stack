@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Region Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-region-registry.
+paths:
+  /:
+    get:
+      operationId: root_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Region'
+          description: ''
+    post:
+      operationId: root_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Region'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Region'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Region'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: ''
+  /{region_id}/:
+    get:
+      operationId: root_retrieve
+      parameters:
+      - in: path
+        name: region_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: ''
+    patch:
+      operationId: root_partial_update
+      parameters:
+      - in: path
+        name: region_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRegion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRegion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRegion'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Region'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+components:
+  schemas:
+    DifficultyLevelEnum:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
+      description: |-
+        * `low` - low
+        * `medium` - medium
+        * `high` - high
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedRegion:
+      type: object
+      properties:
+        region_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_code:
+          type: string
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 128
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        difficulty_level:
+          $ref: '#/components/schemas/DifficultyLevelEnum'
+        polygon_geojson: {}
+        description:
+          type: string
+        display_order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Region:
+      type: object
+      properties:
+        region_id:
+          type: string
+          format: uuid
+          readOnly: true
+        region_code:
+          type: string
+          maxLength: 64
+        name:
+          type: string
+          maxLength: 128
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        difficulty_level:
+          $ref: '#/components/schemas/DifficultyLevelEnum'
+        polygon_geojson: {}
+        description:
+          type: string
+        display_order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - difficulty_level
+      - name
+      - region_code
+      - region_id
+      - status
+      - updated_at
+    StatusEnum:
+      enum:
+      - draft
+      - active
+      - inactive
+      type: string
+      description: |-
+        * `draft` - draft
+        * `active` - active
+        * `inactive` - inactive

@@ -1,0 +1,1132 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Dispatch Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-dispatch-registry.
+paths:
+  /assignments/:
+    get:
+      operationId: assignments_list
+      tags:
+      - assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DispatchAssignment'
+          description: ''
+    post:
+      operationId: assignments_create
+      tags:
+      - assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DispatchAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DispatchAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DispatchAssignment'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchAssignment'
+          description: ''
+  /assignments/{dispatch_assignment_id}/:
+    get:
+      operationId: assignments_retrieve
+      parameters:
+      - in: path
+        name: dispatch_assignment_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchAssignment'
+          description: ''
+    patch:
+      operationId: assignments_partial_update
+      parameters:
+      - in: path
+        name: dispatch_assignment_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchAssignment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchAssignment'
+          description: ''
+  /driver-day-exceptions/:
+    get:
+      operationId: driver_day_exceptions_list
+      tags:
+      - driver-day-exceptions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverDayException'
+          description: ''
+    post:
+      operationId: driver_day_exceptions_create
+      tags:
+      - driver-day-exceptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverDayException'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverDayException'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverDayException'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverDayException'
+          description: ''
+  /driver-day-exceptions/{driver_day_exception_id}/:
+    get:
+      operationId: driver_day_exceptions_retrieve
+      parameters:
+      - in: path
+        name: driver_day_exception_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - driver-day-exceptions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverDayException'
+          description: ''
+    patch:
+      operationId: driver_day_exceptions_partial_update
+      parameters:
+      - in: path
+        name: driver_day_exception_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - driver-day-exceptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverDayException'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverDayException'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverDayException'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverDayException'
+          description: ''
+    delete:
+      operationId: driver_day_exceptions_destroy
+      parameters:
+      - in: path
+        name: driver_day_exception_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - driver-day-exceptions
+      responses:
+        '204':
+          description: No response body
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /outsourced-drivers/:
+    get:
+      operationId: outsourced_drivers_list
+      tags:
+      - outsourced-drivers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OutsourcedDriver'
+          description: ''
+    post:
+      operationId: outsourced_drivers_create
+      tags:
+      - outsourced-drivers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutsourcedDriver'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OutsourcedDriver'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OutsourcedDriver'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutsourcedDriver'
+          description: ''
+  /outsourced-drivers/{outsourced_driver_id}/:
+    get:
+      operationId: outsourced_drivers_retrieve
+      parameters:
+      - in: path
+        name: outsourced_driver_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - outsourced-drivers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutsourcedDriver'
+          description: ''
+    patch:
+      operationId: outsourced_drivers_partial_update
+      parameters:
+      - in: path
+        name: outsourced_driver_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - outsourced-drivers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOutsourcedDriver'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOutsourcedDriver'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOutsourcedDriver'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutsourcedDriver'
+          description: ''
+  /outsourced-drivers/{outsourced_driver_id}/archive/:
+    post:
+      operationId: outsourced_drivers_archive_create
+      parameters:
+      - in: path
+        name: outsourced_driver_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - outsourced-drivers
+      responses:
+        '200':
+          description: No response body
+  /plans/:
+    get:
+      operationId: plans_list
+      tags:
+      - plans
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DispatchPlan'
+          description: ''
+    post:
+      operationId: plans_create
+      tags:
+      - plans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DispatchPlan'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DispatchPlan'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DispatchPlan'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchPlan'
+          description: ''
+  /plans/{dispatch_plan_id}/:
+    get:
+      operationId: plans_retrieve
+      parameters:
+      - in: path
+        name: dispatch_plan_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - plans
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchPlan'
+          description: ''
+    patch:
+      operationId: plans_partial_update
+      parameters:
+      - in: path
+        name: dispatch_plan_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - plans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchPlan'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchPlan'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchPlan'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchPlan'
+          description: ''
+  /vehicle-schedules/:
+    get:
+      operationId: vehicle_schedules_list
+      tags:
+      - vehicle-schedules
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleSchedule'
+          description: ''
+    post:
+      operationId: vehicle_schedules_create
+      tags:
+      - vehicle-schedules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VehicleSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VehicleSchedule'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleSchedule'
+          description: ''
+  /vehicle-schedules/{vehicle_schedule_id}/:
+    get:
+      operationId: vehicle_schedules_retrieve
+      parameters:
+      - in: path
+        name: vehicle_schedule_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicle-schedules
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleSchedule'
+          description: ''
+    patch:
+      operationId: vehicle_schedules_partial_update
+      parameters:
+      - in: path
+        name: vehicle_schedule_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicle-schedules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleSchedule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleSchedule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleSchedule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleSchedule'
+          description: ''
+  /work-rules/:
+    get:
+      operationId: work_rules_list
+      tags:
+      - work-rules
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DispatchWorkRule'
+          description: ''
+    post:
+      operationId: work_rules_create
+      tags:
+      - work-rules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DispatchWorkRule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DispatchWorkRule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DispatchWorkRule'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchWorkRule'
+          description: ''
+  /work-rules/{work_rule_id}/:
+    get:
+      operationId: work_rules_retrieve
+      parameters:
+      - in: path
+        name: work_rule_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - work-rules
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchWorkRule'
+          description: ''
+    patch:
+      operationId: work_rules_partial_update
+      parameters:
+      - in: path
+        name: work_rule_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - work-rules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchWorkRule'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchWorkRule'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDispatchWorkRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchWorkRule'
+          description: ''
+    delete:
+      operationId: work_rules_destroy
+      parameters:
+      - in: path
+        name: work_rule_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - work-rules
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    AssignmentStatusEnum:
+      enum:
+      - assigned
+      - unassigned
+      type: string
+      description: |-
+        * `assigned` - assigned
+        * `unassigned` - unassigned
+    DispatchAssignment:
+      type: object
+      properties:
+        dispatch_assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_schedule_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+          nullable: true
+        outsourced_driver_id:
+          type: string
+          format: uuid
+          nullable: true
+        operator_company_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        shift_slot:
+          type: string
+          maxLength: 32
+        assignment_status:
+          $ref: '#/components/schemas/AssignmentStatusEnum'
+        assigned_at:
+          type: string
+          format: date-time
+        unassigned_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - assigned_at
+      - assignment_status
+      - created_at
+      - dispatch_assignment_id
+      - dispatch_date
+      - operator_company_id
+      - shift_slot
+      - updated_at
+      - vehicle_id
+      - vehicle_schedule_id
+    DispatchPlan:
+      type: object
+      properties:
+        dispatch_plan_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        planned_volume:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        dispatch_status:
+          $ref: '#/components/schemas/DispatchStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - company_id
+      - created_at
+      - dispatch_date
+      - dispatch_plan_id
+      - dispatch_status
+      - fleet_id
+      - planned_volume
+      - updated_at
+    DispatchStatusEnum:
+      enum:
+      - draft
+      - published
+      - closed
+      type: string
+      description: |-
+        * `draft` - draft
+        * `published` - published
+        * `closed` - closed
+    DispatchWorkRule:
+      type: object
+      properties:
+        work_rule_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 120
+        system_kind:
+          $ref: '#/components/schemas/SystemKindEnum'
+        is_in_use:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - company_id
+      - created_at
+      - is_in_use
+      - name
+      - system_kind
+      - updated_at
+      - work_rule_id
+    DriverDayException:
+      type: object
+      properties:
+        driver_day_exception_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        driver_id:
+          type: string
+          format: uuid
+        work_rule_id:
+          type: string
+          format: uuid
+          writeOnly: true
+        work_rule:
+          allOf:
+          - $ref: '#/components/schemas/DispatchWorkRule'
+          readOnly: true
+        memo:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - company_id
+      - created_at
+      - dispatch_date
+      - driver_day_exception_id
+      - driver_id
+      - fleet_id
+      - updated_at
+      - work_rule
+      - work_rule_id
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    OutsourcedDriver:
+      type: object
+      properties:
+        outsourced_driver_id:
+          type: string
+          format: uuid
+          readOnly: true
+        dispatch_plan_id:
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          readOnly: true
+        fleet_id:
+          type: string
+          readOnly: true
+        dispatch_date:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 120
+        contact_number:
+          type: string
+          maxLength: 32
+        vehicle_note:
+          type: string
+          maxLength: 255
+        memo:
+          type: string
+        status:
+          type: string
+          readOnly: true
+        archived_at:
+          type: string
+          format: date-time
+          readOnly: true
+        is_archivable:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - archived_at
+      - company_id
+      - contact_number
+      - created_at
+      - dispatch_date
+      - dispatch_plan_id
+      - fleet_id
+      - is_archivable
+      - name
+      - outsourced_driver_id
+      - status
+      - updated_at
+    PatchedDispatchAssignment:
+      type: object
+      properties:
+        dispatch_assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_schedule_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+          nullable: true
+        outsourced_driver_id:
+          type: string
+          format: uuid
+          nullable: true
+        operator_company_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        shift_slot:
+          type: string
+          maxLength: 32
+        assignment_status:
+          $ref: '#/components/schemas/AssignmentStatusEnum'
+        assigned_at:
+          type: string
+          format: date-time
+        unassigned_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDispatchPlan:
+      type: object
+      properties:
+        dispatch_plan_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        planned_volume:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        dispatch_status:
+          $ref: '#/components/schemas/DispatchStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDispatchWorkRule:
+      type: object
+      properties:
+        work_rule_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 120
+        system_kind:
+          $ref: '#/components/schemas/SystemKindEnum'
+        is_in_use:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDriverDayException:
+      type: object
+      properties:
+        driver_day_exception_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        driver_id:
+          type: string
+          format: uuid
+        work_rule_id:
+          type: string
+          format: uuid
+          writeOnly: true
+        work_rule:
+          allOf:
+          - $ref: '#/components/schemas/DispatchWorkRule'
+          readOnly: true
+        memo:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedOutsourcedDriver:
+      type: object
+      properties:
+        outsourced_driver_id:
+          type: string
+          format: uuid
+          readOnly: true
+        dispatch_plan_id:
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          readOnly: true
+        fleet_id:
+          type: string
+          readOnly: true
+        dispatch_date:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 120
+        contact_number:
+          type: string
+          maxLength: 32
+        vehicle_note:
+          type: string
+          maxLength: 255
+        memo:
+          type: string
+        status:
+          type: string
+          readOnly: true
+        archived_at:
+          type: string
+          format: date-time
+          readOnly: true
+        is_archivable:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedVehicleSchedule:
+      type: object
+      properties:
+        vehicle_schedule_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        shift_slot:
+          type: string
+          maxLength: 32
+        schedule_status:
+          $ref: '#/components/schemas/ScheduleStatusEnum'
+        starts_at:
+          type: string
+          format: time
+          nullable: true
+        ends_at:
+          type: string
+          format: time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    ScheduleStatusEnum:
+      enum:
+      - planned
+      - blocked
+      - closed
+      type: string
+      description: |-
+        * `planned` - planned
+        * `blocked` - blocked
+        * `closed` - closed
+    SystemKindEnum:
+      enum:
+      - working
+      - day_off
+      - overtime
+      type: string
+      description: |-
+        * `working` - working
+        * `day_off` - day_off
+        * `overtime` - overtime
+    VehicleSchedule:
+      type: object
+      properties:
+        vehicle_schedule_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        dispatch_date:
+          type: string
+          format: date
+        shift_slot:
+          type: string
+          maxLength: 32
+        schedule_status:
+          $ref: '#/components/schemas/ScheduleStatusEnum'
+        starts_at:
+          type: string
+          format: time
+          nullable: true
+        ends_at:
+          type: string
+          format: time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - dispatch_date
+      - fleet_id
+      - schedule_status
+      - shift_slot
+      - updated_at
+      - vehicle_id
+      - vehicle_schedule_id

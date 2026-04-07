@@ -1,0 +1,425 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Delivery Record API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-delivery-record.
+paths:
+  /daily-snapshots/:
+    get:
+      operationId: daily_snapshots_list
+      parameters:
+      - in: query
+        name: driver_id
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      tags:
+      - daily-snapshots
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          description: ''
+    post:
+      operationId: daily_snapshots_create
+      tags:
+      - daily-snapshots
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          description: ''
+  /daily-snapshots/{daily_delivery_input_snapshot_id}/:
+    get:
+      operationId: daily_snapshots_retrieve
+      parameters:
+      - in: path
+        name: daily_delivery_input_snapshot_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this daily delivery input snapshot.
+        required: true
+      tags:
+      - daily-snapshots
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          description: ''
+    patch:
+      operationId: daily_snapshots_partial_update
+      parameters:
+      - in: path
+        name: daily_delivery_input_snapshot_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this daily delivery input snapshot.
+        required: true
+      tags:
+      - daily-snapshots
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDailyDeliveryInputSnapshot'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDailyDeliveryInputSnapshot'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDailyDeliveryInputSnapshot'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyDeliveryInputSnapshot'
+          description: ''
+  /daily-snapshots/bootstrap-from-dispatch/:
+    post:
+      operationId: daily_snapshots_bootstrap_from_dispatch_create
+      tags:
+      - daily-snapshots
+      responses:
+        '200':
+          description: No response body
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /records/:
+    get:
+      operationId: records_list
+      parameters:
+      - in: query
+        name: driver_id
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      tags:
+      - records
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeliveryRecord'
+          description: ''
+    post:
+      operationId: records_create
+      tags:
+      - records
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryRecord'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DeliveryRecord'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DeliveryRecord'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryRecord'
+          description: ''
+  /records/{delivery_record_id}/:
+    get:
+      operationId: records_retrieve
+      parameters:
+      - in: path
+        name: delivery_record_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this delivery record.
+        required: true
+      tags:
+      - records
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryRecord'
+          description: ''
+    patch:
+      operationId: records_partial_update
+      parameters:
+      - in: path
+        name: delivery_record_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this delivery record.
+        required: true
+      tags:
+      - records
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDeliveryRecord'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDeliveryRecord'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDeliveryRecord'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryRecord'
+          description: ''
+components:
+  schemas:
+    DailyDeliveryInputSnapshot:
+      type: object
+      properties:
+        daily_delivery_input_snapshot_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        service_date:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        total_distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total_base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        source_record_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        status:
+          $ref: '#/components/schemas/DailyDeliveryInputSnapshotStatusEnum'
+      required:
+      - company_id
+      - daily_delivery_input_snapshot_id
+      - delivery_count
+      - driver_id
+      - fleet_id
+      - service_date
+      - source_record_count
+      - status
+      - total_base_amount
+      - total_distance_km
+    DailyDeliveryInputSnapshotStatusEnum:
+      enum:
+      - draft
+      - active
+      - superseded
+      type: string
+      description: |-
+        * `draft` - draft
+        * `active` - active
+        * `superseded` - superseded
+    DeliveryRecord:
+      type: object
+      properties:
+        delivery_record_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        service_date:
+          type: string
+          format: date
+        source_reference:
+          type: string
+          maxLength: 128
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        status:
+          $ref: '#/components/schemas/DeliveryRecordStatusEnum'
+        payload: {}
+      required:
+      - base_amount
+      - company_id
+      - delivery_count
+      - delivery_record_id
+      - distance_km
+      - driver_id
+      - fleet_id
+      - service_date
+      - source_reference
+      - status
+    DeliveryRecordStatusEnum:
+      enum:
+      - draft
+      - confirmed
+      - void
+      type: string
+      description: |-
+        * `draft` - draft
+        * `confirmed` - confirmed
+        * `void` - void
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedDailyDeliveryInputSnapshot:
+      type: object
+      properties:
+        daily_delivery_input_snapshot_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        service_date:
+          type: string
+          format: date
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        total_distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total_base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        source_record_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        status:
+          $ref: '#/components/schemas/DailyDeliveryInputSnapshotStatusEnum'
+    PatchedDeliveryRecord:
+      type: object
+      properties:
+        delivery_record_id:
+          type: string
+          format: uuid
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        driver_id:
+          type: string
+          format: uuid
+        service_date:
+          type: string
+          format: date
+        source_reference:
+          type: string
+          maxLength: 128
+        delivery_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        distance_km:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        base_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        status:
+          $ref: '#/components/schemas/DeliveryRecordStatusEnum'
+        payload: {}

@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Driver Operations View API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-driver-operations-view.
+paths:
+  /drivers/{driver_ref}/:
+    get:
+      operationId: drivers_retrieve
+      parameters:
+      - in: path
+        name: driver_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - drivers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver360Summary'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+components:
+  schemas:
+    Driver360Summary:
+      type: object
+      properties:
+        driver_id:
+          type: string
+          format: uuid
+        driver_name:
+          type: string
+        ev_id:
+          type: string
+        phone_number:
+          type: string
+        address:
+          type: string
+        company_id:
+          type: string
+          format: uuid
+        company_name:
+          type: string
+          nullable: true
+        fleet_id:
+          type: string
+          format: uuid
+        fleet_name:
+          type: string
+          nullable: true
+        employment_status:
+          type: string
+        qualification_status:
+          type: string
+        driver_account_link_id:
+          type: string
+          format: uuid
+          nullable: true
+        driver_account_id:
+          type: string
+          format: uuid
+          nullable: true
+        driver_account_identity_name:
+          type: string
+          nullable: true
+        driver_account_email:
+          type: string
+          format: email
+          nullable: true
+        driver_account_status:
+          type: string
+          nullable: true
+        latest_settlement_run_id:
+          type: string
+          format: uuid
+          nullable: true
+        latest_settlement_period_start:
+          type: string
+          format: date
+          nullable: true
+        latest_settlement_period_end:
+          type: string
+          format: date
+          nullable: true
+        latest_settlement_status:
+          type: string
+          nullable: true
+        latest_payout_status:
+          type: string
+          nullable: true
+        latest_settlement_amount:
+          type: string
+          nullable: true
+        driver_cleanup_status:
+          type: string
+        cleanup_blockers:
+          type: array
+          items:
+            type: string
+        active_personnel_document_types:
+          type: array
+          items:
+            type: string
+        missing_personnel_document_types:
+          type: array
+          items:
+            type: string
+        attendance_rule_status:
+          type: string
+        delivery_history_rule_status:
+          type: string
+        warnings:
+          type: array
+          items:
+            type: string
+      required:
+      - active_personnel_document_types
+      - address
+      - attendance_rule_status
+      - cleanup_blockers
+      - company_id
+      - company_name
+      - delivery_history_rule_status
+      - driver_account_email
+      - driver_account_id
+      - driver_account_identity_name
+      - driver_account_link_id
+      - driver_account_status
+      - driver_cleanup_status
+      - driver_id
+      - driver_name
+      - employment_status
+      - ev_id
+      - fleet_id
+      - fleet_name
+      - latest_payout_status
+      - latest_settlement_amount
+      - latest_settlement_period_end
+      - latest_settlement_period_start
+      - latest_settlement_run_id
+      - latest_settlement_status
+      - missing_personnel_document_types
+      - phone_number
+      - qualification_status
+      - warnings
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status

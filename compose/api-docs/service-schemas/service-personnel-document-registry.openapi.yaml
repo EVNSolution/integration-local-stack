@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Personnel Document Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-personnel-document-registry.
+paths:
+  /documents/:
+    get:
+      operationId: documents_list
+      parameters:
+      - in: query
+        name: driver_id
+        schema:
+          type: string
+        description: Optional driver-scoped filter.
+      tags:
+      - documents
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonnelDocument'
+          description: ''
+    post:
+      operationId: documents_create
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonnelDocument'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PersonnelDocument'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PersonnelDocument'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonnelDocument'
+          description: ''
+  /documents/{personnel_document_id}/:
+    get:
+      operationId: documents_retrieve
+      parameters:
+      - in: path
+        name: personnel_document_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this personnel document.
+        required: true
+      tags:
+      - documents
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonnelDocument'
+          description: ''
+    patch:
+      operationId: documents_partial_update
+      parameters:
+      - in: path
+        name: personnel_document_id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this personnel document.
+        required: true
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPersonnelDocument'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPersonnelDocument'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPersonnelDocument'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonnelDocument'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+components:
+  schemas:
+    DocumentTypeEnum:
+      enum:
+      - contract
+      - license_or_certificate
+      - bank_account_proof
+      - business_registration
+      type: string
+      description: |-
+        * `contract` - contract
+        * `license_or_certificate` - license_or_certificate
+        * `bank_account_proof` - bank_account_proof
+        * `business_registration` - business_registration
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedPersonnelDocument:
+      type: object
+      properties:
+        personnel_document_id:
+          type: string
+          format: uuid
+          readOnly: true
+        driver_id:
+          type: string
+          format: uuid
+        document_type:
+          $ref: '#/components/schemas/DocumentTypeEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        title:
+          type: string
+          maxLength: 255
+        document_number:
+          type: string
+          nullable: true
+          maxLength: 128
+        issuer_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        issued_on:
+          type: string
+          format: date
+          nullable: true
+        expires_on:
+          type: string
+          format: date
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        external_reference:
+          type: string
+          nullable: true
+          maxLength: 255
+        payload: {}
+    PersonnelDocument:
+      type: object
+      properties:
+        personnel_document_id:
+          type: string
+          format: uuid
+          readOnly: true
+        driver_id:
+          type: string
+          format: uuid
+        document_type:
+          $ref: '#/components/schemas/DocumentTypeEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        title:
+          type: string
+          maxLength: 255
+        document_number:
+          type: string
+          nullable: true
+          maxLength: 128
+        issuer_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        issued_on:
+          type: string
+          format: date
+          nullable: true
+        expires_on:
+          type: string
+          format: date
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        external_reference:
+          type: string
+          nullable: true
+          maxLength: 255
+        payload: {}
+      required:
+      - document_number
+      - document_type
+      - driver_id
+      - personnel_document_id
+      - status
+      - title
+    StatusEnum:
+      enum:
+      - draft
+      - active
+      - expired
+      - revoked
+      type: string
+      description: |-
+        * `draft` - draft
+        * `active` - active
+        * `expired` - expired
+        * `revoked` - revoked

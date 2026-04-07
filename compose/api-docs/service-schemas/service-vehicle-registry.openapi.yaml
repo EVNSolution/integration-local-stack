@@ -1,0 +1,393 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Vehicle Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-vehicle-registry.
+paths:
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /vehicle-masters/:
+    get:
+      operationId: vehicle_masters_list
+      tags:
+      - vehicle-masters
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleMaster'
+          description: ''
+    post:
+      operationId: vehicle_masters_create
+      tags:
+      - vehicle-masters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleMaster'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VehicleMaster'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VehicleMaster'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleMaster'
+          description: ''
+  /vehicle-masters/{vehicle_ref}/:
+    get:
+      operationId: vehicle_masters_retrieve
+      parameters:
+      - in: path
+        name: vehicle_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - vehicle-masters
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleMaster'
+          description: ''
+    patch:
+      operationId: vehicle_masters_partial_update
+      parameters:
+      - in: path
+        name: vehicle_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - vehicle-masters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleMaster'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleMaster'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleMaster'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleMaster'
+          description: ''
+  /vehicle-operator-accesses/:
+    get:
+      operationId: vehicle_operator_accesses_list
+      parameters:
+      - in: query
+        name: access_status
+        schema:
+          enum:
+          - active
+          - suspended
+          - ended
+          type: string
+          minLength: 1
+        description: |-
+          * `active` - active
+          * `suspended` - suspended
+          * `ended` - ended
+      - in: query
+        name: operator_company_id
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: vehicle_id
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - vehicle-operator-accesses
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleOperatorAccess'
+          description: ''
+    post:
+      operationId: vehicle_operator_accesses_create
+      tags:
+      - vehicle-operator-accesses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleOperatorAccess'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VehicleOperatorAccess'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VehicleOperatorAccess'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleOperatorAccess'
+          description: ''
+  /vehicle-operator-accesses/{vehicle_operator_access_id}/:
+    get:
+      operationId: vehicle_operator_accesses_retrieve
+      parameters:
+      - in: path
+        name: vehicle_operator_access_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicle-operator-accesses
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleOperatorAccess'
+          description: ''
+    patch:
+      operationId: vehicle_operator_accesses_partial_update
+      parameters:
+      - in: path
+        name: vehicle_operator_access_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - vehicle-operator-accesses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleOperatorAccess'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleOperatorAccess'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVehicleOperatorAccess'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleOperatorAccess'
+          description: ''
+components:
+  schemas:
+    AccessStatusEnum:
+      enum:
+      - active
+      - suspended
+      - ended
+      type: string
+      description: |-
+        * `active` - active
+        * `suspended` - suspended
+        * `ended` - ended
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedVehicleMaster:
+      type: object
+      properties:
+        vehicle_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        manufacturer_company_id:
+          type: string
+          format: uuid
+        plate_number:
+          type: string
+          maxLength: 64
+        vin:
+          type: string
+          maxLength: 64
+        manufacturer_vehicle_code:
+          type: string
+          nullable: true
+          maxLength: 64
+        model_name:
+          type: string
+          maxLength: 128
+        vehicle_status:
+          $ref: '#/components/schemas/VehicleStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedVehicleOperatorAccess:
+      type: object
+      properties:
+        vehicle_operator_access_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_id:
+          type: string
+          format: uuid
+        operator_company_id:
+          type: string
+          format: uuid
+        access_status:
+          $ref: '#/components/schemas/AccessStatusEnum'
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    VehicleMaster:
+      type: object
+      properties:
+        vehicle_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        manufacturer_company_id:
+          type: string
+          format: uuid
+        plate_number:
+          type: string
+          maxLength: 64
+        vin:
+          type: string
+          maxLength: 64
+        manufacturer_vehicle_code:
+          type: string
+          nullable: true
+          maxLength: 64
+        model_name:
+          type: string
+          maxLength: 128
+        vehicle_status:
+          $ref: '#/components/schemas/VehicleStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - manufacturer_company_id
+      - model_name
+      - plate_number
+      - route_no
+      - updated_at
+      - vehicle_id
+      - vehicle_status
+      - vin
+    VehicleOperatorAccess:
+      type: object
+      properties:
+        vehicle_operator_access_id:
+          type: string
+          format: uuid
+          readOnly: true
+        vehicle_id:
+          type: string
+          format: uuid
+        operator_company_id:
+          type: string
+          format: uuid
+        access_status:
+          $ref: '#/components/schemas/AccessStatusEnum'
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - access_status
+      - created_at
+      - operator_company_id
+      - started_at
+      - updated_at
+      - vehicle_id
+      - vehicle_operator_access_id
+    VehicleStatusEnum:
+      enum:
+      - active
+      - inactive
+      - retired
+      type: string
+      description: |-
+        * `active` - active
+        * `inactive` - inactive
+        * `retired` - retired

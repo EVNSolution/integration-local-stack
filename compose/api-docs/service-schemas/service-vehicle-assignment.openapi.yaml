@@ -1,0 +1,204 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Driver Vehicle Assignment API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-vehicle-assignment.
+paths:
+  /assignments/:
+    get:
+      operationId: assignments_list
+      tags:
+      - assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverVehicleAssignment'
+          description: ''
+    post:
+      operationId: assignments_create
+      tags:
+      - assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverVehicleAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverVehicleAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverVehicleAssignment'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverVehicleAssignment'
+          description: ''
+  /assignments/{assignment_ref}/:
+    get:
+      operationId: assignments_retrieve
+      parameters:
+      - in: path
+        name: assignment_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - assignments
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverVehicleAssignment'
+          description: ''
+    patch:
+      operationId: assignments_partial_update
+      parameters:
+      - in: path
+        name: assignment_ref
+        schema:
+          type: string
+        required: true
+      tags:
+      - assignments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverVehicleAssignment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverVehicleAssignment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverVehicleAssignment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverVehicleAssignment'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+components:
+  schemas:
+    AssignmentStatusEnum:
+      enum:
+      - assigned
+      - unassigned
+      type: string
+      description: |-
+        * `assigned` - assigned
+        * `unassigned` - unassigned
+    DriverVehicleAssignment:
+      type: object
+      properties:
+        driver_vehicle_assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        driver_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        operator_company_id:
+          type: string
+          format: uuid
+        assignment_status:
+          $ref: '#/components/schemas/AssignmentStatusEnum'
+        assigned_at:
+          type: string
+          format: date-time
+        unassigned_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - assigned_at
+      - assignment_status
+      - created_at
+      - driver_id
+      - driver_vehicle_assignment_id
+      - operator_company_id
+      - route_no
+      - updated_at
+      - vehicle_id
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedDriverVehicleAssignment:
+      type: object
+      properties:
+        driver_vehicle_assignment_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+          nullable: true
+        driver_id:
+          type: string
+          format: uuid
+        vehicle_id:
+          type: string
+          format: uuid
+        operator_company_id:
+          type: string
+          format: uuid
+        assignment_status:
+          $ref: '#/components/schemas/AssignmentStatusEnum'
+        assigned_at:
+          type: string
+          format: date-time
+        unassigned_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true

@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Driver Profile API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-driver-profile.
+paths:
+  /:
+    get:
+      operationId: root_list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DriverProfile'
+          description: ''
+    post:
+      operationId: root_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverProfile'
+          description: ''
+  /{driver_ref}/:
+    get:
+      operationId: root_retrieve
+      parameters:
+      - in: path
+        name: driver_ref
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverProfile'
+          description: ''
+    put:
+      operationId: root_update
+      parameters:
+      - in: path
+        name: driver_ref
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriverProfile'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverProfile'
+          description: ''
+    patch:
+      operationId: root_partial_update
+      parameters:
+      - in: path
+        name: driver_ref
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriverProfile'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverProfile'
+          description: ''
+    delete:
+      operationId: root_destroy
+      parameters:
+      - in: path
+        name: driver_ref
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: No response body
+  /check-ev-id/:
+    get:
+      operationId: check_ev_id_retrieve
+      parameters:
+      - in: query
+        name: company_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: query
+        name: ev_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - check-ev-id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckEvIdResult'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+components:
+  schemas:
+    CheckEvIdResult:
+      type: object
+      properties:
+        is_duplicate:
+          type: boolean
+      required:
+      - is_duplicate
+    DriverProfile:
+      type: object
+      properties:
+        driver_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 255
+        ev_id:
+          type: string
+          maxLength: 64
+        phone_number:
+          type: string
+          maxLength: 32
+        address:
+          type: string
+          maxLength: 255
+        employment_status:
+          $ref: '#/components/schemas/EmploymentStatusEnum'
+        qualification_status:
+          $ref: '#/components/schemas/QualificationStatusEnum'
+      required:
+      - address
+      - company_id
+      - driver_id
+      - ev_id
+      - fleet_id
+      - name
+      - phone_number
+      - route_no
+    EmploymentStatusEnum:
+      enum:
+      - onboarding
+      - active
+      - leave
+      - resigned
+      - retired
+      type: string
+      description: |-
+        * `onboarding` - onboarding
+        * `active` - active
+        * `leave` - leave
+        * `resigned` - resigned
+        * `retired` - retired
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedDriverProfile:
+      type: object
+      properties:
+        driver_id:
+          type: string
+          format: uuid
+          readOnly: true
+        route_no:
+          type: integer
+          readOnly: true
+        company_id:
+          type: string
+          format: uuid
+        fleet_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 255
+        ev_id:
+          type: string
+          maxLength: 64
+        phone_number:
+          type: string
+          maxLength: 32
+        address:
+          type: string
+          maxLength: 255
+        employment_status:
+          $ref: '#/components/schemas/EmploymentStatusEnum'
+        qualification_status:
+          $ref: '#/components/schemas/QualificationStatusEnum'
+    QualificationStatusEnum:
+      enum:
+      - pending_review
+      - qualified
+      - restricted
+      - expired
+      - revoked
+      type: string
+      description: |-
+        * `pending_review` - pending_review
+        * `qualified` - qualified
+        * `restricted` - restricted
+        * `expired` - expired
+        * `revoked` - revoked

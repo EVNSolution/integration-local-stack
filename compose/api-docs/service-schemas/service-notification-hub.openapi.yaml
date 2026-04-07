@@ -1,0 +1,534 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Notification Hub API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-notification-hub.
+paths:
+  /fcm/tokens/:
+    get:
+      operationId: fcm_tokens_list
+      tags:
+      - fcm
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PushTokenRegistration'
+          description: ''
+    post:
+      operationId: fcm_tokens_create
+      tags:
+      - fcm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PushTokenRegistration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PushTokenRegistration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PushTokenRegistration'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushTokenRegistration'
+          description: ''
+  /fcm/tokens/{push_token_id}/:
+    get:
+      operationId: fcm_tokens_retrieve
+      parameters:
+      - in: path
+        name: push_token_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fcm
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushTokenRegistration'
+          description: ''
+    patch:
+      operationId: fcm_tokens_partial_update
+      parameters:
+      - in: path
+        name: push_token_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fcm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPushTokenRegistration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPushTokenRegistration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPushTokenRegistration'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushTokenRegistration'
+          description: ''
+  /general/:
+    get:
+      operationId: general_list
+      tags:
+      - general
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeneralNotification'
+          description: ''
+    post:
+      operationId: general_create
+      tags:
+      - general
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneralNotification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GeneralNotification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GeneralNotification'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralNotification'
+          description: ''
+  /general/{notification_id}/:
+    get:
+      operationId: general_retrieve
+      parameters:
+      - in: path
+        name: notification_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - general
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralNotification'
+          description: ''
+    patch:
+      operationId: general_partial_update
+      parameters:
+      - in: path
+        name: notification_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - general
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGeneralNotification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGeneralNotification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGeneralNotification'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralNotification'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+  /push-logs/:
+    get:
+      operationId: push_logs_list
+      tags:
+      - push-logs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PushDeliveryLog'
+          description: ''
+  /push-sends/:
+    post:
+      operationId: push_sends_create
+      tags:
+      - push-sends
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PushSendRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PushSendRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PushSendRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushDeliveryLog'
+          description: ''
+components:
+  schemas:
+    ChannelEnum:
+      enum:
+      - fcm
+      type: string
+      description: '* `fcm` - fcm'
+    DeliveryStatusEnum:
+      enum:
+      - simulated_sent
+      - failed
+      type: string
+      description: |-
+        * `simulated_sent` - simulated_sent
+        * `failed` - failed
+    GeneralNotification:
+      type: object
+      properties:
+        notification_id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipient_account_id:
+          type: string
+          format: uuid
+        category:
+          type: string
+          maxLength: 32
+        source_type:
+          type: string
+          maxLength: 32
+        source_ref:
+          type: string
+          maxLength: 128
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        read_at:
+          type: string
+          format: date-time
+          readOnly: true
+        archived_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - archived_at
+      - body
+      - category
+      - created_at
+      - notification_id
+      - read_at
+      - recipient_account_id
+      - title
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    PatchedGeneralNotification:
+      type: object
+      properties:
+        notification_id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipient_account_id:
+          type: string
+          format: uuid
+        category:
+          type: string
+          maxLength: 32
+        source_type:
+          type: string
+          maxLength: 32
+        source_ref:
+          type: string
+          maxLength: 128
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        read_at:
+          type: string
+          format: date-time
+          readOnly: true
+        archived_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedPushTokenRegistration:
+      type: object
+      properties:
+        push_token_id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        platform:
+          $ref: '#/components/schemas/PlatformEnum'
+        device_key:
+          type: string
+          maxLength: 64
+        registration_token:
+          type: string
+          maxLength: 255
+        is_active:
+          type: boolean
+        app_version:
+          type: string
+          maxLength: 32
+        registered_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PlatformEnum:
+      enum:
+      - android
+      - ios
+      - web
+      type: string
+      description: |-
+        * `android` - android
+        * `ios` - ios
+        * `web` - web
+    PushDeliveryLog:
+      type: object
+      properties:
+        delivery_log_id:
+          type: string
+          format: uuid
+          readOnly: true
+        target_account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        push_token_id:
+          type: string
+          readOnly: true
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelEnum'
+          readOnly: true
+        event_type:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          readOnly: true
+        body:
+          type: string
+          readOnly: true
+        delivery_status:
+          allOf:
+          - $ref: '#/components/schemas/DeliveryStatusEnum'
+          readOnly: true
+        provider_message_id:
+          type: string
+          readOnly: true
+        failure_reason:
+          type: string
+          readOnly: true
+        inbox_notification_id:
+          type: string
+          readOnly: true
+        requested_by_account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        requested_at:
+          type: string
+          format: date-time
+          readOnly: true
+        delivered_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - body
+      - channel
+      - delivered_at
+      - delivery_log_id
+      - delivery_status
+      - event_type
+      - failure_reason
+      - inbox_notification_id
+      - provider_message_id
+      - push_token_id
+      - requested_at
+      - requested_by_account_id
+      - target_account_id
+      - title
+    PushSendRequest:
+      type: object
+      properties:
+        target_account_id:
+          type: string
+          format: uuid
+        push_token_id:
+          type: string
+          format: uuid
+          nullable: true
+        event_type:
+          type: string
+          maxLength: 64
+        category:
+          type: string
+          default: general
+          maxLength: 32
+        source_type:
+          type: string
+          maxLength: 32
+        source_ref:
+          type: string
+          maxLength: 128
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        create_inbox:
+          type: boolean
+          default: true
+      required:
+      - body
+      - event_type
+      - target_account_id
+      - title
+    PushTokenRegistration:
+      type: object
+      properties:
+        push_token_id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_id:
+          type: string
+          format: uuid
+          readOnly: true
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        platform:
+          $ref: '#/components/schemas/PlatformEnum'
+        device_key:
+          type: string
+          maxLength: 64
+        registration_token:
+          type: string
+          maxLength: 255
+        is_active:
+          type: boolean
+        app_version:
+          type: string
+          maxLength: 32
+        registered_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_id
+      - device_key
+      - platform
+      - push_token_id
+      - registered_at
+      - registration_token
+      - updated_at
+    StatusEnum:
+      enum:
+      - unread
+      - read
+      - archived
+      type: string
+      description: |-
+        * `unread` - unread
+        * `read` - read
+        * `archived` - archived
