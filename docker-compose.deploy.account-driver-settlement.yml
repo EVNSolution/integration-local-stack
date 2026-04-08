@@ -70,8 +70,7 @@ services:
       - "8000"
 
   personnel-document-registry-api:
-    build:
-      context: ../service-personnel-document-registry
+    image: ${PERSONNEL_DOCUMENT_REGISTRY_IMAGE:?set PERSONNEL_DOCUMENT_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/personnel-document-registry.env.example
     depends_on:
