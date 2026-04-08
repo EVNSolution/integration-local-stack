@@ -4,6 +4,7 @@
 
 현재 compose 파일 위치는 상위 [docker-compose.account-driver-settlement.yml](../docker-compose.account-driver-settlement.yml)이다.
 현재 runtime source는 sibling target repo만 참조한다.
+surviving frontend repo path는 `../front-web-console`이며, compose service alias는 아직 `admin-front`를 유지한다.
 
 현재 MSA API 문서 entry는 [api-docs/README.md](./api-docs/README.md)다.
 

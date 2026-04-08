@@ -44,7 +44,7 @@ services:
 
   admin-front:
     build:
-      context: ../front-admin-console
+      context: ../front-web-console
     env_file:
       - ./infra/env/admin-front.env.example
     expose:
