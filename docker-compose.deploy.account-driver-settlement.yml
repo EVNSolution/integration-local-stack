@@ -171,8 +171,7 @@ services:
       - "8000"
 
   announcement-registry-api:
-    build:
-      context: ../service-announcement-registry
+    image: ${ANNOUNCEMENT_REGISTRY_IMAGE:?set ANNOUNCEMENT_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/announcement-registry.env.example
     depends_on:
