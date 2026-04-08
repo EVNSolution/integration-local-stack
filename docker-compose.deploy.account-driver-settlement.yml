@@ -242,8 +242,7 @@ services:
     restart: unless-stopped
 
   telemetry-dead-letter-api:
-    build:
-      context: ../service-telemetry-dead-letter
+    image: ${TELEMETRY_DEAD_LETTER_IMAGE:?set TELEMETRY_DEAD_LETTER_IMAGE}
     env_file:
       - ./infra/env/telemetry-dead-letter.env.example
     depends_on:
