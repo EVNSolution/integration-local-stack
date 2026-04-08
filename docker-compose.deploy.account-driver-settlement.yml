@@ -257,8 +257,7 @@ services:
       - "8000"
 
   driver-vehicle-assignment-api:
-    build:
-      context: ../service-vehicle-assignment
+    image: ${VEHICLE_ASSIGNMENT_IMAGE:?set VEHICLE_ASSIGNMENT_IMAGE}
     env_file:
       - ./infra/env/driver-vehicle-assignment.env.example
     depends_on:
