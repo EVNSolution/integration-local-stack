@@ -180,8 +180,7 @@ services:
       - "8000"
 
   support-registry-api:
-    build:
-      context: ../service-support-registry
+    image: ${SUPPORT_REGISTRY_IMAGE:?set SUPPORT_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/support-registry.env.example
     depends_on:
