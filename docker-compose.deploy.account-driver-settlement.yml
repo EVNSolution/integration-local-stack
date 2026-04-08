@@ -189,8 +189,7 @@ services:
       - "8000"
 
   notification-hub-api:
-    build:
-      context: ../service-notification-hub
+    image: ${NOTIFICATION_HUB_IMAGE:?set NOTIFICATION_HUB_IMAGE}
     env_file:
       - ./infra/env/notification-hub.env.example
     depends_on:
