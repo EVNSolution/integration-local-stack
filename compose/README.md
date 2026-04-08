@@ -282,7 +282,7 @@ dead-letter는 예외적으로 admin-read 경로만 명시 route로 노출한다
 모든 단계는 재실행 가능하도록 idempotent하게 작성돼 있다.
 
 현재 seed 기본값은 아래와 같다.
-- admin 계정: `admin@example.com / change-me`
+- admin 계정: `seed-admin@example.com / imjing12!`
 - driver-linked user: `seed-driver@example.com / change-me-driver`
 - company: `Seed Company`
 - fleet: `Seed Fleet`

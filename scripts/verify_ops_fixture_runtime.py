@@ -15,8 +15,8 @@ DEFAULT_BASE_URL = "http://localhost:8080"
 DEFAULT_FIXTURE_PATH = (
     Path(__file__).resolve().parents[1] / "fixtures" / "ops-derived-sample.json"
 )
-DEFAULT_ADMIN_EMAIL = "admin@example.com"
-DEFAULT_ADMIN_PASSWORD = "change-me"
+DEFAULT_ADMIN_EMAIL = "seed-admin@example.com"
+DEFAULT_ADMIN_PASSWORD = "imjing12!"
 
 
 @dataclass(frozen=True)

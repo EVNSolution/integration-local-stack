@@ -178,8 +178,8 @@ class VerifyOpsFixtureRuntimeTests(unittest.TestCase):
                 path = url.removeprefix("http://localhost:8080")
                 if path == "/api/auth/identity-login/":
                     payload = json.loads(body_bytes.decode("utf-8"))
-                    self.assertEqual(payload["email"], "admin@example.com")
-                    self.assertEqual(payload["password"], "change-me")
+                    self.assertEqual(payload["email"], "seed-admin@example.com")
+                    self.assertEqual(payload["password"], "imjing12!")
                     return module.FetchResult(
                         status_code=200,
                         body_text=json.dumps({"access_token": "token-123"}),
@@ -211,8 +211,8 @@ class VerifyOpsFixtureRuntimeTests(unittest.TestCase):
 
             results = module.run_list_checks(
                 base_url="http://localhost:8080",
-                email="admin@example.com",
-                password="change-me",
+                email="seed-admin@example.com",
+                password="imjing12!",
                 fixture_path=fixture_path,
                 fetch=fake_fetch,
             )
@@ -1140,8 +1140,8 @@ class VerifyOpsFixtureRuntimeTests(unittest.TestCase):
             with self.assertRaises(module.RuntimeVerificationError) as ctx:
                 module.run_list_checks(
                     base_url="http://localhost:8080",
-                    email="admin@example.com",
-                    password="change-me",
+                    email="seed-admin@example.com",
+                    password="imjing12!",
                     fixture_path=fixture_path,
                     fetch=fake_fetch,
                 )
