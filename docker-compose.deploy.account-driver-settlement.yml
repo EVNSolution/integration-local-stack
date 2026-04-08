@@ -132,8 +132,7 @@ services:
       - "8000"
 
   vehicle-asset-api:
-    build:
-      context: ../service-vehicle-registry
+    image: ${VEHICLE_REGISTRY_IMAGE:?set VEHICLE_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/vehicle-asset.env.example
     depends_on:
