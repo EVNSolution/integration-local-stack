@@ -125,8 +125,7 @@ services:
       - "8000"
 
   organization-master-api:
-    build:
-      context: ../service-organization-registry
+    image: ${ORGANIZATION_REGISTRY_IMAGE:?set ORGANIZATION_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/organization-master.env.example
     depends_on:
