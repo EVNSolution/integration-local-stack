@@ -102,8 +102,7 @@ services:
       - "8000"
 
   delivery-record-api:
-    build:
-      context: ../service-delivery-record
+    image: ${DELIVERY_RECORD_IMAGE:?set DELIVERY_RECORD_IMAGE}
     env_file:
       - ./infra/env/delivery-record.env.example
     depends_on:
