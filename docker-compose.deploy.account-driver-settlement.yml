@@ -80,8 +80,7 @@ services:
       - "8000"
 
   settlement-payroll-api:
-    build:
-      context: ../service-settlement-payroll
+    image: ${SETTLEMENT_PAYROLL_IMAGE:?set SETTLEMENT_PAYROLL_IMAGE}
     env_file:
       - ./infra/env/settlement-payroll.env.example
     depends_on:
