@@ -152,8 +152,7 @@ services:
       - "8000"
 
   region-registry-api:
-    build:
-      context: ../service-region-registry
+    image: ${REGION_REGISTRY_IMAGE:?set REGION_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/region-registry.env.example
     depends_on:
