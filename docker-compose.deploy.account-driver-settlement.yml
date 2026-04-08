@@ -61,8 +61,7 @@ services:
       - "8000"
 
   driver-profile-api:
-    build:
-      context: ../service-driver-profile
+    image: ${DRIVER_PROFILE_IMAGE:?set DRIVER_PROFILE_IMAGE}
     env_file:
       - ./infra/env/driver-profile.env.example
     depends_on:
