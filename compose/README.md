@@ -3,6 +3,7 @@
 이 디렉토리의 목적은 `계정 / 조직 / 기사 / 인사문서 / 배송원천기록 / 정산 / 차량 / 배차 / 권역 / 공지 / 지원 / 알림 / 단말 / 텔레메트리` 경계를 로컬 Docker Compose 환경에서 실제로 띄워 보는 것이다. 더 이상 boundary skeleton만 있는 상태가 아니라, 현재는 독립 Django 서비스들, telemetry ingress용 Python worker 1개, local MQTT broker 1개, React/Vite 앱 2개까지 포함한 실행형 부트스트랩 구조를 가진다.
 
 현재 compose 파일 위치는 상위 [docker-compose.account-driver-settlement.yml](../docker-compose.account-driver-settlement.yml)이다.
+image deploy pilot용 compose 파일은 [docker-compose.deploy.account-driver-settlement.yml](../docker-compose.deploy.account-driver-settlement.yml) 이다.
 현재 runtime source는 sibling target repo만 참조한다.
 surviving frontend repo path는 `../front-web-console`이며, compose runtime service도 `web-console`로 수렴했다.
 
@@ -75,6 +76,8 @@ surviving frontend repo path는 `../front-web-console`이며, compose runtime se
 - 서비스별 DB는 분리한다.
 - 도메인 간 DB 직접 접근은 금지한다.
 - 프런트는 gateway만 바라본다.
+- image deploy pilot은 `account-auth-api` 하나만 별도 deploy compose를 사용한다.
+- pilot compose는 `ACCOUNT_ACCESS_IMAGE` 환경변수를 주입받아 `service-account-access` 이미지를 pull 한다.
 - `seed-runner`는 서비스 `management command`만 호출한다.
 - projection 전용 저장소는 이번 스코프에서 제외한다.
 - 범용 이벤트 브로커/비동기 워커 확장은 제외하지만, telemetry ingress 검증용 `mqtt-broker`와 `telemetry-listener`는 포함한다.
