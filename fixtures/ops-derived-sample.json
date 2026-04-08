@@ -1,0 +1,2987 @@
+{
+  "source_summary": {
+    "generated_at": "2026-04-06T13:31:37.864960Z",
+    "fleet_count": 6,
+    "company_count": 3,
+    "source_fleets": [
+      {
+        "source_company_id": "1",
+        "source_fleet_id": "29",
+        "recent_driver_count": 54,
+        "recent_delivery_log_count": 1524,
+        "recent_box_sum": 167072,
+        "recent_house_sum": 78043,
+        "lifetime_vehicle_count": 18,
+        "local_driver_count": 12,
+        "local_vehicle_count": 7
+      },
+      {
+        "source_company_id": "16",
+        "source_fleet_id": "9",
+        "recent_driver_count": 0,
+        "recent_delivery_log_count": 3,
+        "recent_box_sum": 118,
+        "recent_house_sum": 55,
+        "lifetime_vehicle_count": 1,
+        "local_driver_count": 3,
+        "local_vehicle_count": 1
+      },
+      {
+        "source_company_id": "1",
+        "source_fleet_id": "30",
+        "recent_driver_count": 0,
+        "recent_delivery_log_count": 0,
+        "recent_box_sum": 0,
+        "recent_house_sum": 0,
+        "lifetime_vehicle_count": 13,
+        "local_driver_count": 1,
+        "local_vehicle_count": 5
+      },
+      {
+        "source_company_id": "6",
+        "source_fleet_id": "50",
+        "recent_driver_count": 0,
+        "recent_delivery_log_count": 0,
+        "recent_box_sum": 0,
+        "recent_house_sum": 0,
+        "lifetime_vehicle_count": 3,
+        "local_driver_count": 1,
+        "local_vehicle_count": 1
+      },
+      {
+        "source_company_id": "1",
+        "source_fleet_id": "28",
+        "recent_driver_count": 0,
+        "recent_delivery_log_count": 0,
+        "recent_box_sum": 0,
+        "recent_house_sum": 0,
+        "lifetime_vehicle_count": 22,
+        "local_driver_count": 1,
+        "local_vehicle_count": 8
+      }
+    ]
+  },
+  "organizations": [
+    {
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "source_key": "1",
+      "name": "Ops Company A",
+      "fleets": [
+        {
+          "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+          "source_key": "29",
+          "name": "Ops Fleet A-1"
+        },
+        {
+          "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+          "source_key": "30",
+          "name": "Ops Fleet A-2"
+        },
+        {
+          "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+          "source_key": "28",
+          "name": "Ops Fleet A-3"
+        }
+      ]
+    },
+    {
+      "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "source_key": "16",
+      "name": "Ops Company B",
+      "fleets": [
+        {
+          "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+          "source_key": "9",
+          "name": "Ops Fleet B-1"
+        }
+      ]
+    },
+    {
+      "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+      "source_key": "6",
+      "name": "Ops Company C",
+      "fleets": [
+        {
+          "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+          "source_key": "50",
+          "name": "Ops Fleet C-1"
+        }
+      ]
+    }
+  ],
+  "drivers": [
+    {
+      "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-01",
+      "ev_id": "OPS-11-001",
+      "phone_number": "010-9000-1101",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-02",
+      "ev_id": "OPS-11-002",
+      "phone_number": "010-9000-1102",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-03",
+      "ev_id": "OPS-11-003",
+      "phone_number": "010-9000-1103",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-04",
+      "ev_id": "OPS-11-004",
+      "phone_number": "010-9000-1104",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-05",
+      "ev_id": "OPS-11-005",
+      "phone_number": "010-9000-1105",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-06",
+      "ev_id": "OPS-11-006",
+      "phone_number": "010-9000-1106",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-07",
+      "ev_id": "OPS-11-007",
+      "phone_number": "010-9000-1107",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "65da3cef-7be9-570c-bdef-1018da20a7e1",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-08",
+      "ev_id": "OPS-11-008",
+      "phone_number": "010-9000-1108",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "dff62a88-2123-5172-b51c-74b820705572",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-09",
+      "ev_id": "OPS-11-009",
+      "phone_number": "010-9000-1109",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "7852e049-6321-5470-9e03-6709c46aa16f",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-10",
+      "ev_id": "OPS-11-010",
+      "phone_number": "010-9000-1110",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "9b17af71-e13e-5b68-a833-f922dc4e2a2b",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-11",
+      "ev_id": "OPS-11-011",
+      "phone_number": "010-9000-1111",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "34e27d61-5d9e-51f3-a010-4dfc09db9214",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+      "name": "Ops Driver A1-12",
+      "ev_id": "OPS-11-012",
+      "phone_number": "010-9000-1112",
+      "address": "Ops District 1-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+      "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+      "name": "Ops Driver B1-01",
+      "ev_id": "OPS-21-001",
+      "phone_number": "010-9000-2101",
+      "address": "Ops District 2-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "24244d2d-c023-5cd8-b87f-87798a2e4a47",
+      "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+      "name": "Ops Driver B1-02",
+      "ev_id": "OPS-21-002",
+      "phone_number": "010-9000-2102",
+      "address": "Ops District 2-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "c5c6fab0-c2bc-590d-8a41-835a7713677d",
+      "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+      "name": "Ops Driver B1-03",
+      "ev_id": "OPS-21-003",
+      "phone_number": "010-9000-2103",
+      "address": "Ops District 2-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+      "name": "Ops Driver A2-01",
+      "ev_id": "OPS-12-001",
+      "phone_number": "010-9000-1201",
+      "address": "Ops District 1-2",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+      "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+      "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+      "name": "Ops Driver C1-01",
+      "ev_id": "OPS-31-001",
+      "phone_number": "010-9000-3101",
+      "address": "Ops District 3-1",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    },
+    {
+      "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+      "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+      "name": "Ops Driver A3-01",
+      "ev_id": "OPS-13-001",
+      "phone_number": "010-9000-1301",
+      "address": "Ops District 1-3",
+      "employment_status": "active",
+      "qualification_status": "qualified"
+    }
+  ],
+  "vehicles": [
+    {
+      "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3401",
+      "vin": "OPSVIN01010001",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3402",
+      "vin": "OPSVIN01010002",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3403",
+      "vin": "OPSVIN01010003",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3404",
+      "vin": "OPSVIN01010004",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3405",
+      "vin": "OPSVIN01010005",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3406",
+      "vin": "OPSVIN01010006",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3407",
+      "vin": "OPSVIN01010007",
+      "manufacturer_vehicle_code": "OPS-MODEL-0101",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "9e0f395f-8095-507f-a700-ad231c9bcaa1",
+      "manufacturer_company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "operator_company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "plate_number": "12가3408",
+      "vin": "OPSVIN02010001",
+      "manufacturer_vehicle_code": "OPS-MODEL-0201",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "b0f56663-8b99-51ab-b97a-70a4435113f0",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3409",
+      "vin": "OPSVIN01020001",
+      "manufacturer_vehicle_code": "OPS-MODEL-0102",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "14bceca4-c0ab-577a-98f1-d374a6af3ebd",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3410",
+      "vin": "OPSVIN01020002",
+      "manufacturer_vehicle_code": "OPS-MODEL-0102",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "e97fbc6c-f1f8-5111-9e1b-2914e848e9d4",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3411",
+      "vin": "OPSVIN01020003",
+      "manufacturer_vehicle_code": "OPS-MODEL-0102",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "8f4ddfaa-a486-5a60-ba2a-447e4b083497",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3412",
+      "vin": "OPSVIN01020004",
+      "manufacturer_vehicle_code": "OPS-MODEL-0102",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "3495480f-a2e4-5550-b726-80e91ea90a6b",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3413",
+      "vin": "OPSVIN01020005",
+      "manufacturer_vehicle_code": "OPS-MODEL-0102",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "5796368e-b339-5763-89fe-1004175f165c",
+      "manufacturer_company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+      "operator_company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+      "plate_number": "12가3414",
+      "vin": "OPSVIN03010001",
+      "manufacturer_vehicle_code": "OPS-MODEL-0301",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "059c4058-c3fd-5dc0-9c35-3f552aa91ce4",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3415",
+      "vin": "OPSVIN01030001",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "1004e8dc-dc3b-5d01-9e6b-7ba9c1c2c681",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3416",
+      "vin": "OPSVIN01030002",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "f1480b3c-2984-5e4e-921e-7a10e4f75ae1",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3417",
+      "vin": "OPSVIN01030003",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "6227541e-de30-556e-b68a-9dd91843cf90",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3418",
+      "vin": "OPSVIN01030004",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "755f4216-fd98-54b0-922c-cd9271030b82",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3419",
+      "vin": "OPSVIN01030005",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "40e0ef19-6084-5a59-bd2b-5fdcbe0e6191",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3420",
+      "vin": "OPSVIN01030006",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "af1b6afe-19ae-54e7-910d-5e96acbeec91",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3421",
+      "vin": "OPSVIN01030007",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "vehicle_id": "863066f4-a8c1-5ff7-b991-434c7c4020c3",
+      "manufacturer_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "plate_number": "12가3422",
+      "vin": "OPSVIN01030008",
+      "manufacturer_vehicle_code": "OPS-MODEL-0103",
+      "model_name": "Ops Cargo Van",
+      "vehicle_status": "active",
+      "started_at": "2026-01-06T00:00:00Z"
+    }
+  ],
+  "assignments": [
+    {
+      "driver_vehicle_assignment_id": "2cf6f6fd-1097-5970-952f-5494623dbcfe",
+      "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+      "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "6c3df65e-d26f-560e-b515-fe97bc8f33b4",
+      "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+      "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "b29e0dab-7d3e-5d53-9979-a5135b78ef0d",
+      "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+      "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "ba2c1ff4-1868-5ba0-bfce-2070acd45026",
+      "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+      "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "8ad40925-5e4f-577f-91f7-2385ab44c889",
+      "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+      "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "ac0d6536-1828-5232-a8f9-aa672dc79cf3",
+      "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+      "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "0f4f4460-bd87-5881-ae1c-0be6c39629fd",
+      "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+      "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "55258993-265f-539e-acf2-790076dd1e05",
+      "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+      "vehicle_id": "9e0f395f-8095-507f-a700-ad231c9bcaa1",
+      "operator_company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "582323eb-1ecf-5002-9976-49829b6fdcbf",
+      "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+      "vehicle_id": "b0f56663-8b99-51ab-b97a-70a4435113f0",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "9592f8af-ae5a-539b-ac87-041326b6e015",
+      "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+      "vehicle_id": "5796368e-b339-5763-89fe-1004175f165c",
+      "operator_company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    },
+    {
+      "driver_vehicle_assignment_id": "bcc10776-d3e7-5c34-a23c-64e54dc112c2",
+      "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+      "vehicle_id": "059c4058-c3fd-5dc0-9c35-3f552aa91ce4",
+      "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+      "assignment_status": "assigned",
+      "assigned_at": "2026-03-07T00:00:00Z"
+    }
+  ],
+  "dispatch": {
+    "plans": [
+      {
+        "dispatch_plan_id": "a9e74419-6097-56b5-810a-af6a6315c254",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "planned_volume": 880,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "59355c4c-6fd3-5850-97c0-c1b5b309b3c2",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "planned_volume": 745,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "decda3b5-4418-5f0e-836e-1d39b6dd8965",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "planned_volume": 831,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "e6a6cacc-e13a-5c8e-af9b-4da27cbb9bd0",
+        "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+        "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+        "dispatch_date": "2026-04-05",
+        "planned_volume": 39,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "b349ca94-a252-5e79-ba6a-420162368de4",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+        "dispatch_date": "2026-04-05",
+        "planned_volume": 8,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "d19ea54b-9472-577b-ae77-8f2d73f9e7a5",
+        "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+        "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+        "dispatch_date": "2026-04-05",
+        "planned_volume": 8,
+        "dispatch_status": "published"
+      },
+      {
+        "dispatch_plan_id": "6eafe9c0-0df9-528e-a1b4-186e882fba1f",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+        "dispatch_date": "2026-04-05",
+        "planned_volume": 8,
+        "dispatch_status": "published"
+      }
+    ],
+    "schedules": [
+      {
+        "vehicle_schedule_id": "2e9f1f39-d320-58b3-b788-a07fbc3432ae",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "421dab69-23c8-5640-84cb-f6fc63ec2e5e",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "dd61eab2-8846-518d-bb11-4e3128713214",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "817f840b-ecec-5394-a0f3-e100c3fdfbff",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "379cc7d4-39be-5a5e-9cf4-47e08d180063",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "6b52f392-2766-5e78-8fd7-8e5a2dd56a33",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "fed1d3a9-7b96-517c-ac29-ed9662e41bef",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "1363cb9f-5948-593d-b312-0128114e7b48",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "ac5e7f0f-ee03-5571-bcd0-141620b96d3b",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "334d7777-faa6-5be2-8996-58fc5b9f07c1",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "442fe436-7484-5ff4-ad43-26d0e49f711b",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "46bb58a2-1037-55b6-8aba-7d39ecb9462a",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "7f04f945-e15e-5238-9f09-13d06ec13a5e",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "501b011e-4628-58e5-b1fb-7dd53b33c6bb",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "721892c0-e1ed-5384-85f3-d2289a684e7e",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "86525d05-b19c-5fa0-97d3-393f8af5e72d",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "dc801ad6-5380-514a-a64a-7d960428ddd1",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "01eb6839-59bf-58d8-919a-0c011f3a5755",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "c8377e86-c25f-583f-89bf-af383b277996",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "75b28c6b-eacb-5b7b-a759-b4be949a124f",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "4937f7c1-a4f4-5864-a5db-629a9ae73b37",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "3f16916a-1065-5167-bbf0-e6959d9c48b7",
+        "vehicle_id": "9e0f395f-8095-507f-a700-ad231c9bcaa1",
+        "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "2f957621-e163-5a61-aef7-a81b135bff0d",
+        "vehicle_id": "b0f56663-8b99-51ab-b97a-70a4435113f0",
+        "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "237b7300-5fdf-51d5-be4a-d6d6a9c98f1e",
+        "vehicle_id": "5796368e-b339-5763-89fe-1004175f165c",
+        "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      },
+      {
+        "vehicle_schedule_id": "f8bab92a-7d85-5fc0-bb7d-714c62320b70",
+        "vehicle_id": "059c4058-c3fd-5dc0-9c35-3f552aa91ce4",
+        "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "schedule_status": "planned",
+        "starts_at": "08:00:00",
+        "ends_at": "18:00:00"
+      }
+    ],
+    "assignments": [
+      {
+        "dispatch_assignment_id": "3a234efb-e73b-5419-8210-188a34d4727b",
+        "vehicle_schedule_id": "2e9f1f39-d320-58b3-b788-a07fbc3432ae",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "84076c5e-9089-58d3-8e43-e3374d88b58c",
+        "vehicle_schedule_id": "421dab69-23c8-5640-84cb-f6fc63ec2e5e",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "2384fdf1-a20f-5eae-9a18-d957c1ed1cc6",
+        "vehicle_schedule_id": "dd61eab2-8846-518d-bb11-4e3128713214",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "d1408162-4974-5f5b-baab-c8c55745aeff",
+        "vehicle_schedule_id": "817f840b-ecec-5394-a0f3-e100c3fdfbff",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "251a7aa3-49fa-56fd-a106-c11e87d7107a",
+        "vehicle_schedule_id": "379cc7d4-39be-5a5e-9cf4-47e08d180063",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "d72520d5-5d3a-5042-90ff-24aefbd5f613",
+        "vehicle_schedule_id": "6b52f392-2766-5e78-8fd7-8e5a2dd56a33",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "524854d4-6ffe-5b47-be8f-cd5157ee170f",
+        "vehicle_schedule_id": "fed1d3a9-7b96-517c-ac29-ed9662e41bef",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-31",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-31T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "4a89278d-f15f-5193-aceb-bd93df61a622",
+        "vehicle_schedule_id": "1363cb9f-5948-593d-b312-0128114e7b48",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "a5ae6e95-bfb0-5fda-8749-7cb549fd2886",
+        "vehicle_schedule_id": "ac5e7f0f-ee03-5571-bcd0-141620b96d3b",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "bf3cd960-c192-5be0-bece-c4fb9d6e8341",
+        "vehicle_schedule_id": "334d7777-faa6-5be2-8996-58fc5b9f07c1",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "7b448d06-5b1c-5a10-92b3-80ab186d6bc3",
+        "vehicle_schedule_id": "442fe436-7484-5ff4-ad43-26d0e49f711b",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "af0dc454-13cb-51d4-ac7f-b56fb75679fb",
+        "vehicle_schedule_id": "46bb58a2-1037-55b6-8aba-7d39ecb9462a",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "140bc647-2c68-5455-9c8d-72864040d0ec",
+        "vehicle_schedule_id": "7f04f945-e15e-5238-9f09-13d06ec13a5e",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "6ef94c95-9d98-5179-a1f1-3b9ebb45bbbc",
+        "vehicle_schedule_id": "501b011e-4628-58e5-b1fb-7dd53b33c6bb",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-30",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-30T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "17779404-64fd-5a86-a4d7-93929bed6c50",
+        "vehicle_schedule_id": "721892c0-e1ed-5384-85f3-d2289a684e7e",
+        "vehicle_id": "00944d18-89d3-5d13-aa57-a0088414ddd0",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "3068d2d8-629e-53c3-9375-d56b0e71fddf",
+        "vehicle_schedule_id": "86525d05-b19c-5fa0-97d3-393f8af5e72d",
+        "vehicle_id": "568d38a9-e73f-5b4b-a3c0-f2568a4b6d71",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "f36729c3-2566-5af0-92b6-71406b9b90cf",
+        "vehicle_schedule_id": "dc801ad6-5380-514a-a64a-7d960428ddd1",
+        "vehicle_id": "f9745810-cbec-58a8-b748-185a770cec80",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "540622fc-6db0-5771-b9e7-ab322063b2d9",
+        "vehicle_schedule_id": "01eb6839-59bf-58d8-919a-0c011f3a5755",
+        "vehicle_id": "9b5b025f-f948-564a-af9e-90638861aaf3",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "08aedac3-247f-56e3-b817-9ea3e08d8105",
+        "vehicle_schedule_id": "c8377e86-c25f-583f-89bf-af383b277996",
+        "vehicle_id": "18a415eb-5ad2-55e5-9732-e71951a4fc2d",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "0cfe0ecb-0712-56c8-a3e3-b9deb74b5199",
+        "vehicle_schedule_id": "75b28c6b-eacb-5b7b-a759-b4be949a124f",
+        "vehicle_id": "6c1b801f-61eb-5470-b1f5-8e2c24bb3902",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "f6cf9eb1-dca2-5ef4-a0d0-4a01e2e3e1f9",
+        "vehicle_schedule_id": "4937f7c1-a4f4-5864-a5db-629a9ae73b37",
+        "vehicle_id": "58b455e0-9458-5b45-9636-de6c92b7b7ea",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-03-29",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-03-29T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "d368ef2b-69c4-5a36-b561-dce1786cfb4d",
+        "vehicle_schedule_id": "3f16916a-1065-5167-bbf0-e6959d9c48b7",
+        "vehicle_id": "9e0f395f-8095-507f-a700-ad231c9bcaa1",
+        "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+        "operator_company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-04-05T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "79f4699d-2b7f-5133-83f6-b0d87b336d15",
+        "vehicle_schedule_id": "2f957621-e163-5a61-aef7-a81b135bff0d",
+        "vehicle_id": "b0f56663-8b99-51ab-b97a-70a4435113f0",
+        "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-04-05T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "6d39c9e8-9aec-5254-9e8a-dc5749ba6493",
+        "vehicle_schedule_id": "237b7300-5fdf-51d5-be4a-d6d6a9c98f1e",
+        "vehicle_id": "5796368e-b339-5763-89fe-1004175f165c",
+        "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+        "operator_company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-04-05T08:00:00Z"
+      },
+      {
+        "dispatch_assignment_id": "fcedd0c9-5948-5707-97fe-df045d0db866",
+        "vehicle_schedule_id": "f8bab92a-7d85-5fc0-bb7d-714c62320b70",
+        "vehicle_id": "059c4058-c3fd-5dc0-9c35-3f552aa91ce4",
+        "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+        "operator_company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "dispatch_date": "2026-04-05",
+        "shift_slot": "A",
+        "assignment_status": "assigned",
+        "assigned_at": "2026-04-05T08:00:00Z"
+      }
+    ]
+  },
+  "delivery_records": {
+    "records": [
+      {
+        "delivery_record_id": "3fcdf356-f9b7-5661-9a47-ab35f0f1d7ef",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-1",
+        "delivery_count": 970,
+        "distance_km": "12.50",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "09f42d55-db36-5081-9398-9b843a6829da",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-2",
+        "delivery_count": 970,
+        "distance_km": "14.25",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "5acf7953-f04d-5086-be55-cf5c6cb7558e",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-3",
+        "delivery_count": 970,
+        "distance_km": "16.00",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "dc85958e-9144-5e45-af12-88bdb1a452de",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-4",
+        "delivery_count": 970,
+        "distance_km": "17.75",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "60209530-eab4-5b57-8a55-7cb89d7ff2e4",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-5",
+        "delivery_count": 970,
+        "distance_km": "19.50",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "39e63f7b-9851-52d1-8eeb-f59605ac5612",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-6",
+        "delivery_count": 970,
+        "distance_km": "21.25",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "83ab6b18-a096-5a95-8a46-3a38699431be",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-31",
+        "source_reference": "ops-fixture-1-1-7",
+        "delivery_count": 970,
+        "distance_km": "23.00",
+        "base_amount": "1026640.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 970,
+          "houses": 469
+        }
+      },
+      {
+        "delivery_record_id": "eb625961-8964-5a4b-8400-1d149310821f",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-1",
+        "delivery_count": 821,
+        "distance_km": "12.50",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "cf0a0a32-e80f-5529-a7f2-6ff6314eae7a",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-2",
+        "delivery_count": 821,
+        "distance_km": "14.25",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "1985a8ef-3ecf-5546-bf4d-d0e82ae55eaf",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-3",
+        "delivery_count": 821,
+        "distance_km": "16.00",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "306dc072-10df-5679-a507-2dcb049975f0",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-4",
+        "delivery_count": 821,
+        "distance_km": "17.75",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "8b99ece2-d248-565f-becd-d2e77ce25b65",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-5",
+        "delivery_count": 821,
+        "distance_km": "19.50",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "bbcf5f58-24e2-52da-bdba-aee1e2d120d3",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-6",
+        "delivery_count": 821,
+        "distance_km": "21.25",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "cda99689-4729-5150-beea-cd2abfddeacc",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-30",
+        "source_reference": "ops-fixture-1-2-7",
+        "delivery_count": 821,
+        "distance_km": "23.00",
+        "base_amount": "1060377.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 821,
+          "houses": 390
+        }
+      },
+      {
+        "delivery_record_id": "a9987135-61fe-54c3-bc7f-3501cb75ccb6",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-1",
+        "delivery_count": 916,
+        "distance_km": "12.50",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "9a4c3632-95c1-507e-aadf-60fea7d277bf",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-2",
+        "delivery_count": 916,
+        "distance_km": "14.25",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "a1af5a2a-086d-54ef-a8a4-afcb7b1efc36",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-3",
+        "delivery_count": 916,
+        "distance_km": "16.00",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "73b5db6f-6324-528a-b573-3af7616e6de1",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-4",
+        "delivery_count": 916,
+        "distance_km": "17.75",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "a6d17d31-89b3-5561-b552-807b68fd2e51",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-5",
+        "delivery_count": 916,
+        "distance_km": "19.50",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "1d408687-ff69-5f01-a8e5-702df6bf6a13",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-6",
+        "delivery_count": 916,
+        "distance_km": "21.25",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "3195081e-223f-53d9-8c40-09eb9bdf6c33",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-29",
+        "source_reference": "ops-fixture-1-3-7",
+        "delivery_count": 916,
+        "distance_km": "23.00",
+        "base_amount": "1097652.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 916,
+          "houses": 422
+        }
+      },
+      {
+        "delivery_record_id": "46be64b5-84ba-5282-b064-fc6bbfbf8bad",
+        "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+        "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+        "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+        "service_date": "2026-04-05",
+        "source_reference": "ops-fixture-1-1-1",
+        "delivery_count": 118,
+        "distance_km": "12.50",
+        "base_amount": "375000.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 118,
+          "houses": 55
+        }
+      },
+      {
+        "delivery_record_id": "72ef39fe-998b-52f9-9531-9e837459f528",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+        "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+        "service_date": "2026-04-05",
+        "source_reference": "ops-fixture-2-1-1",
+        "delivery_count": 8,
+        "distance_km": "12.50",
+        "base_amount": "125000.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 8,
+          "houses": 4
+        }
+      },
+      {
+        "delivery_record_id": "e286cf8b-2bbb-5e60-a927-e228657c4225",
+        "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+        "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+        "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+        "service_date": "2026-04-05",
+        "source_reference": "ops-fixture-1-1-1",
+        "delivery_count": 8,
+        "distance_km": "12.50",
+        "base_amount": "125000.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 8,
+          "houses": 4
+        }
+      },
+      {
+        "delivery_record_id": "06cef596-1057-5f95-a771-e720df91e5bc",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+        "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+        "service_date": "2026-04-05",
+        "source_reference": "ops-fixture-3-1-1",
+        "delivery_count": 8,
+        "distance_km": "12.50",
+        "base_amount": "125000.00",
+        "status": "confirmed",
+        "payload": {
+          "source": "ops-derived-fixture",
+          "boxes": 8,
+          "houses": 4
+        }
+      }
+    ],
+    "snapshots": [
+      {
+        "daily_delivery_input_snapshot_id": "83b32a1c-305d-5b04-816f-6ce8bd92cc91",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "12.50",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "cc283197-0d22-586e-a3ca-eb8b601ee007",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "14.25",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "06170d8a-79e8-5180-99d4-fcae135ed1b8",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "16.00",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "9dd9d52c-7899-510b-a4ba-4053cf519eeb",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "17.75",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "d1c24c48-1cae-535e-aa91-15c31e5bce06",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "19.50",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "a89c8d0b-93ae-53e9-b0b4-3ea7d0529851",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "21.25",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "67949505-cf5d-5645-920f-cb403eb9aa07",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-31",
+        "delivery_count": 970,
+        "total_distance_km": "23.00",
+        "total_base_amount": "1026640.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "79b2c973-2589-556b-a28a-b3d58ef2e780",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "12.50",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "5fc7a59c-e37c-5885-b92d-6ec2732453a2",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "14.25",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "eb4137cb-66cd-507d-9975-b24d0b6d1171",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "16.00",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "dd54881e-9cd6-500f-9074-b974b2aa0208",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "17.75",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "732bf3fc-26a2-553b-bf42-365b2d41f1d6",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "19.50",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "0bef0a82-9895-5fc2-8ec0-71fdd7c6f8ad",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "21.25",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "d0432ee8-80e9-5181-91e1-09b380c2ce92",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-30",
+        "delivery_count": 821,
+        "total_distance_km": "23.00",
+        "total_base_amount": "1060377.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "0c42f378-c2d0-5e15-ba90-05548cad381d",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "12.50",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "0449f781-6fa3-5906-8122-def439f9dcff",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "14.25",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "536d6e3d-09db-595e-ba8a-c6ac6a974b52",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "16.00",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "755d7078-1e41-572c-9f8e-b90f26d6645e",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "17.75",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "94dd221a-20ca-5a66-b792-009fcfbe1b56",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "19.50",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "89c46d9f-7288-5395-b805-637e4b1c292b",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "21.25",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "d60e8b8e-ca1e-5978-ada9-69cfd7b94d50",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "service_date": "2026-03-29",
+        "delivery_count": 916,
+        "total_distance_km": "23.00",
+        "total_base_amount": "1097652.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "3f6b9d6f-620a-5a0f-9127-489f54af6cfa",
+        "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+        "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+        "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+        "service_date": "2026-04-05",
+        "delivery_count": 118,
+        "total_distance_km": "12.50",
+        "total_base_amount": "375000.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "bb95d614-87b8-5972-b57f-ef833cba14a3",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+        "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "eefa013a-056f-5970-a420-301056ab1f4a",
+        "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+        "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+        "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "source_record_count": 1,
+        "status": "active"
+      },
+      {
+        "daily_delivery_input_snapshot_id": "1c4bf16d-9f40-50b4-b4ed-543651397a7a",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+        "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "source_record_count": 1,
+        "status": "active"
+      }
+    ]
+  },
+  "settlements": {
+    "runs": [
+      {
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "42bfc73c-ff8b-5c1a-b44f-6d59fff6ad17",
+        "period_start": "2026-04-01",
+        "period_end": "2026-04-06",
+        "status": "calculated"
+      },
+      {
+        "settlement_run_id": "3ef7da86-1168-50d1-8c6d-fe6f9feae78a",
+        "company_id": "93f2b107-31b3-50bf-aa99-36ef560a24d4",
+        "fleet_id": "bcc0c7e2-b51d-57e1-9c72-6b28c29cc2f0",
+        "period_start": "2026-04-01",
+        "period_end": "2026-04-06",
+        "status": "calculated"
+      },
+      {
+        "settlement_run_id": "be2966f7-196b-5ece-a801-33fb5e99772d",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "b386d9a8-4b1d-5e96-a17e-ac7b13661f8f",
+        "period_start": "2026-04-01",
+        "period_end": "2026-04-06",
+        "status": "calculated"
+      },
+      {
+        "settlement_run_id": "86730828-2c9a-5f4d-a94c-44f23d096fa0",
+        "company_id": "769c28d9-51d5-5658-aab6-cc3356b15623",
+        "fleet_id": "c106f1ce-3019-5e7a-88f4-23873133df23",
+        "period_start": "2026-04-01",
+        "period_end": "2026-04-06",
+        "status": "calculated"
+      },
+      {
+        "settlement_run_id": "63544309-4f5e-5c82-86f0-a93d058ed701",
+        "company_id": "32e0a170-49ed-58b6-9cef-99551c325d37",
+        "fleet_id": "1297ad36-da06-5331-8619-652b7c50facb",
+        "period_start": "2026-04-01",
+        "period_end": "2026-04-06",
+        "status": "calculated"
+      }
+    ],
+    "items": [
+      {
+        "settlement_item_id": "b359c256-37da-5384-ba78-52478acef16b",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "413f3dd6-b05f-50c2-b154-cebb88637d66",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "94d63858-c419-5fda-9853-faa3b0c41a0e",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "33827bfc-97c5-5ed0-9675-98eb33c5f082",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "e41c3e19-8437-578f-a6ed-4cd916d5b7e8",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "a5035c74-5cc3-52c5-b581-d54a60e2c260",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "63cc9fb6-1f6b-5f74-8f97-de793429f83a",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "b8a09e16-ce74-53ba-9ad1-9a0eb1c9609c",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "65da3cef-7be9-570c-bdef-1018da20a7e1",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "eec76e8a-d7ba-5837-ad19-8465860dae66",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "dff62a88-2123-5172-b51c-74b820705572",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "ca8cea67-4bf7-5cf2-9f20-08593bd3ffcb",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "7852e049-6321-5470-9e03-6709c46aa16f",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "2e4c5dfe-8c12-53d3-a55e-fc6a7cb7d9d0",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "9b17af71-e13e-5b68-a833-f922dc4e2a2b",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "a54cbca2-4ce9-5d30-b59b-58a184776693",
+        "settlement_run_id": "69c6c30d-f8a6-551c-b295-055bffacc51f",
+        "driver_id": "34e27d61-5d9e-51f3-a010-4dfc09db9214",
+        "amount": "1857724.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "8d7033e2-6331-5e6a-b050-d23afe84d703",
+        "settlement_run_id": "3ef7da86-1168-50d1-8c6d-fe6f9feae78a",
+        "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "f515e87c-17c4-5a1a-a753-8545f6bd3745",
+        "settlement_run_id": "3ef7da86-1168-50d1-8c6d-fe6f9feae78a",
+        "driver_id": "24244d2d-c023-5cd8-b87f-87798a2e4a47",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "14553acb-325a-5c18-9a72-7e94143e6d84",
+        "settlement_run_id": "3ef7da86-1168-50d1-8c6d-fe6f9feae78a",
+        "driver_id": "c5c6fab0-c2bc-590d-8a41-835a7713677d",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "7af2b10a-31bf-5a0b-a663-90f56aca6b59",
+        "settlement_run_id": "be2966f7-196b-5ece-a801-33fb5e99772d",
+        "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "49cde624-2e95-5fed-b24a-3b69e6b2f67a",
+        "settlement_run_id": "86730828-2c9a-5f4d-a94c-44f23d096fa0",
+        "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      },
+      {
+        "settlement_item_id": "bd76a667-588e-5d61-a327-7d991d4e4e8c",
+        "settlement_run_id": "63544309-4f5e-5c82-86f0-a93d058ed701",
+        "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+        "amount": "125000.00",
+        "payout_status": "pending"
+      }
+    ]
+  },
+  "regions": [
+    {
+      "region_id": "15294545-8780-5a19-892e-ad9eee512a2a",
+      "region_code": "ops-region-a-1",
+      "name": "Ops Region A-1",
+      "status": "active",
+      "difficulty_level": "low",
+      "polygon_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              126.93,
+              37.47
+            ],
+            [
+              126.945,
+              37.47
+            ],
+            [
+              126.945,
+              37.482
+            ],
+            [
+              126.93,
+              37.482
+            ],
+            [
+              126.93,
+              37.47
+            ]
+          ]
+        ]
+      },
+      "description": "Ops Company A / Ops Fleet A-1 운영 권역",
+      "display_order": 1
+    },
+    {
+      "region_id": "96716c21-0293-5570-b086-f0a6ab2d64c4",
+      "region_code": "ops-region-a-2",
+      "name": "Ops Region A-2",
+      "status": "active",
+      "difficulty_level": "medium",
+      "polygon_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              126.96,
+              37.49
+            ],
+            [
+              126.975,
+              37.49
+            ],
+            [
+              126.975,
+              37.502
+            ],
+            [
+              126.96,
+              37.502
+            ],
+            [
+              126.96,
+              37.49
+            ]
+          ]
+        ]
+      },
+      "description": "Ops Company A / Ops Fleet A-2 운영 권역",
+      "display_order": 2
+    },
+    {
+      "region_id": "dbf243bf-ead8-58dc-ac6c-bdde10ebdc43",
+      "region_code": "ops-region-a-3",
+      "name": "Ops Region A-3",
+      "status": "active",
+      "difficulty_level": "high",
+      "polygon_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              126.99,
+              37.51
+            ],
+            [
+              127.005,
+              37.51
+            ],
+            [
+              127.005,
+              37.522
+            ],
+            [
+              126.99,
+              37.522
+            ],
+            [
+              126.99,
+              37.51
+            ]
+          ]
+        ]
+      },
+      "description": "Ops Company A / Ops Fleet A-3 운영 권역",
+      "display_order": 3
+    },
+    {
+      "region_id": "05ac14ca-052f-53a6-bcb8-ec2dba939657",
+      "region_code": "ops-region-b-1",
+      "name": "Ops Region B-1",
+      "status": "active",
+      "difficulty_level": "medium",
+      "polygon_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              127.02,
+              37.53
+            ],
+            [
+              127.035,
+              37.53
+            ],
+            [
+              127.035,
+              37.542
+            ],
+            [
+              127.02,
+              37.542
+            ],
+            [
+              127.02,
+              37.53
+            ]
+          ]
+        ]
+      },
+      "description": "Ops Company B / Ops Fleet B-1 운영 권역",
+      "display_order": 4
+    },
+    {
+      "region_id": "daa22c6f-62b7-57ee-b953-700a0d5a1419",
+      "region_code": "ops-region-c-1",
+      "name": "Ops Region C-1",
+      "status": "active",
+      "difficulty_level": "high",
+      "polygon_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              127.05,
+              37.55
+            ],
+            [
+              127.065,
+              37.55
+            ],
+            [
+              127.065,
+              37.562
+            ],
+            [
+              127.05,
+              37.562
+            ],
+            [
+              127.05,
+              37.55
+            ]
+          ]
+        ]
+      },
+      "description": "Ops Company C / Ops Fleet C-1 운영 권역",
+      "display_order": 5
+    }
+  ],
+  "region_analytics": {
+    "daily_statistics": [
+      {
+        "region_daily_statistic_id": "3fb127b4-f335-5e8e-b685-d027c9de8676",
+        "region_id": "15294545-8780-5a19-892e-ad9eee512a2a",
+        "region_code_snapshot": "ops-region-a-1",
+        "service_date": "2026-03-29",
+        "delivery_count": 6412,
+        "completed_delivery_count": 6405,
+        "exception_delivery_count": 7,
+        "total_distance_km": "124.25",
+        "total_base_amount": "7683564.00",
+        "average_delivery_minutes": "22.50"
+      },
+      {
+        "region_daily_statistic_id": "5091337d-730c-5809-b85b-bc36d014589e",
+        "region_id": "15294545-8780-5a19-892e-ad9eee512a2a",
+        "region_code_snapshot": "ops-region-a-1",
+        "service_date": "2026-03-30",
+        "delivery_count": 5747,
+        "completed_delivery_count": 5740,
+        "exception_delivery_count": 7,
+        "total_distance_km": "124.25",
+        "total_base_amount": "7422639.00",
+        "average_delivery_minutes": "22.50"
+      },
+      {
+        "region_daily_statistic_id": "ac82f840-147c-5bed-a672-7ed780f59a82",
+        "region_id": "15294545-8780-5a19-892e-ad9eee512a2a",
+        "region_code_snapshot": "ops-region-a-1",
+        "service_date": "2026-03-31",
+        "delivery_count": 6790,
+        "completed_delivery_count": 6783,
+        "exception_delivery_count": 7,
+        "total_distance_km": "124.25",
+        "total_base_amount": "7186480.00",
+        "average_delivery_minutes": "22.50"
+      },
+      {
+        "region_daily_statistic_id": "5683af90-3dbc-5bd8-a168-c1f0570359cf",
+        "region_id": "96716c21-0293-5570-b086-f0a6ab2d64c4",
+        "region_code_snapshot": "ops-region-a-2",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "completed_delivery_count": 8,
+        "exception_delivery_count": 0,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "average_delivery_minutes": "18.00"
+      },
+      {
+        "region_daily_statistic_id": "60a9bcb0-4ac0-593a-92e6-5f9ca65a4d8b",
+        "region_id": "dbf243bf-ead8-58dc-ac6c-bdde10ebdc43",
+        "region_code_snapshot": "ops-region-a-3",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "completed_delivery_count": 8,
+        "exception_delivery_count": 0,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "average_delivery_minutes": "18.00"
+      },
+      {
+        "region_daily_statistic_id": "cc3d143a-a31f-51f1-854e-5c190d2db5c2",
+        "region_id": "05ac14ca-052f-53a6-bcb8-ec2dba939657",
+        "region_code_snapshot": "ops-region-b-1",
+        "service_date": "2026-04-05",
+        "delivery_count": 118,
+        "completed_delivery_count": 117,
+        "exception_delivery_count": 1,
+        "total_distance_km": "12.50",
+        "total_base_amount": "375000.00",
+        "average_delivery_minutes": "18.00"
+      },
+      {
+        "region_daily_statistic_id": "b31af5c1-d874-5f48-8695-b16b010ac90e",
+        "region_id": "daa22c6f-62b7-57ee-b953-700a0d5a1419",
+        "region_code_snapshot": "ops-region-c-1",
+        "service_date": "2026-04-05",
+        "delivery_count": 8,
+        "completed_delivery_count": 8,
+        "exception_delivery_count": 0,
+        "total_distance_km": "12.50",
+        "total_base_amount": "125000.00",
+        "average_delivery_minutes": "18.00"
+      }
+    ],
+    "performance_summaries": [
+      {
+        "region_performance_summary_id": "b9a0a3e6-7294-5a28-9120-4a34c49a67e4",
+        "region_id": "15294545-8780-5a19-892e-ad9eee512a2a",
+        "region_code_snapshot": "ops-region-a-1",
+        "difficulty_level_snapshot": "low",
+        "period_start": "2026-03-29",
+        "period_end": "2026-03-31",
+        "delivery_count": 18949,
+        "completion_rate": "99.89",
+        "productivity_score": "10737.77",
+        "cost_per_delivery": "1176.46",
+        "notes": "Ops Region A-1 synthetic summary"
+      },
+      {
+        "region_performance_summary_id": "e735a2bd-cbb7-5de4-a8c9-532edb7246b5",
+        "region_id": "96716c21-0293-5570-b086-f0a6ab2d64c4",
+        "region_code_snapshot": "ops-region-a-2",
+        "difficulty_level_snapshot": "medium",
+        "period_start": "2026-04-05",
+        "period_end": "2026-04-05",
+        "delivery_count": 8,
+        "completion_rate": "100.00",
+        "productivity_score": "13.60",
+        "cost_per_delivery": "15625.00",
+        "notes": "Ops Region A-2 synthetic summary"
+      },
+      {
+        "region_performance_summary_id": "9bc5e2b2-2e20-5988-8291-533df6aea453",
+        "region_id": "dbf243bf-ead8-58dc-ac6c-bdde10ebdc43",
+        "region_code_snapshot": "ops-region-a-3",
+        "difficulty_level_snapshot": "high",
+        "period_start": "2026-04-05",
+        "period_end": "2026-04-05",
+        "delivery_count": 8,
+        "completion_rate": "100.00",
+        "productivity_score": "13.60",
+        "cost_per_delivery": "15625.00",
+        "notes": "Ops Region A-3 synthetic summary"
+      },
+      {
+        "region_performance_summary_id": "fdb29c78-cc36-5add-8189-89896cc97f93",
+        "region_id": "05ac14ca-052f-53a6-bcb8-ec2dba939657",
+        "region_code_snapshot": "ops-region-b-1",
+        "difficulty_level_snapshot": "medium",
+        "period_start": "2026-04-05",
+        "period_end": "2026-04-05",
+        "delivery_count": 118,
+        "completion_rate": "99.15",
+        "productivity_score": "200.60",
+        "cost_per_delivery": "3177.97",
+        "notes": "Ops Region B-1 synthetic summary"
+      },
+      {
+        "region_performance_summary_id": "01f0b0ad-c49d-520a-9881-9e8d8b1f9b2d",
+        "region_id": "daa22c6f-62b7-57ee-b953-700a0d5a1419",
+        "region_code_snapshot": "ops-region-c-1",
+        "difficulty_level_snapshot": "high",
+        "period_start": "2026-04-05",
+        "period_end": "2026-04-05",
+        "delivery_count": 8,
+        "completion_rate": "100.00",
+        "productivity_score": "13.60",
+        "cost_per_delivery": "15625.00",
+        "notes": "Ops Region C-1 synthetic summary"
+      }
+    ]
+  },
+  "personnel_documents": [
+    {
+      "personnel_document_id": "ebaebcf4-2762-535f-9a41-702e3ae65019",
+      "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-01 근로 계약서",
+      "document_number": "OPS-CONTRACT-A101-001",
+      "issuer_name": "Ops HR",
+      "issued_on": "2026-01-05",
+      "expires_on": "2027-01-05",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/001",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "f0469cb4-1e8e-5a01-acc4-036211ac318a",
+      "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-01 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A101-001",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-06",
+      "expires_on": "2026-09-02",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/001",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "a3ed3cc7-5948-59a9-a6fa-c4d1b4d7d931",
+      "driver_id": "1af2f8cc-f10d-5891-95ed-38db09b6064e",
+      "document_type": "bank_account_proof",
+      "status": "active",
+      "title": "Ops Driver A1-01 계좌 증빙",
+      "document_number": "OPS-BANK-A101-001",
+      "issuer_name": "Ops Bank",
+      "issued_on": "2026-03-16",
+      "expires_on": null,
+      "notes": "Synthetic payout account proof.",
+      "external_reference": "ops://personnel/bank/001",
+      "payload": {
+        "preferred": false,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "fda79a27-58b4-569e-9ec3-e0b79774155f",
+      "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-02 근로 계약서",
+      "document_number": "OPS-CONTRACT-A102-002",
+      "issuer_name": "Ops HR",
+      "issued_on": "2026-01-04",
+      "expires_on": "2027-01-04",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/002",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "3750e633-b1a9-5894-9921-c5a03790e5ec",
+      "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-02 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A102-002",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-05",
+      "expires_on": "2026-09-01",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/002",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "8a2091ac-1607-5b67-be20-56ca11e14192",
+      "driver_id": "66a8760e-d812-5d8d-89b1-eef9619356be",
+      "document_type": "bank_account_proof",
+      "status": "active",
+      "title": "Ops Driver A1-02 계좌 증빙",
+      "document_number": "OPS-BANK-A102-002",
+      "issuer_name": "Ops Bank",
+      "issued_on": "2026-03-15",
+      "expires_on": null,
+      "notes": "Synthetic payout account proof.",
+      "external_reference": "ops://personnel/bank/002",
+      "payload": {
+        "preferred": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "d340e1f0-21b9-59a9-9a7f-2a1e325a040f",
+      "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-03 근로 계약서",
+      "document_number": "OPS-CONTRACT-A103-003",
+      "issuer_name": "Ops HR",
+      "issued_on": "2026-01-03",
+      "expires_on": "2027-01-03",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/003",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "5f050316-c16f-5a0b-9cf2-7d081a8f7aaa",
+      "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+      "document_type": "license_or_certificate",
+      "status": "expired",
+      "title": "Ops Driver A1-03 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A103-003",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-04",
+      "expires_on": "2026-03-24",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/003",
+      "payload": {
+        "verified": false,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "d68150f5-c830-5a30-863b-1815979c007b",
+      "driver_id": "4ccca041-57b5-5486-92ba-bd7f1e81eaf4",
+      "document_type": "bank_account_proof",
+      "status": "active",
+      "title": "Ops Driver A1-03 계좌 증빙",
+      "document_number": "OPS-BANK-A103-003",
+      "issuer_name": "Ops Bank",
+      "issued_on": "2026-03-14",
+      "expires_on": null,
+      "notes": "Synthetic payout account proof.",
+      "external_reference": "ops://personnel/bank/003",
+      "payload": {
+        "preferred": false,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "2f4c0003-ec80-5796-bdbb-62c87209d3f8",
+      "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-04 근로 계약서",
+      "document_number": "OPS-CONTRACT-A104-004",
+      "issuer_name": "Ops HR",
+      "issued_on": "2026-01-02",
+      "expires_on": "2027-01-02",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/004",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "22f89bc4-851a-506c-bb1d-c3c29e7b770a",
+      "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-04 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A104-004",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-03",
+      "expires_on": "2026-08-30",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/004",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "02793058-fec1-51f7-bd40-ff1c637d9197",
+      "driver_id": "74ff18ca-dae9-5fc8-a723-0d45479af480",
+      "document_type": "bank_account_proof",
+      "status": "active",
+      "title": "Ops Driver A1-04 계좌 증빙",
+      "document_number": "OPS-BANK-A104-004",
+      "issuer_name": "Ops Bank",
+      "issued_on": "2026-03-13",
+      "expires_on": null,
+      "notes": "Synthetic payout account proof.",
+      "external_reference": "ops://personnel/bank/004",
+      "payload": {
+        "preferred": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "f01ec372-c0e9-5e47-90c7-593e2fab3cf5",
+      "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-05 근로 계약서",
+      "document_number": "OPS-CONTRACT-A105-005",
+      "issuer_name": "Ops HR",
+      "issued_on": "2026-01-01",
+      "expires_on": "2027-01-01",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/005",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "5f20c10e-971f-5438-976f-443488258c8b",
+      "driver_id": "12a004d4-d321-58f3-8a6d-6321c46dde63",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-05 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A105-005",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-02",
+      "expires_on": "2026-08-29",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/005",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "b8526761-850b-5d5c-8f98-839015be0d10",
+      "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-06 근로 계약서",
+      "document_number": "OPS-CONTRACT-A106-006",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-31",
+      "expires_on": "2026-12-31",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/006",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "e16d7384-0362-5d4c-85d2-814ca126794a",
+      "driver_id": "fa532831-1de2-57bb-a620-3a9f0987f947",
+      "document_type": "license_or_certificate",
+      "status": "expired",
+      "title": "Ops Driver A1-06 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A106-006",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-03-01",
+      "expires_on": "2026-03-21",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/006",
+      "payload": {
+        "verified": false,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "c64aea15-4461-5fcc-832f-df807a529d28",
+      "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-07 근로 계약서",
+      "document_number": "OPS-CONTRACT-A107-007",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-30",
+      "expires_on": "2026-12-30",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/007",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "19a2ed88-ae82-5c63-a31e-1fb8d64f5f37",
+      "driver_id": "9c54b639-6d5b-5f26-963b-bf9565478e42",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-07 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A107-007",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-02-28",
+      "expires_on": "2026-08-27",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/007",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "87527ea6-f688-5cfc-9f92-7eff46cf2424",
+      "driver_id": "65da3cef-7be9-570c-bdef-1018da20a7e1",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-08 근로 계약서",
+      "document_number": "OPS-CONTRACT-A108-008",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-29",
+      "expires_on": "2026-12-29",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/008",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "8b9ca3a1-ff10-51c6-95e1-47ab12985137",
+      "driver_id": "65da3cef-7be9-570c-bdef-1018da20a7e1",
+      "document_type": "license_or_certificate",
+      "status": "active",
+      "title": "Ops Driver A1-08 운송 자격 증빙",
+      "document_number": "OPS-LICENSE-A108-008",
+      "issuer_name": "Ops Cert Center",
+      "issued_on": "2026-02-27",
+      "expires_on": "2026-08-26",
+      "notes": "Synthetic qualification certificate.",
+      "external_reference": "ops://personnel/license/008",
+      "payload": {
+        "verified": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "a77afc1e-ae07-553f-8c5c-98402cf9c7f2",
+      "driver_id": "dff62a88-2123-5172-b51c-74b820705572",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-09 근로 계약서",
+      "document_number": "OPS-CONTRACT-A109-009",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-28",
+      "expires_on": "2026-12-28",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/009",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "bc01694b-bbc6-5568-85d7-1544fcb359e0",
+      "driver_id": "7852e049-6321-5470-9e03-6709c46aa16f",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-10 근로 계약서",
+      "document_number": "OPS-CONTRACT-A110-010",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-27",
+      "expires_on": "2026-12-27",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/010",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "f03f990e-0adc-5155-bdde-79bbebb59c1b",
+      "driver_id": "9b17af71-e13e-5b68-a833-f922dc4e2a2b",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-11 근로 계약서",
+      "document_number": "OPS-CONTRACT-A111-011",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-26",
+      "expires_on": "2026-12-26",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/011",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "7b3acf1c-fe3d-54dc-b423-35cc64dcd52b",
+      "driver_id": "34e27d61-5d9e-51f3-a010-4dfc09db9214",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A1-12 근로 계약서",
+      "document_number": "OPS-CONTRACT-A112-012",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-25",
+      "expires_on": "2026-12-25",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/012",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "7c0b025a-de00-5568-99e0-b851df75d1a5",
+      "driver_id": "8f2e3ef9-4426-5cb7-a55b-33b9677e93a7",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver B1-01 근로 계약서",
+      "document_number": "OPS-CONTRACT-B101-013",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-24",
+      "expires_on": "2026-12-24",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/013",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "6011dee5-8c1f-5007-984c-61d46528cb65",
+      "driver_id": "24244d2d-c023-5cd8-b87f-87798a2e4a47",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver B1-02 근로 계약서",
+      "document_number": "OPS-CONTRACT-B102-014",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-23",
+      "expires_on": "2026-12-23",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/014",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "1ee87a93-6635-58f5-af42-26c6831e6406",
+      "driver_id": "c5c6fab0-c2bc-590d-8a41-835a7713677d",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver B1-03 근로 계약서",
+      "document_number": "OPS-CONTRACT-B103-015",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-22",
+      "expires_on": "2026-12-22",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/015",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "61ac069b-bf70-5488-ad43-e2e6fe5018cc",
+      "driver_id": "c9b6c93a-7ece-57e3-a934-f819db7b9df1",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A2-01 근로 계약서",
+      "document_number": "OPS-CONTRACT-A201-016",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-21",
+      "expires_on": "2026-12-21",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/016",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "971cd861-692a-5d9e-ac47-0273d725766f",
+      "driver_id": "c57c7921-ef3e-52c8-8f87-577435b57c7e",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver C1-01 근로 계약서",
+      "document_number": "OPS-CONTRACT-C101-017",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-20",
+      "expires_on": "2026-12-20",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/017",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    },
+    {
+      "personnel_document_id": "8cd83d80-7664-57a6-b43b-0138750b30cd",
+      "driver_id": "e6a8c744-680f-5357-90f1-73762bd3441d",
+      "document_type": "contract",
+      "status": "active",
+      "title": "Ops Driver A3-01 근로 계약서",
+      "document_number": "OPS-CONTRACT-A301-018",
+      "issuer_name": "Ops HR",
+      "issued_on": "2025-12-19",
+      "expires_on": "2026-12-19",
+      "notes": "Ops-derived fixture contract.",
+      "external_reference": "ops://personnel/contracts/018",
+      "payload": {
+        "signed": true,
+        "source": "ops-derived-fixture"
+      }
+    }
+  ]
+}

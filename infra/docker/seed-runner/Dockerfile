@@ -59,6 +59,7 @@ COPY development/service-terminal-registry /workspace/services/terminal-registry
 COPY development/service-telemetry-hub /workspace/services/telemetry-hub
 COPY development/service-vehicle-assignment /workspace/services/driver-vehicle-assignment
 COPY development/service-settlement-payroll /workspace/services/settlement-payroll
+COPY development/integration-local-stack/fixtures /workspace/fixtures
 COPY development/integration-local-stack/infra/env /workspace/infra/env
 COPY development/integration-local-stack/infra/docker/seed-runner/run-seed.sh /workspace/infra/docker/seed-runner/run-seed.sh
 
