@@ -208,8 +208,7 @@ services:
       - "8000"
 
   telemetry-hub-api:
-    build:
-      context: ../service-telemetry-hub
+    image: ${TELEMETRY_HUB_IMAGE:?set TELEMETRY_HUB_IMAGE}
     env_file:
       - ./infra/env/telemetry-hub.env.example
     environment:
