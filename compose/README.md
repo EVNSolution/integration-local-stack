@@ -4,13 +4,13 @@
 
 현재 compose 파일 위치는 상위 [docker-compose.account-driver-settlement.yml](../docker-compose.account-driver-settlement.yml)이다.
 현재 runtime source는 sibling target repo만 참조한다.
-surviving frontend repo path는 `../front-web-console`이며, compose service alias는 아직 `admin-front`를 유지한다.
+surviving frontend repo path는 `../front-web-console`이며, compose runtime service도 `web-console`로 수렴했다.
 
 현재 MSA API 문서 entry는 [api-docs/README.md](./api-docs/README.md)다.
 
 ## 현재 Compose 대상
 - `gateway`
-- `admin-front`
+- `web-console`
 - `account-auth-api`
 - `driver-profile-api`
 - `personnel-document-registry-api`
@@ -64,12 +64,12 @@ surviving frontend repo path는 `../front-web-console`이며, compose service al
 - `vehicle-ops-api`는 lean `Vehicle Ops` query service다.
 - current runtime authoritative contract는 [05-vehicle-ops-read-model.md](../../../docs/contracts/05-vehicle-ops-read-model.md)의 current runtime / bootstrap Phase 1 section을 따른다.
 - post-refactor target contract는 같은 문서의 post-refactor target section을 따른다.
-- `admin-front /vehicles`는 현재 `Vehicle Ops` summary contract를 사용한다.
+- `web-console /vehicles`는 현재 `Vehicle Ops` summary contract를 사용한다.
 - current runtime summary contract는 `Vehicle Registry + Driver Vehicle Assignment + Telemetry Hub + Terminal Registry + Organization Registry`를 읽는다.
 - current runtime detail은 `current_terminal` block을 포함한다.
 - 이번 범위에서 `Vehicle Ops Phase 1`의 compose/gateway/env/front 전환이 모두 완료됐다.
-- `admin-front`의 차량 운영은 차량 마스터 관리와 배정 관리로 분리된다.
-- `admin-front`의 차량 write 경로는 계속 `Vehicle Asset` 정본 API를 사용한다.
+- `web-console`의 차량 운영은 차량 마스터 관리와 배정 관리로 분리된다.
+- `web-console`의 차량 write 경로는 계속 `Vehicle Asset` 정본 API를 사용한다.
 
 ## 현재 원칙
 - 서비스별 DB는 분리한다.
@@ -220,7 +220,7 @@ surviving frontend repo path는 `../front-web-console`이며, compose service al
 - replay/status workflow나 telemetry 정본 저장은 소유하지 않는다.
 
 ## Gateway 규칙
-- `/` -> `admin-front`
+- `/` -> `web-console`
 - `/healthz` -> gateway self-health (ALB target group probe)
 - `/api/auth/` -> `account-auth-api`
 - `/api/drivers/` -> `driver-profile-api`
