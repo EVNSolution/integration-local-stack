@@ -141,8 +141,7 @@ services:
       - "8000"
 
   dispatch-registry-api:
-    build:
-      context: ../service-dispatch-registry
+    image: ${DISPATCH_REGISTRY_IMAGE:?set DISPATCH_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/dispatch-registry.env.example
     depends_on:
