@@ -110,8 +110,7 @@ services:
       - "8000"
 
   settlement-ops-api:
-    build:
-      context: ../service-settlement-operations-view
+    image: ${SETTLEMENT_OPS_IMAGE:?set SETTLEMENT_OPS_IMAGE}
     env_file:
       - ./infra/env/settlement-ops.env.example
     depends_on:
@@ -159,8 +158,7 @@ services:
       - "8000"
 
   region-analytics-api:
-    build:
-      context: ../service-region-analytics
+    image: ${REGION_ANALYTICS_IMAGE:?set REGION_ANALYTICS_IMAGE}
     env_file:
       - ./infra/env/region-analytics.env.example
     depends_on:
@@ -271,8 +269,7 @@ services:
       - "8000"
 
   vehicle-ops-api:
-    build:
-      context: ../service-vehicle-operations-view
+    image: ${VEHICLE_OPS_IMAGE:?set VEHICLE_OPS_IMAGE}
     env_file:
       - ./infra/env/vehicle-ops.env.example
     depends_on:
@@ -285,8 +282,7 @@ services:
       - "8000"
 
   dispatch-ops-api:
-    build:
-      context: ../service-dispatch-operations-view
+    image: ${DISPATCH_OPS_IMAGE:?set DISPATCH_OPS_IMAGE}
     env_file:
       - ./infra/env/dispatch-ops.env.example
     depends_on:
@@ -298,8 +294,7 @@ services:
       - "8000"
 
   driver-ops-api:
-    build:
-      context: ../service-driver-operations-view
+    image: ${DRIVER_OPS_IMAGE:?set DRIVER_OPS_IMAGE}
     env_file:
       - ./infra/env/driver-ops.env.example
     depends_on:
