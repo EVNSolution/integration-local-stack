@@ -228,8 +228,7 @@ services:
       - "127.0.0.1:1883:1883"
 
   telemetry-listener:
-    build:
-      context: ../service-telemetry-listener
+    image: ${TELEMETRY_LISTENER_IMAGE:?set TELEMETRY_LISTENER_IMAGE}
     env_file:
       - ./infra/env/telemetry-listener.env.example
     depends_on:
