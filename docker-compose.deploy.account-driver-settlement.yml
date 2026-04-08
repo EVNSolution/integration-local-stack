@@ -201,8 +201,7 @@ services:
       - "8000"
 
   terminal-registry-api:
-    build:
-      context: ../service-terminal-registry
+    image: ${TERMINAL_REGISTRY_IMAGE:?set TERMINAL_REGISTRY_IMAGE}
     env_file:
       - ./infra/env/terminal-registry.env.example
     depends_on:
