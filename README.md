@@ -43,6 +43,32 @@
 - 배포 runtime compose는 `infra/env/deploy/` 템플릿만 사용한다.
 - 로컬 편의 설정과 deploy runtime 설정을 같은 env 파일에서 관리하지 않는다.
 
+## Frontend Local Development Rule
+
+프런트 수정 중에는 `web-console` 이미지를 수정마다 다시 빌드하지 않는다.
+
+표준 루프는 아래다.
+
+1. backend와 gateway는 compose로 한 번 띄운다.
+2. frontend는 child repo에서 host dev server로 띄운다.
+3. UI 수정 확인은 `http://localhost:5174`에서 한다.
+4. gateway/auth/API 포함 통합 확인은 `http://localhost:8080`에서 한다.
+5. `docker compose ... up -d --build web-console`는 최종 통합 확인 시점에만 실행한다.
+
+권장 명령:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+docker compose -f docker-compose.account-driver-settlement.yml up -d gateway
+```
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/front-web-console
+npm run dev
+```
+
+이 규칙의 목적은 frontend edit loop에서 Docker Desktop rebuild latency를 제거하고, 최종 통합 검증만 Docker image 기준으로 남기는 것이다.
+
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.
 - sqlite-only runtime이며 dedicated Postgres container를 추가하지 않는다.
