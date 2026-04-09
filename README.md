@@ -171,6 +171,7 @@ cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-p
 - `/api/drivers/` -> `18003`
 - `/api/vehicles/` -> `18004`
 - `/api/dispatch/` -> `18005`
+- `/api/dispatch-ops/` -> `18010`
 - `/api/settlement-registry/` -> `18006`
 - `/api/delivery-record/` -> `18007`
 - `/api/settlements/` -> `18008`
@@ -185,6 +186,8 @@ dispatch + settlement slice용 host env template는 `infra/env/host/` 아래에 
 - [driver-profile.env.example](./infra/env/host/driver-profile.env.example)
 - [vehicle-asset.env.example](./infra/env/host/vehicle-asset.env.example)
 - [dispatch-registry.env.example](./infra/env/host/dispatch-registry.env.example)
+- [dispatch-ops.env.example](./infra/env/host/dispatch-ops.env.example)
+- [driver-vehicle-assignment.env.example](./infra/env/host/driver-vehicle-assignment.env.example)
 - [settlement-registry.env.example](./infra/env/host/settlement-registry.env.example)
 - [delivery-record.env.example](./infra/env/host/delivery-record.env.example)
 - [settlement-payroll.env.example](./infra/env/host/settlement-payroll.env.example)
@@ -198,14 +201,21 @@ host Django 서비스 실행 helper:
 ./scripts/bootstrap_host_python_env.sh ../service-driver-profile
 ./scripts/bootstrap_host_python_env.sh ../service-organization-registry
 ./scripts/bootstrap_host_python_env.sh ../service-account-access
+./scripts/bootstrap_host_python_env.sh ../service-dispatch-operations-view
+./scripts/bootstrap_host_python_env.sh ../service-vehicle-assignment
 
 ./scripts/migrate_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
 ./scripts/migrate_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
 ./scripts/migrate_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
+./scripts/migrate_host_django_service.sh ../service-vehicle-assignment ./infra/env/host/driver-vehicle-assignment.env.example
 
 ./scripts/run_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
 ./scripts/run_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
 ./scripts/run_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
+./scripts/run_host_django_service.sh ../service-dispatch-registry ./infra/env/host/dispatch-registry.env.example
+./scripts/run_host_django_service.sh ../service-vehicle-registry ./infra/env/host/vehicle-asset.env.example
+./scripts/run_host_django_service.sh ../service-vehicle-assignment ./infra/env/host/driver-vehicle-assignment.env.example
+./scripts/run_host_django_service.sh ../service-dispatch-operations-view ./infra/env/host/dispatch-ops.env.example
 ```
 
 `bootstrap_host_python_env.sh`는 service repo별 `.venv`를 만들고 `requirements.txt`를 설치한다. 상대경로와 절대경로 둘 다 받을 수 있다.
@@ -213,6 +223,8 @@ host Django 서비스 실행 helper:
 `migrate_host_django_service.sh`는 같은 env file을 export한 뒤 `manage.py migrate`를 실행한다. 새 DB를 붙일 때는 첫 실행 전에 한 번 돌린다.
 
 `run_host_django_service.sh`는 env file을 export한 뒤 service repo에 `.venv/bin/python`이 있으면 그 interpreter로 `manage.py runserver`를 실행한다. `.venv`가 없으면 `python3`로 fallback한다. 상대경로와 절대경로 둘 다 받을 수 있다.
+
+`dispatch-ops`와 `driver-vehicle-assignment`는 low-CPU hybrid 기준에서 sqlite-only로 돌릴 수 있다. 이 둘은 host env에서 `POSTGRES_*`를 비워 둔 채 실행해도 되고, `dispatch-ops`는 `driver-vehicle-assignment`가 내려가 있으면 current assignment source를 warning으로만 처리한다.
 
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.
