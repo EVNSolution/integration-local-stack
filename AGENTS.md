@@ -9,7 +9,8 @@
 ## What Belongs Here
 
 - `docker-compose*.yml`
-- `infra/env/`
+- `infra/env/local/`
+- `infra/env/deploy/`
 - `infra/docker/seed-runner/`
 - local smoke scripts
 - local bootstrap helpers

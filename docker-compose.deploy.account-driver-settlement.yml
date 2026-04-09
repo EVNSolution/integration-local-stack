@@ -46,14 +46,14 @@ services:
     build:
       context: ../front-web-console
     env_file:
-      - ./infra/env/web-console.env.example
+      - ./infra/env/deploy/web-console.env.example
     expose:
       - "5174"
 
   account-auth-api:
     image: ${ACCOUNT_ACCESS_IMAGE:?set ACCOUNT_ACCESS_IMAGE}
     env_file:
-      - ./infra/env/account-auth.env.example
+      - ./infra/env/deploy/account-auth.env.example
     depends_on:
       - account-db
       - redis
@@ -63,7 +63,7 @@ services:
   driver-profile-api:
     image: ${DRIVER_PROFILE_IMAGE:?set DRIVER_PROFILE_IMAGE}
     env_file:
-      - ./infra/env/driver-profile.env.example
+      - ./infra/env/deploy/driver-profile.env.example
     depends_on:
       - driver-db
     expose:
@@ -72,7 +72,7 @@ services:
   personnel-document-registry-api:
     image: ${PERSONNEL_DOCUMENT_REGISTRY_IMAGE:?set PERSONNEL_DOCUMENT_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/personnel-document-registry.env.example
+      - ./infra/env/deploy/personnel-document-registry.env.example
     depends_on:
       - personnel-document-db
       - driver-profile-api
@@ -82,7 +82,7 @@ services:
   settlement-payroll-api:
     image: ${SETTLEMENT_PAYROLL_IMAGE:?set SETTLEMENT_PAYROLL_IMAGE}
     env_file:
-      - ./infra/env/settlement-payroll.env.example
+      - ./infra/env/deploy/settlement-payroll.env.example
     depends_on:
       - settlement-db
     expose:
@@ -91,7 +91,7 @@ services:
   settlement-registry-api:
     image: ${SETTLEMENT_REGISTRY_IMAGE:?set SETTLEMENT_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/settlement-registry.env.example
+      - ./infra/env/deploy/settlement-registry.env.example
     depends_on:
       - settlement-registry-db
       - organization-master-api
@@ -101,7 +101,7 @@ services:
   delivery-record-api:
     image: ${DELIVERY_RECORD_IMAGE:?set DELIVERY_RECORD_IMAGE}
     env_file:
-      - ./infra/env/delivery-record.env.example
+      - ./infra/env/deploy/delivery-record.env.example
     depends_on:
       - delivery-record-db
       - organization-master-api
@@ -112,7 +112,7 @@ services:
   settlement-ops-api:
     image: ${SETTLEMENT_OPS_IMAGE:?set SETTLEMENT_OPS_IMAGE}
     env_file:
-      - ./infra/env/settlement-ops.env.example
+      - ./infra/env/deploy/settlement-ops.env.example
     depends_on:
       - settlement-payroll-api
       - delivery-record-api
@@ -122,7 +122,7 @@ services:
   organization-master-api:
     image: ${ORGANIZATION_REGISTRY_IMAGE:?set ORGANIZATION_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/organization-master.env.example
+      - ./infra/env/deploy/organization-master.env.example
     depends_on:
       - org-db
     expose:
@@ -131,7 +131,7 @@ services:
   vehicle-asset-api:
     image: ${VEHICLE_REGISTRY_IMAGE:?set VEHICLE_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/vehicle-asset.env.example
+      - ./infra/env/deploy/vehicle-asset.env.example
     depends_on:
       - vehicle-db
     expose:
@@ -140,7 +140,7 @@ services:
   dispatch-registry-api:
     image: ${DISPATCH_REGISTRY_IMAGE:?set DISPATCH_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/dispatch-registry.env.example
+      - ./infra/env/deploy/dispatch-registry.env.example
     depends_on:
       - dispatch-registry-db
       - vehicle-asset-api
@@ -151,7 +151,7 @@ services:
   region-registry-api:
     image: ${REGION_REGISTRY_IMAGE:?set REGION_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/region-registry.env.example
+      - ./infra/env/deploy/region-registry.env.example
     depends_on:
       - region-registry-db
     expose:
@@ -160,7 +160,7 @@ services:
   region-analytics-api:
     image: ${REGION_ANALYTICS_IMAGE:?set REGION_ANALYTICS_IMAGE}
     env_file:
-      - ./infra/env/region-analytics.env.example
+      - ./infra/env/deploy/region-analytics.env.example
     depends_on:
       - region-analytics-db
     expose:
@@ -169,7 +169,7 @@ services:
   announcement-registry-api:
     image: ${ANNOUNCEMENT_REGISTRY_IMAGE:?set ANNOUNCEMENT_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/announcement-registry.env.example
+      - ./infra/env/deploy/announcement-registry.env.example
     depends_on:
       - announcement-registry-db
     expose:
@@ -178,7 +178,7 @@ services:
   support-registry-api:
     image: ${SUPPORT_REGISTRY_IMAGE:?set SUPPORT_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/support-registry.env.example
+      - ./infra/env/deploy/support-registry.env.example
     depends_on:
       - support-registry-db
     expose:
@@ -187,7 +187,7 @@ services:
   notification-hub-api:
     image: ${NOTIFICATION_HUB_IMAGE:?set NOTIFICATION_HUB_IMAGE}
     env_file:
-      - ./infra/env/notification-hub.env.example
+      - ./infra/env/deploy/notification-hub.env.example
     depends_on:
       - notification-hub-db
     expose:
@@ -196,7 +196,7 @@ services:
   terminal-registry-api:
     image: ${TERMINAL_REGISTRY_IMAGE:?set TERMINAL_REGISTRY_IMAGE}
     env_file:
-      - ./infra/env/terminal-registry.env.example
+      - ./infra/env/deploy/terminal-registry.env.example
     depends_on:
       - terminal-db
       - vehicle-asset-api
@@ -206,7 +206,7 @@ services:
   telemetry-hub-api:
     image: ${TELEMETRY_HUB_IMAGE:?set TELEMETRY_HUB_IMAGE}
     env_file:
-      - ./infra/env/telemetry-hub.env.example
+      - ./infra/env/deploy/telemetry-hub.env.example
     environment:
       TELEMETRY_HUB_INGEST_KEY: local-telemetry-ingest-key
     depends_on:
@@ -226,7 +226,7 @@ services:
   telemetry-listener:
     image: ${TELEMETRY_LISTENER_IMAGE:?set TELEMETRY_LISTENER_IMAGE}
     env_file:
-      - ./infra/env/telemetry-listener.env.example
+      - ./infra/env/deploy/telemetry-listener.env.example
     depends_on:
       mqtt-broker:
         condition: service_started
@@ -239,7 +239,7 @@ services:
   telemetry-dead-letter-api:
     image: ${TELEMETRY_DEAD_LETTER_IMAGE:?set TELEMETRY_DEAD_LETTER_IMAGE}
     env_file:
-      - ./infra/env/telemetry-dead-letter.env.example
+      - ./infra/env/deploy/telemetry-dead-letter.env.example
     depends_on:
       telemetry-dead-letter-db:
         condition: service_healthy
@@ -257,7 +257,7 @@ services:
   driver-vehicle-assignment-api:
     image: ${VEHICLE_ASSIGNMENT_IMAGE:?set VEHICLE_ASSIGNMENT_IMAGE}
     env_file:
-      - ./infra/env/driver-vehicle-assignment.env.example
+      - ./infra/env/deploy/driver-vehicle-assignment.env.example
     depends_on:
       assignment-db:
         condition: service_healthy
@@ -271,7 +271,7 @@ services:
   vehicle-ops-api:
     image: ${VEHICLE_OPS_IMAGE:?set VEHICLE_OPS_IMAGE}
     env_file:
-      - ./infra/env/vehicle-ops.env.example
+      - ./infra/env/deploy/vehicle-ops.env.example
     depends_on:
       - vehicle-asset-api
       - driver-vehicle-assignment-api
@@ -284,7 +284,7 @@ services:
   dispatch-ops-api:
     image: ${DISPATCH_OPS_IMAGE:?set DISPATCH_OPS_IMAGE}
     env_file:
-      - ./infra/env/dispatch-ops.env.example
+      - ./infra/env/deploy/dispatch-ops.env.example
     depends_on:
       - dispatch-registry-api
       - driver-vehicle-assignment-api
@@ -296,7 +296,7 @@ services:
   driver-ops-api:
     image: ${DRIVER_OPS_IMAGE:?set DRIVER_OPS_IMAGE}
     env_file:
-      - ./infra/env/driver-ops.env.example
+      - ./infra/env/deploy/driver-ops.env.example
     depends_on:
       - account-auth-api
       - driver-profile-api

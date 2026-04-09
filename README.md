@@ -23,7 +23,8 @@
 
 포함:
 - `docker-compose.account-driver-settlement.yml`
-- `infra/env/`
+- `infra/env/local/`
+- `infra/env/deploy/`
 - `infra/mqtt/`
 - `infra/docker/seed-runner/`
 - `scripts/`
@@ -35,6 +36,12 @@
 - 서비스 내부 비즈니스 로직
 - gateway 서비스 소스
 - front 서비스 소스
+
+## Env Template Rule
+
+- 로컬 통합 검증용 compose와 seed-runner는 `infra/env/local/` 템플릿만 사용한다.
+- 배포 runtime compose는 `infra/env/deploy/` 템플릿만 사용한다.
+- 로컬 편의 설정과 deploy runtime 설정을 같은 env 파일에서 관리하지 않는다.
 
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.

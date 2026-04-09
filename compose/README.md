@@ -7,6 +7,12 @@ image deploy pilot용 compose 파일은 [docker-compose.deploy.account-driver-se
 현재 runtime source는 sibling target repo만 참조한다.
 surviving frontend repo path는 `../front-web-console`이며, compose runtime service도 `web-console`로 수렴했다.
 
+env template 규칙은 분리된다.
+- 로컬 통합 검증 compose는 `../infra/env/local/` 템플릿을 사용한다.
+- 배포 runtime compose는 `../infra/env/deploy/` 템플릿을 사용한다.
+- `seed-runner`는 로컬 검증 경로이므로 `../infra/env/local/`만 사용한다.
+- 로컬 편의 설정은 deploy env로 승격하지 않는다.
+
 현재 MSA API 문서 entry는 [api-docs/README.md](./api-docs/README.md)다.
 
 ## 현재 Compose 대상
@@ -80,6 +86,7 @@ surviving frontend repo path는 `../front-web-console`이며, compose runtime se
 - pilot compose는 `ACCOUNT_ACCESS_IMAGE`, `DRIVER_PROFILE_IMAGE` 환경변수를 주입받아 ECR 이미지를 pull 한다.
 - `seed-runner`는 서비스 `management command`만 호출한다.
 - projection 전용 저장소는 이번 스코프에서 제외한다.
+- UI/UX 변경은 frontend 단독 dev server가 아니라 이 로컬 통합 compose 기준으로 검증한다.
 - 범용 이벤트 브로커/비동기 워커 확장은 제외하지만, telemetry ingress 검증용 `mqtt-broker`와 `telemetry-listener`는 포함한다.
 - 로컬 broker는 deterministic smoke를 위해 고정 listener 계정으로만 publish/subscribe를 허용한다.
 - `Driver Ops`는 projection DB 대신 bounded fan-out query service로 시작한다.

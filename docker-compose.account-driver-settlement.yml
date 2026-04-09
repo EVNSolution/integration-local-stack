@@ -46,7 +46,7 @@ services:
     build:
       context: ../front-web-console
     env_file:
-      - ./infra/env/web-console.env.example
+      - ./infra/env/local/web-console.env.example
     expose:
       - "5174"
 
@@ -54,7 +54,7 @@ services:
     build:
       context: ../service-account-access
     env_file:
-      - ./infra/env/account-auth.env.example
+      - ./infra/env/local/account-auth.env.example
     depends_on:
       - account-db
       - redis
@@ -65,7 +65,7 @@ services:
     build:
       context: ../service-driver-profile
     env_file:
-      - ./infra/env/driver-profile.env.example
+      - ./infra/env/local/driver-profile.env.example
     depends_on:
       - driver-db
     expose:
@@ -75,7 +75,7 @@ services:
     build:
       context: ../service-personnel-document-registry
     env_file:
-      - ./infra/env/personnel-document-registry.env.example
+      - ./infra/env/local/personnel-document-registry.env.example
     depends_on:
       - personnel-document-db
       - driver-profile-api
@@ -86,7 +86,7 @@ services:
     build:
       context: ../service-settlement-payroll
     env_file:
-      - ./infra/env/settlement-payroll.env.example
+      - ./infra/env/local/settlement-payroll.env.example
     depends_on:
       - settlement-db
     expose:
@@ -96,7 +96,7 @@ services:
     build:
       context: ../service-settlement-registry
     env_file:
-      - ./infra/env/settlement-registry.env.example
+      - ./infra/env/local/settlement-registry.env.example
     depends_on:
       - settlement-registry-db
       - organization-master-api
@@ -107,7 +107,7 @@ services:
     build:
       context: ../service-delivery-record
     env_file:
-      - ./infra/env/delivery-record.env.example
+      - ./infra/env/local/delivery-record.env.example
     depends_on:
       - delivery-record-db
       - organization-master-api
@@ -119,7 +119,7 @@ services:
     build:
       context: ../service-settlement-operations-view
     env_file:
-      - ./infra/env/settlement-ops.env.example
+      - ./infra/env/local/settlement-ops.env.example
     depends_on:
       - settlement-payroll-api
       - delivery-record-api
@@ -130,7 +130,7 @@ services:
     build:
       context: ../service-organization-registry
     env_file:
-      - ./infra/env/organization-master.env.example
+      - ./infra/env/local/organization-master.env.example
     depends_on:
       - org-db
     expose:
@@ -140,7 +140,7 @@ services:
     build:
       context: ../service-vehicle-registry
     env_file:
-      - ./infra/env/vehicle-asset.env.example
+      - ./infra/env/local/vehicle-asset.env.example
     depends_on:
       - vehicle-db
     expose:
@@ -150,7 +150,7 @@ services:
     build:
       context: ../service-dispatch-registry
     env_file:
-      - ./infra/env/dispatch-registry.env.example
+      - ./infra/env/local/dispatch-registry.env.example
     depends_on:
       - dispatch-registry-db
       - vehicle-asset-api
@@ -162,7 +162,7 @@ services:
     build:
       context: ../service-region-registry
     env_file:
-      - ./infra/env/region-registry.env.example
+      - ./infra/env/local/region-registry.env.example
     depends_on:
       - region-registry-db
     expose:
@@ -172,7 +172,7 @@ services:
     build:
       context: ../service-region-analytics
     env_file:
-      - ./infra/env/region-analytics.env.example
+      - ./infra/env/local/region-analytics.env.example
     depends_on:
       - region-analytics-db
     expose:
@@ -182,7 +182,7 @@ services:
     build:
       context: ../service-announcement-registry
     env_file:
-      - ./infra/env/announcement-registry.env.example
+      - ./infra/env/local/announcement-registry.env.example
     depends_on:
       - announcement-registry-db
     expose:
@@ -192,7 +192,7 @@ services:
     build:
       context: ../service-support-registry
     env_file:
-      - ./infra/env/support-registry.env.example
+      - ./infra/env/local/support-registry.env.example
     depends_on:
       - support-registry-db
     expose:
@@ -202,7 +202,7 @@ services:
     build:
       context: ../service-notification-hub
     env_file:
-      - ./infra/env/notification-hub.env.example
+      - ./infra/env/local/notification-hub.env.example
     depends_on:
       - notification-hub-db
     expose:
@@ -212,7 +212,7 @@ services:
     build:
       context: ../service-terminal-registry
     env_file:
-      - ./infra/env/terminal-registry.env.example
+      - ./infra/env/local/terminal-registry.env.example
     depends_on:
       - terminal-db
       - vehicle-asset-api
@@ -223,7 +223,7 @@ services:
     build:
       context: ../service-telemetry-hub
     env_file:
-      - ./infra/env/telemetry-hub.env.example
+      - ./infra/env/local/telemetry-hub.env.example
     environment:
       TELEMETRY_HUB_INGEST_KEY: local-telemetry-ingest-key
     depends_on:
@@ -244,7 +244,7 @@ services:
     build:
       context: ../service-telemetry-listener
     env_file:
-      - ./infra/env/telemetry-listener.env.example
+      - ./infra/env/local/telemetry-listener.env.example
     depends_on:
       mqtt-broker:
         condition: service_started
@@ -258,7 +258,7 @@ services:
     build:
       context: ../service-telemetry-dead-letter
     env_file:
-      - ./infra/env/telemetry-dead-letter.env.example
+      - ./infra/env/local/telemetry-dead-letter.env.example
     depends_on:
       telemetry-dead-letter-db:
         condition: service_healthy
@@ -277,7 +277,7 @@ services:
     build:
       context: ../service-vehicle-assignment
     env_file:
-      - ./infra/env/driver-vehicle-assignment.env.example
+      - ./infra/env/local/driver-vehicle-assignment.env.example
     depends_on:
       assignment-db:
         condition: service_healthy
@@ -292,7 +292,7 @@ services:
     build:
       context: ../service-vehicle-operations-view
     env_file:
-      - ./infra/env/vehicle-ops.env.example
+      - ./infra/env/local/vehicle-ops.env.example
     depends_on:
       - vehicle-asset-api
       - driver-vehicle-assignment-api
@@ -306,7 +306,7 @@ services:
     build:
       context: ../service-dispatch-operations-view
     env_file:
-      - ./infra/env/dispatch-ops.env.example
+      - ./infra/env/local/dispatch-ops.env.example
     depends_on:
       - dispatch-registry-api
       - driver-vehicle-assignment-api
@@ -319,7 +319,7 @@ services:
     build:
       context: ../service-driver-operations-view
     env_file:
-      - ./infra/env/driver-ops.env.example
+      - ./infra/env/local/driver-ops.env.example
     depends_on:
       - account-auth-api
       - driver-profile-api

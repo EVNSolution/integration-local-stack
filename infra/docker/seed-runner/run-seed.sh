@@ -84,71 +84,71 @@ wait_for_health "settlement-payroll" "http://settlement-payroll-api:8000/health/
 wait_for_health "settlement-registry" "http://settlement-registry-api:8000/health/"
 wait_for_health "account-auth" "http://account-auth-api:8000/health/"
 
-maybe_migrate "services/organization-master" "infra/env/organization-master.env.example"
-run_manage "services/organization-master" "infra/env/organization-master.env.example" seed_organization
+maybe_migrate "services/organization-master" "infra/env/local/organization-master.env.example"
+run_manage "services/organization-master" "infra/env/local/organization-master.env.example" seed_organization
 
-maybe_migrate "services/settlement-registry" "infra/env/settlement-registry.env.example"
-run_manage "services/settlement-registry" "infra/env/settlement-registry.env.example" seed_settlement_registry
+maybe_migrate "services/settlement-registry" "infra/env/local/settlement-registry.env.example"
+run_manage "services/settlement-registry" "infra/env/local/settlement-registry.env.example" seed_settlement_registry
 
-maybe_migrate "services/driver-profile" "infra/env/driver-profile.env.example"
-run_manage "services/driver-profile" "infra/env/driver-profile.env.example" seed_drivers
+maybe_migrate "services/driver-profile" "infra/env/local/driver-profile.env.example"
+run_manage "services/driver-profile" "infra/env/local/driver-profile.env.example" seed_drivers
 
-maybe_migrate "services/personnel-document-registry" "infra/env/personnel-document-registry.env.example"
-run_manage "services/personnel-document-registry" "infra/env/personnel-document-registry.env.example" seed_personnel_documents
+maybe_migrate "services/personnel-document-registry" "infra/env/local/personnel-document-registry.env.example"
+run_manage "services/personnel-document-registry" "infra/env/local/personnel-document-registry.env.example" seed_personnel_documents
 
-maybe_migrate "services/delivery-record" "infra/env/delivery-record.env.example"
-run_manage "services/delivery-record" "infra/env/delivery-record.env.example" seed_delivery_records
+maybe_migrate "services/delivery-record" "infra/env/local/delivery-record.env.example"
+run_manage "services/delivery-record" "infra/env/local/delivery-record.env.example" seed_delivery_records
 
-maybe_migrate "services/vehicle-asset" "infra/env/vehicle-asset.env.example"
-run_manage "services/vehicle-asset" "infra/env/vehicle-asset.env.example" seed_vehicles
+maybe_migrate "services/vehicle-asset" "infra/env/local/vehicle-asset.env.example"
+run_manage "services/vehicle-asset" "infra/env/local/vehicle-asset.env.example" seed_vehicles
 
-maybe_migrate "services/dispatch-registry" "infra/env/dispatch-registry.env.example"
-run_manage "services/dispatch-registry" "infra/env/dispatch-registry.env.example" seed_dispatch
+maybe_migrate "services/dispatch-registry" "infra/env/local/dispatch-registry.env.example"
+run_manage "services/dispatch-registry" "infra/env/local/dispatch-registry.env.example" seed_dispatch
 
-maybe_migrate "services/region-registry" "infra/env/region-registry.env.example"
-run_manage "services/region-registry" "infra/env/region-registry.env.example" seed_regions
+maybe_migrate "services/region-registry" "infra/env/local/region-registry.env.example"
+run_manage "services/region-registry" "infra/env/local/region-registry.env.example" seed_regions
 
-maybe_migrate "services/region-analytics" "infra/env/region-analytics.env.example"
-run_manage "services/region-analytics" "infra/env/region-analytics.env.example" seed_region_analytics
+maybe_migrate "services/region-analytics" "infra/env/local/region-analytics.env.example"
+run_manage "services/region-analytics" "infra/env/local/region-analytics.env.example" seed_region_analytics
 
-maybe_migrate "services/announcement-registry" "infra/env/announcement-registry.env.example"
-run_manage "services/announcement-registry" "infra/env/announcement-registry.env.example" seed_announcements
+maybe_migrate "services/announcement-registry" "infra/env/local/announcement-registry.env.example"
+run_manage "services/announcement-registry" "infra/env/local/announcement-registry.env.example" seed_announcements
 
-maybe_migrate "services/support-registry" "infra/env/support-registry.env.example"
-run_manage "services/support-registry" "infra/env/support-registry.env.example" seed_support
+maybe_migrate "services/support-registry" "infra/env/local/support-registry.env.example"
+run_manage "services/support-registry" "infra/env/local/support-registry.env.example" seed_support
 
-maybe_migrate "services/notification-hub" "infra/env/notification-hub.env.example"
-run_manage "services/notification-hub" "infra/env/notification-hub.env.example" seed_notifications
+maybe_migrate "services/notification-hub" "infra/env/local/notification-hub.env.example"
+run_manage "services/notification-hub" "infra/env/local/notification-hub.env.example" seed_notifications
 
 if [ "$OPS_FIXTURE_BOOTSTRAP_MODE" != "1" ]; then
-  maybe_migrate "services/terminal-registry" "infra/env/terminal-registry.env.example"
-  run_manage "services/terminal-registry" "infra/env/terminal-registry.env.example" seed_terminals
+  maybe_migrate "services/terminal-registry" "infra/env/local/terminal-registry.env.example"
+  run_manage "services/terminal-registry" "infra/env/local/terminal-registry.env.example" seed_terminals
 
-  maybe_migrate "services/telemetry-hub" "infra/env/telemetry-hub.env.example"
-  run_manage "services/telemetry-hub" "infra/env/telemetry-hub.env.example" seed_telemetry
+  maybe_migrate "services/telemetry-hub" "infra/env/local/telemetry-hub.env.example"
+  run_manage "services/telemetry-hub" "infra/env/local/telemetry-hub.env.example" seed_telemetry
 fi
 
-maybe_migrate "services/driver-vehicle-assignment" "infra/env/driver-vehicle-assignment.env.example"
-run_manage "services/driver-vehicle-assignment" "infra/env/driver-vehicle-assignment.env.example" seed_assignments
+maybe_migrate "services/driver-vehicle-assignment" "infra/env/local/driver-vehicle-assignment.env.example"
+run_manage "services/driver-vehicle-assignment" "infra/env/local/driver-vehicle-assignment.env.example" seed_assignments
 
-maybe_migrate "services/settlement-payroll" "infra/env/settlement-payroll.env.example"
-run_manage "services/settlement-payroll" "infra/env/settlement-payroll.env.example" seed_settlements
+maybe_migrate "services/settlement-payroll" "infra/env/local/settlement-payroll.env.example"
+run_manage "services/settlement-payroll" "infra/env/local/settlement-payroll.env.example" seed_settlements
 
-maybe_migrate "services/account-auth" "infra/env/account-auth.env.example"
-run_manage "services/account-auth" "infra/env/account-auth.env.example" seed_accounts
+maybe_migrate "services/account-auth" "infra/env/local/account-auth.env.example"
+run_manage "services/account-auth" "infra/env/local/account-auth.env.example" seed_accounts
 
 if [ "$ENABLE_OPS_DERIVED_FIXTURE_IMPORT" = "1" ]; then
   echo "Importing ops-derived local fixture from ${OPS_DERIVED_FIXTURE_PATH}..."
-  run_manage "services/organization-master" "infra/env/organization-master.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/driver-profile" "infra/env/driver-profile.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/vehicle-asset" "infra/env/vehicle-asset.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/driver-vehicle-assignment" "infra/env/driver-vehicle-assignment.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/dispatch-registry" "infra/env/dispatch-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/delivery-record" "infra/env/delivery-record.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/settlement-payroll" "infra/env/settlement-payroll.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/region-registry" "infra/env/region-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/region-analytics" "infra/env/region-analytics.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
-  run_manage "services/personnel-document-registry" "infra/env/personnel-document-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/organization-master" "infra/env/local/organization-master.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/driver-profile" "infra/env/local/driver-profile.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/vehicle-asset" "infra/env/local/vehicle-asset.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/driver-vehicle-assignment" "infra/env/local/driver-vehicle-assignment.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/dispatch-registry" "infra/env/local/dispatch-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/delivery-record" "infra/env/local/delivery-record.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/settlement-payroll" "infra/env/local/settlement-payroll.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/region-registry" "infra/env/local/region-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/region-analytics" "infra/env/local/region-analytics.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
+  run_manage "services/personnel-document-registry" "infra/env/local/personnel-document-registry.env.example" import_ops_fixture --fixture "${OPS_DERIVED_FIXTURE_PATH}"
 fi
 
 echo "Seed runner completed successfully."
