@@ -23,7 +23,10 @@
 
 포함:
 - `docker-compose.account-driver-settlement.yml`
+- `docker-compose.dev-infra.yml`
+- `docker-compose.dev-gateway.yml`
 - `infra/env/local/`
+- `infra/env/host/`
 - `infra/env/deploy/`
 - `infra/mqtt/`
 - `infra/docker/seed-runner/`
@@ -142,6 +145,62 @@ host에서 Django 서비스를 띄울 때는 기존 `infra/env/local/*.env.examp
 - `settlement-payroll` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15433`
 
 Docker Desktop 설정 변경은 앱 재시작 후 반영된다.
+
+### Optional Dev Gateway
+
+`5174`의 host frontend와 host Django services를 `http://localhost:8080`으로 다시 묶고 싶으면 dev gateway만 따로 띄운다.
+
+실행:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+./scripts/up_dev_gateway.sh
+```
+
+정지:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+./scripts/down_dev_gateway.sh
+```
+
+이 gateway는 아래 host 포트로 프록시한다.
+- `/` -> `http://127.0.0.1:5174`
+- `/api/auth/` -> `18001`
+- `/api/org/` -> `18002`
+- `/api/drivers/` -> `18003`
+- `/api/vehicles/` -> `18004`
+- `/api/dispatch/` -> `18005`
+- `/api/settlement-registry/` -> `18006`
+- `/api/delivery-record/` -> `18007`
+- `/api/settlements/` -> `18008`
+- `/api/settlement-ops/` -> `18009`
+
+### Host Env Templates
+
+dispatch + settlement slice용 host env template는 `infra/env/host/` 아래에 둔다.
+
+- [account-auth.env.example](./infra/env/host/account-auth.env.example)
+- [organization-master.env.example](./infra/env/host/organization-master.env.example)
+- [driver-profile.env.example](./infra/env/host/driver-profile.env.example)
+- [vehicle-asset.env.example](./infra/env/host/vehicle-asset.env.example)
+- [dispatch-registry.env.example](./infra/env/host/dispatch-registry.env.example)
+- [settlement-registry.env.example](./infra/env/host/settlement-registry.env.example)
+- [delivery-record.env.example](./infra/env/host/delivery-record.env.example)
+- [settlement-payroll.env.example](./infra/env/host/settlement-payroll.env.example)
+- [settlement-ops.env.example](./infra/env/host/settlement-ops.env.example)
+
+이 template들은 `docker-compose.dev-infra.yml`의 DB/redis 포트와 `docker-compose.dev-gateway.yml`의 host service 포트 기준으로 맞춰져 있다.
+
+host Django 서비스 실행 helper:
+
+```bash
+./scripts/run_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
+./scripts/run_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
+./scripts/run_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
+```
+
+이 helper는 env file을 export한 뒤 `python3 manage.py runserver 0.0.0.0:$API_PORT`를 실행한다.
 
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.
