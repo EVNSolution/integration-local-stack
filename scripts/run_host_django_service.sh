@@ -31,5 +31,9 @@ source "${env_file}"
 set +a
 
 cd "${service_root}"
-python3 manage.py runserver "0.0.0.0:${API_PORT:-8000}"
+python_bin="python3"
+if [[ -x "${service_root}/.venv/bin/python" ]]; then
+  python_bin="${service_root}/.venv/bin/python"
+fi
 
+"${python_bin}" manage.py runserver "0.0.0.0:${API_PORT:-8000}"

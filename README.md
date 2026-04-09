@@ -195,12 +195,18 @@ dispatch + settlement slice용 host env template는 `infra/env/host/` 아래에 
 host Django 서비스 실행 helper:
 
 ```bash
+./scripts/bootstrap_host_python_env.sh ../service-driver-profile
+./scripts/bootstrap_host_python_env.sh ../service-organization-registry
+./scripts/bootstrap_host_python_env.sh ../service-account-access
+
 ./scripts/run_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
 ./scripts/run_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
 ./scripts/run_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
 ```
 
-이 helper는 env file을 export한 뒤 `python3 manage.py runserver 0.0.0.0:$API_PORT`를 실행한다.
+`bootstrap_host_python_env.sh`는 service repo별 `.venv`를 만들고 `requirements.txt`를 설치한다.
+
+`run_host_django_service.sh`는 env file을 export한 뒤 service repo에 `.venv/bin/python`이 있으면 그 interpreter로 `manage.py runserver`를 실행한다. `.venv`가 없으면 `python3`로 fallback한다.
 
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.
