@@ -14,7 +14,12 @@ fi
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 integration_root="$(cd "${script_dir}/.." && pwd)"
-service_root="$(cd "${integration_root}/${1}" && pwd)"
+service_arg="${1}"
+if [[ "${service_arg}" = /* ]]; then
+  service_root="$(cd "${service_arg}" && pwd)"
+else
+  service_root="$(cd "${integration_root}/${service_arg}" && pwd)"
+fi
 venv_path="${2:-${service_root}/.venv}"
 
 requirements_file="${service_root}/requirements.txt"

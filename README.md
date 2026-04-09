@@ -199,14 +199,20 @@ host Django 서비스 실행 helper:
 ./scripts/bootstrap_host_python_env.sh ../service-organization-registry
 ./scripts/bootstrap_host_python_env.sh ../service-account-access
 
+./scripts/migrate_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
+./scripts/migrate_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
+./scripts/migrate_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
+
 ./scripts/run_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
 ./scripts/run_host_django_service.sh ../service-organization-registry ./infra/env/host/organization-master.env.example
 ./scripts/run_host_django_service.sh ../service-account-access ./infra/env/host/account-auth.env.example
 ```
 
-`bootstrap_host_python_env.sh`는 service repo별 `.venv`를 만들고 `requirements.txt`를 설치한다.
+`bootstrap_host_python_env.sh`는 service repo별 `.venv`를 만들고 `requirements.txt`를 설치한다. 상대경로와 절대경로 둘 다 받을 수 있다.
 
-`run_host_django_service.sh`는 env file을 export한 뒤 service repo에 `.venv/bin/python`이 있으면 그 interpreter로 `manage.py runserver`를 실행한다. `.venv`가 없으면 `python3`로 fallback한다.
+`migrate_host_django_service.sh`는 같은 env file을 export한 뒤 `manage.py migrate`를 실행한다. 새 DB를 붙일 때는 첫 실행 전에 한 번 돌린다.
+
+`run_host_django_service.sh`는 env file을 export한 뒤 service repo에 `.venv/bin/python`이 있으면 그 interpreter로 `manage.py runserver`를 실행한다. `.venv`가 없으면 `python3`로 fallback한다. 상대경로와 절대경로 둘 다 받을 수 있다.
 
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.

@@ -3,10 +3,10 @@ set -euo pipefail
 
 if [[ $# -lt 2 ]]; then
   cat >&2 <<'EOF'
-usage: ./scripts/run_host_django_service.sh <service-repo-path> <env-file-path>
+usage: ./scripts/migrate_host_django_service.sh <service-repo-path> <env-file-path>
 
 example:
-  ./scripts/run_host_django_service.sh ../service-driver-profile ./infra/env/host/driver-profile.env.example
+  ./scripts/migrate_host_django_service.sh ../service-dispatch-registry ./infra/env/host/dispatch-registry.env.example
 EOF
   exit 1
 fi
@@ -41,4 +41,4 @@ if [[ -x "${service_root}/.venv/bin/python" ]]; then
   python_bin="${service_root}/.venv/bin/python"
 fi
 
-"${python_bin}" manage.py runserver "0.0.0.0:${API_PORT:-8000}"
+"${python_bin}" manage.py migrate
