@@ -58,6 +58,11 @@
 4. gateway/auth/API 포함 통합 확인은 `http://localhost:8080`에서 한다.
 5. `docker compose ... up -d --build web-console`는 최종 통합 확인 시점에만 실행한다.
 
+현재 기준 역할 분리:
+- `http://localhost:5174`는 host Vite dev server다.
+- `http://localhost:8080`은 gateway 뒤의 built frontend container다.
+- `8080`용 `web-console` 이미지는 정적 빌드 결과만 서빙하며, container 안에서 `npm run dev`를 띄우지 않는다.
+
 권장 명령:
 
 ```bash
@@ -71,6 +76,29 @@ npm run dev
 ```
 
 이 규칙의 목적은 frontend edit loop에서 Docker Desktop rebuild latency를 제거하고, 최종 통합 검증만 Docker image 기준으로 남기는 것이다.
+
+## Current Dev/Test/Deploy Flow
+
+현재 권장 흐름은 아래처럼 나눈다.
+
+### 1. 개발
+
+- backend/gateway는 필요 수준으로만 compose 또는 host hybrid로 띄운다.
+- frontend 수정은 `front-web-console` child repo에서 `npm run dev`로 진행한다.
+- UI iteration은 `http://localhost:5174`만 본다.
+
+### 2. 통합 테스트
+
+- 최종 확인 시점에만 `web-console` 이미지를 다시 빌드한다.
+- `docker compose -f docker-compose.account-driver-settlement.yml build web-console gateway`
+- `docker compose -f docker-compose.account-driver-settlement.yml up -d`
+- 이때 `http://localhost:8080`은 built frontend + gateway + backend 기준 화면이다.
+
+### 3. 배포
+
+- `front-web-console` repo에서 image를 만든다.
+- 실제 rollout은 service repo에서 직접 하지 않고 중앙 배포 repo에서 release bundle 기준으로 수행한다.
+- 관련 운영 기준은 `../../docs/superpowers/specs/2026-04-09-image-deploy-operating-policy-design.md`를 따른다.
 
 ## Low CPU Hybrid Development
 
