@@ -69,6 +69,80 @@ npm run dev
 
 이 규칙의 목적은 frontend edit loop에서 Docker Desktop rebuild latency를 제거하고, 최종 통합 검증만 Docker image 기준으로 남기는 것이다.
 
+## Low CPU Hybrid Development
+
+Docker Desktop이 무거운 환경에서는 full compose를 상시 띄우지 않는다.
+
+권장 기준:
+- Docker Desktop 리소스는 `2 CPU / 2 GiB RAM`으로 낮춘다.
+- Docker AI는 끈다.
+- 평소에는 `docker-compose.dev-infra.yml`로 DB/redis만 띄운다.
+- backend는 필요한 repo만 host에서 실행한다.
+- frontend는 계속 `http://localhost:5174`에서 확인한다.
+- `http://localhost:8080` full integration은 최종 확인 시점에만 쓴다.
+
+infra-only 실행:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+docker compose -f docker-compose.dev-infra.yml up -d
+```
+
+또는:
+
+```bash
+./scripts/up_dev_infra.sh
+```
+
+infra-only 정지:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+docker compose -f docker-compose.dev-infra.yml down
+```
+
+또는:
+
+```bash
+./scripts/down_dev_infra.sh
+```
+
+현재 `docker-compose.dev-infra.yml`는 dispatch + settlement slice 기준으로 아래만 띄운다.
+- `redis`
+- `account-db`
+- `driver-db`
+- `settlement-db`
+- `settlement-registry-db`
+- `delivery-record-db`
+- `org-db`
+- `vehicle-db`
+- `dispatch-registry-db`
+
+host 연결용 포트:
+- `redis`: `127.0.0.1:16379`
+- `account-db`: `127.0.0.1:15431`
+- `driver-db`: `127.0.0.1:15432`
+- `settlement-db`: `127.0.0.1:15433`
+- `settlement-registry-db`: `127.0.0.1:15434`
+- `delivery-record-db`: `127.0.0.1:15435`
+- `org-db`: `127.0.0.1:15436`
+- `vehicle-db`: `127.0.0.1:15437`
+- `dispatch-registry-db`: `127.0.0.1:15438`
+
+host에서 Django 서비스를 띄울 때는 기존 `infra/env/local/*.env.example`를 기준으로 아래만 override하면 된다.
+- `POSTGRES_HOST=127.0.0.1`
+- 각 서비스에 맞는 `POSTGRES_PORT`
+- container service name으로 적혀 있던 `*_BASE_URL`은 host에서 띄운 주소로 교체
+
+예:
+- `driver-profile` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15432`
+- `dispatch-registry` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15438`
+- `settlement-registry` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15434`
+- `delivery-record` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15435`
+- `settlement-payroll` host 실행: `POSTGRES_HOST=127.0.0.1 POSTGRES_PORT=15433`
+
+Docker Desktop 설정 변경은 앱 재시작 후 반영된다.
+
 현재 local stack에는 `dispatch-ops-api`가 포함된다.
 - `service-dispatch-registry`, `service-vehicle-assignment`, `service-vehicle-registry`, `service-driver-profile`를 fan-out read 하는 read-model runtime이다.
 - sqlite-only runtime이며 dedicated Postgres container를 추가하지 않는다.

@@ -1,0 +1,142 @@
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:16379:6379"
+
+  account-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: account_auth
+      POSTGRES_USER: account_auth
+      POSTGRES_PASSWORD: account_auth
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U account_auth -d account_auth
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15431:5432"
+
+  driver-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: driver_profile
+      POSTGRES_USER: driver_profile
+      POSTGRES_PASSWORD: driver_profile
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U driver_profile -d driver_profile
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15432:5432"
+
+  settlement-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: settlement
+      POSTGRES_USER: settlement
+      POSTGRES_PASSWORD: settlement
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U settlement -d settlement
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15433:5432"
+
+  settlement-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: settlement_registry
+      POSTGRES_USER: settlement_registry
+      POSTGRES_PASSWORD: settlement_registry
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U settlement_registry -d settlement_registry
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15434:5432"
+
+  delivery-record-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: delivery_record
+      POSTGRES_USER: delivery_record
+      POSTGRES_PASSWORD: delivery_record
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U delivery_record -d delivery_record
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15435:5432"
+
+  org-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: organization_master
+      POSTGRES_USER: organization_master
+      POSTGRES_PASSWORD: organization_master
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U organization_master -d organization_master
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15436:5432"
+
+  vehicle-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vehicle_asset
+      POSTGRES_USER: vehicle_asset
+      POSTGRES_PASSWORD: vehicle_asset
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U vehicle_asset -d vehicle_asset
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15437:5432"
+
+  dispatch-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: dispatch_registry
+      POSTGRES_USER: dispatch_registry
+      POSTGRES_PASSWORD: dispatch_registry
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U dispatch_registry -d dispatch_registry
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    ports:
+      - "127.0.0.1:15438:5432"
