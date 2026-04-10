@@ -2,6 +2,8 @@
 
 이 repo는 `clever-msa-platform`의 로컬 통합 실행 셸이다.
 
+현재 `배송원 -> 배차 -> 정산` 로컬 검증의 절차, smoke, 장애 대응 정본은 [../../docs/runbooks/local-dispatch-settlement-stack.md](../../docs/runbooks/local-dispatch-settlement-stack.md) 이다.
+
 현재 역할:
 - 여러 독립 service/front/gateway repo를 로컬에서 한 번에 띄우는 compose 진입점
 - `.env.example`, seed orchestration, smoke 실행 기준 제공
@@ -62,6 +64,7 @@
 - `http://localhost:5174`는 host Vite dev server다.
 - `http://localhost:8080`은 gateway 뒤의 built frontend container다.
 - `8080`용 `web-console` 이미지는 정적 빌드 결과만 서빙하며, container 안에서 `npm run dev`를 띄우지 않는다.
+- `5174`에서 `Request failed.`가 뜨면 프런트 자체보다 `/api` 프록시 대상인 `8080`과 backend 상태를 먼저 본다.
 
 권장 명령:
 
