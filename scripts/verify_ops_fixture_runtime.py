@@ -16,7 +16,7 @@ DEFAULT_FIXTURE_PATH = (
     Path(__file__).resolve().parents[1] / "fixtures" / "ops-derived-sample.json"
 )
 DEFAULT_ADMIN_EMAIL = "seed-admin@example.com"
-DEFAULT_ADMIN_PASSWORD = "imjing12!"
+DEFAULT_ADMIN_PASSWORD = "ChangeMe123!"
 
 
 @dataclass(frozen=True)
