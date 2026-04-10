@@ -1,0 +1,369 @@
+{
+  "stages": [
+    {
+      "name": "infra",
+      "services": [
+        "redis",
+        "mqtt-broker",
+        "account-db",
+        "driver-db",
+        "personnel-document-db",
+        "settlement-db",
+        "settlement-registry-db",
+        "delivery-record-db",
+        "org-db",
+        "vehicle-db",
+        "dispatch-registry-db",
+        "region-registry-db",
+        "region-analytics-db",
+        "announcement-registry-db",
+        "support-registry-db",
+        "notification-hub-db",
+        "assignment-db",
+        "terminal-db",
+        "telemetry-db",
+        "telemetry-dead-letter-db"
+      ],
+      "health_checks": [
+        {
+          "name": "redis",
+          "kind": "service_exec",
+          "service": "redis",
+          "argv": ["redis-cli", "ping"]
+        },
+        {
+          "name": "account-db",
+          "kind": "service_exec",
+          "service": "account-db",
+          "argv": ["pg_isready", "-U", "account_auth", "-d", "account_auth"]
+        },
+        {
+          "name": "driver-db",
+          "kind": "service_exec",
+          "service": "driver-db",
+          "argv": ["pg_isready", "-U", "driver_profile", "-d", "driver_profile"]
+        },
+        {
+          "name": "personnel-document-db",
+          "kind": "service_exec",
+          "service": "personnel-document-db",
+          "argv": ["pg_isready", "-U", "personnel_document_registry", "-d", "personnel_document_registry"]
+        },
+        {
+          "name": "settlement-db",
+          "kind": "service_exec",
+          "service": "settlement-db",
+          "argv": ["pg_isready", "-U", "settlement", "-d", "settlement"]
+        },
+        {
+          "name": "settlement-registry-db",
+          "kind": "service_exec",
+          "service": "settlement-registry-db",
+          "argv": ["pg_isready", "-U", "settlement_registry", "-d", "settlement_registry"]
+        },
+        {
+          "name": "delivery-record-db",
+          "kind": "service_exec",
+          "service": "delivery-record-db",
+          "argv": ["pg_isready", "-U", "delivery_record", "-d", "delivery_record"]
+        },
+        {
+          "name": "org-db",
+          "kind": "service_exec",
+          "service": "org-db",
+          "argv": ["pg_isready", "-U", "organization_master", "-d", "organization_master"]
+        },
+        {
+          "name": "vehicle-db",
+          "kind": "service_exec",
+          "service": "vehicle-db",
+          "argv": ["pg_isready", "-U", "vehicle_asset", "-d", "vehicle_asset"]
+        },
+        {
+          "name": "dispatch-registry-db",
+          "kind": "service_exec",
+          "service": "dispatch-registry-db",
+          "argv": ["pg_isready", "-U", "dispatch_registry", "-d", "dispatch_registry"]
+        },
+        {
+          "name": "region-registry-db",
+          "kind": "service_exec",
+          "service": "region-registry-db",
+          "argv": ["pg_isready", "-U", "region_registry", "-d", "region_registry"]
+        },
+        {
+          "name": "region-analytics-db",
+          "kind": "service_exec",
+          "service": "region-analytics-db",
+          "argv": ["pg_isready", "-U", "region_analytics", "-d", "region_analytics"]
+        },
+        {
+          "name": "announcement-registry-db",
+          "kind": "service_exec",
+          "service": "announcement-registry-db",
+          "argv": ["pg_isready", "-U", "announcement_registry", "-d", "announcement_registry"]
+        },
+        {
+          "name": "support-registry-db",
+          "kind": "service_exec",
+          "service": "support-registry-db",
+          "argv": ["pg_isready", "-U", "support_registry", "-d", "support_registry"]
+        },
+        {
+          "name": "notification-hub-db",
+          "kind": "service_exec",
+          "service": "notification-hub-db",
+          "argv": ["pg_isready", "-U", "notification_hub", "-d", "notification_hub"]
+        },
+        {
+          "name": "assignment-db",
+          "kind": "service_exec",
+          "service": "assignment-db",
+          "argv": ["pg_isready", "-U", "driver_vehicle_assignment", "-d", "driver_vehicle_assignment"]
+        },
+        {
+          "name": "terminal-db",
+          "kind": "service_exec",
+          "service": "terminal-db",
+          "argv": ["pg_isready", "-U", "terminal_registry", "-d", "terminal_registry"]
+        },
+        {
+          "name": "telemetry-db",
+          "kind": "service_exec",
+          "service": "telemetry-db",
+          "argv": ["pg_isready", "-U", "telemetry_hub", "-d", "telemetry_hub"]
+        },
+        {
+          "name": "telemetry-dead-letter-db",
+          "kind": "service_exec",
+          "service": "telemetry-dead-letter-db",
+          "argv": ["pg_isready", "-U", "telemetry_dead_letter", "-d", "telemetry_dead_letter"]
+        }
+      ]
+    },
+    {
+      "name": "wave-2-core",
+      "services": [
+        "account-auth-api",
+        "organization-master-api",
+        "driver-profile-api",
+        "region-registry-api"
+      ],
+      "health_checks": [
+        {
+          "name": "account-auth",
+          "kind": "service_http",
+          "service": "account-auth-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "organization-master",
+          "kind": "service_http",
+          "service": "organization-master-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "driver-profile",
+          "kind": "service_http",
+          "service": "driver-profile-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "region-registry",
+          "kind": "service_http",
+          "service": "region-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        }
+      ]
+    },
+    {
+      "name": "wave-3-domain",
+      "services": [
+        "personnel-document-registry-api",
+        "delivery-record-api",
+        "vehicle-asset-api",
+        "dispatch-registry-api",
+        "driver-vehicle-assignment-api",
+        "terminal-registry-api"
+      ],
+      "health_checks": [
+        {
+          "name": "personnel-document-registry",
+          "kind": "service_http",
+          "service": "personnel-document-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "delivery-record",
+          "kind": "service_http",
+          "service": "delivery-record-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "vehicle-asset",
+          "kind": "service_http",
+          "service": "vehicle-asset-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "dispatch-registry",
+          "kind": "service_http",
+          "service": "dispatch-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "terminal-registry",
+          "kind": "service_http",
+          "service": "terminal-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        }
+      ]
+    },
+    {
+      "name": "wave-4-integration",
+      "services": [
+        "settlement-registry-api",
+        "settlement-payroll-api",
+        "region-analytics-api",
+        "announcement-registry-api",
+        "support-registry-api",
+        "notification-hub-api",
+        "telemetry-hub-api",
+        "telemetry-dead-letter-api"
+      ],
+      "health_checks": [
+        {
+          "name": "settlement-registry",
+          "kind": "service_http",
+          "service": "settlement-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "settlement-payroll",
+          "kind": "service_http",
+          "service": "settlement-payroll-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "region-analytics",
+          "kind": "service_http",
+          "service": "region-analytics-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "announcement-registry",
+          "kind": "service_http",
+          "service": "announcement-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "support-registry",
+          "kind": "service_http",
+          "service": "support-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "notification-hub",
+          "kind": "service_http",
+          "service": "notification-hub-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "telemetry-hub",
+          "kind": "service_http",
+          "service": "telemetry-hub-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "telemetry-dead-letter",
+          "kind": "service_http",
+          "service": "telemetry-dead-letter-api",
+          "url": "http://127.0.0.1:8000/health/"
+        }
+      ]
+    },
+    {
+      "name": "wave-5-views",
+      "services": [
+        "settlement-ops-api",
+        "driver-ops-api",
+        "vehicle-ops-api",
+        "dispatch-ops-api",
+        "telemetry-listener"
+      ],
+      "health_checks": [
+        {
+          "name": "settlement-ops",
+          "kind": "service_http",
+          "service": "settlement-ops-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "driver-ops",
+          "kind": "service_http",
+          "service": "driver-ops-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "vehicle-ops",
+          "kind": "service_http",
+          "service": "vehicle-ops-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "dispatch-ops",
+          "kind": "service_http",
+          "service": "dispatch-ops-api",
+          "url": "http://127.0.0.1:8000/health/"
+        }
+      ]
+    },
+    {
+      "name": "edge",
+      "services": [
+        "web-console",
+        "gateway"
+      ],
+      "health_checks": [
+        {
+          "name": "gateway",
+          "kind": "host_http",
+          "url": "http://127.0.0.1:8080/healthz"
+        }
+      ]
+    },
+    {
+      "name": "seed",
+      "seed_runner": "seed-runner"
+    },
+    {
+      "name": "smoke",
+      "commands": [
+        {
+          "name": "gateway health",
+          "argv": [
+            "curl",
+            "-fsS",
+            "http://127.0.0.1:8080/healthz"
+          ]
+        },
+        {
+          "name": "auth health",
+          "argv": [
+            "curl",
+            "-fsS",
+            "http://127.0.0.1:8080/api/auth/health/"
+          ]
+        },
+        {
+          "name": "public companies",
+          "argv": [
+            "curl",
+            "-fsS",
+            "http://127.0.0.1:8080/api/org/companies/public/"
+          ]
+        }
+      ]
+    }
+  ]
+}

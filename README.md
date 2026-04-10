@@ -92,6 +92,24 @@ npm run dev
 
 ### 2. 통합 테스트
 
+- full stack는 raw `docker compose up -d`보다 staged runner를 우선 사용한다.
+- staged runner는 중앙 배포 wave와 비슷한 stage 순서로 로컬 stack를 올린다.
+- 권장 명령:
+
+```bash
+cd /Users/jiin/Documents/Files/02_EVnSolution/00_Source_code/CLEVER/clever-msa-platform/development/integration-local-stack
+python3 ./scripts/run_local_startup.py --fresh
+```
+
+- stage 순서:
+  - `infra`
+  - `wave-2-core`
+  - `wave-3-domain`
+  - `wave-4-integration`
+  - `wave-5-views`
+  - `edge`
+  - `seed`
+  - `smoke`
 - 최종 확인 시점에만 `web-console` 이미지를 다시 빌드한다.
 - `docker compose -f docker-compose.account-driver-settlement.yml build web-console gateway`
 - `docker compose -f docker-compose.account-driver-settlement.yml up -d`
