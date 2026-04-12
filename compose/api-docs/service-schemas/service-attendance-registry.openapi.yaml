@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: CLEVER Attendance Registry API
+  version: 1.0.0
+  description: Service-owned OpenAPI schema for service-attendance-registry.
+paths:
+  /days/:
+    get:
+      operationId: days_list
+      tags:
+      - days
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttendanceDay'
+          description: ''
+  /days/{attendance_day_id}/:
+    get:
+      operationId: days_retrieve
+      parameters:
+      - in: path
+        name: attendance_day_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - days
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttendanceDay'
+          description: ''
+  /health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - health
+      responses:
+        '200':
+          description: No response body
+  /internal/days:bulk-lookup/:
+    post:
+      operationId: internal_days:bulk_lookup_create
+      tags:
+      - internal
+      responses:
+        '200':
+          description: No response body
+  /internal/dispatch-signals:sync/:
+    post:
+      operationId: internal_dispatch_signals:sync_create
+      tags:
+      - internal
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    AttendanceDay:
+      type: object
+      properties:
+        attendance_day_id:
+          type: string
+          format: uuid
+          readOnly: true
+        driver_id:
+          type: string
+          format: uuid
+        attendance_date:
+          type: string
+          format: date
+        final_status:
+          $ref: '#/components/schemas/FinalStatusEnum'
+        decided_source_kind:
+          type: string
+          maxLength: 32
+        decided_signal_id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - attendance_date
+      - attendance_day_id
+      - created_at
+      - decided_signal_id
+      - driver_id
+      - final_status
+      - updated_at
+    FinalStatusEnum:
+      enum:
+      - worked
+      - day_off
+      - exception
+      type: string
+      description: |-
+        * `worked` - worked
+        * `day_off` - day_off
+        * `exception` - exception

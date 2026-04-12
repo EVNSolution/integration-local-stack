@@ -60,6 +60,7 @@ OUTPUT_PATH = STACK_ROOT / "compose" / "api-docs" / "clever-unified.openapi.yaml
 SCHEMA_INPUT_DIR = STACK_ROOT / "compose" / "api-docs" / "service-schemas"
 SCHEMA_ENABLED_SERVICES = {
     "service-account-access",
+    "service-attendance-registry",
     "service-delivery-record",
     "service-driver-operations-view",
     "service-dispatch-operations-view",

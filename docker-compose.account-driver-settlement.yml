@@ -11,6 +11,7 @@ services:
       - web-console
       - account-auth-api
       - driver-profile-api
+      - attendance-registry-api
       - personnel-document-registry-api
       - settlement-payroll-api
       - settlement-registry-api
@@ -71,6 +72,16 @@ services:
     expose:
       - "8000"
 
+  attendance-registry-api:
+    build:
+      context: ../service-attendance-registry
+    env_file:
+      - ./infra/env/local/attendance-registry.env.example
+    depends_on:
+      - attendance-registry-db
+    expose:
+      - "8000"
+
   personnel-document-registry-api:
     build:
       context: ../service-personnel-document-registry
@@ -89,6 +100,7 @@ services:
       - ./infra/env/local/settlement-payroll.env.example
     depends_on:
       - settlement-db
+      - attendance-registry-api
     expose:
       - "8000"
 
@@ -112,6 +124,7 @@ services:
       - delivery-record-db
       - organization-master-api
       - driver-profile-api
+      - attendance-registry-api
     expose:
       - "8000"
 
@@ -155,6 +168,7 @@ services:
       - dispatch-registry-db
       - vehicle-asset-api
       - driver-profile-api
+      - attendance-registry-api
     expose:
       - "8000"
 
@@ -362,6 +376,15 @@ services:
     expose:
       - "5432"
 
+  attendance-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: attendance_registry
+      POSTGRES_USER: attendance_registry
+      POSTGRES_PASSWORD: attendance_registry
+    expose:
+      - "5432"
+
   settlement-db:
     image: postgres:16-alpine
     environment:
@@ -521,6 +544,7 @@ services:
       - account-db
       - driver-db
       - personnel-document-db
+      - attendance-registry-db
       - settlement-db
       - settlement-registry-db
       - delivery-record-db
@@ -539,6 +563,7 @@ services:
       - redis
       - account-auth-api
       - driver-profile-api
+      - attendance-registry-api
       - personnel-document-registry-api
       - settlement-payroll-api
       - settlement-registry-api

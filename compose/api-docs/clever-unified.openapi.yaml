@@ -1,17 +1,17 @@
 openapi: 3.0.3
 info:
   title: CLEVER Current MSA API
-  version: '2026-04-06'
+  version: '2026-04-12'
   description: 'Current MSA API inventory generated from repo-local docs and active runtime service route definitions.
 
 
-    Included active HTTP services: 22
+    Included active HTTP services: 23
 
 
-    Included paths: 129
+    Included paths: 134
 
 
-    Schema-backed services: 22
+    Schema-backed services: 23
 
 
     Route-inventory fallback services: 0
@@ -27,7 +27,7 @@ info:
     Schema note: services without exported service-owned OpenAPI still fall back to route inventory only.
 
 
-    Generated at: 2026-04-06T08:03:33+00:00'
+    Generated at: 2026-04-12T03:50:54+00:00'
 servers:
 - url: http://localhost:8080
   description: Local edge gateway
@@ -120,6 +120,28 @@ tags:
   x-clever-gateway-prefix: /api/personnel-documents/
   x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
   x-clever-runtime-status: active runtime
+- name: service-attendance-registry
+  description: '기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+    Gateway prefix: `/api/attendance/`
+
+
+    Compose service: `attendance-registry-api`
+
+
+    Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+    Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+    Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+  x-clever-owner-repo: service-attendance-registry
+  x-clever-compose-service: attendance-registry-api
+  x-clever-gateway-prefix: /api/attendance/
+  x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+  x-clever-runtime-status: active runtime
 - name: service-delivery-record
   description: '배송 원천 기록과 일별 집계 입력 snapshot 정본
 
@@ -133,10 +155,10 @@ tags:
     Owns: source delivery record, daily aggregation input snapshot truth
 
 
-    Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+    Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-    Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+    Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
   x-clever-owner-repo: service-delivery-record
   x-clever-compose-service: delivery-record-api
   x-clever-gateway-prefix: /api/delivery-record/
@@ -155,17 +177,17 @@ tags:
     Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-    Does not own: settlement policy registry, delivery source truth, read-only operations view
+    Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations view
 
 
-    Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+    Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
   x-clever-owner-repo: service-settlement-payroll
   x-clever-compose-service: settlement-payroll-api
   x-clever-gateway-prefix: /api/settlements/
   x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
   x-clever-runtime-status: active runtime
 - name: service-settlement-registry
-  description: '정산 정책, 버전, assignment registry
+  description: '전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
     Gateway prefix: `/api/settlement-registry/`
@@ -174,7 +196,7 @@ tags:
     Compose service: `settlement-registry-api`
 
 
-    Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+    Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
     Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -523,6 +545,7 @@ x-tagGroups:
   - service-organization-registry
   - service-driver-profile
   - service-personnel-document-registry
+  - service-attendance-registry
   - service-settlement-registry
   - service-vehicle-registry
   - service-region-registry
@@ -787,6 +810,203 @@ paths:
       x-clever-owner-repo: service-announcement-registry
       x-clever-compose-service: announcement-registry-api
       x-clever-gateway-prefix: /api/announcements/
+      x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+      x-clever-runtime-status: active runtime
+      x-clever-schema-source: service-owned-openapi
+  /api/attendance/days/:
+    get:
+      operationId: days_list
+      tags:
+      - service-attendance-registry
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/service-attendance-registry__AttendanceDay'
+          description: ''
+      description: 'Merged from service-owned OpenAPI export.
+
+
+        Owner repo: `service-attendance-registry`
+
+
+        Compose service: `attendance-registry-api`
+
+
+        Gateway prefix: `/api/attendance/`
+
+
+        Role summary: 기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+        Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+        Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+        Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+      x-clever-owner-repo: service-attendance-registry
+      x-clever-compose-service: attendance-registry-api
+      x-clever-gateway-prefix: /api/attendance/
+      x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+      x-clever-runtime-status: active runtime
+      x-clever-schema-source: service-owned-openapi
+  /api/attendance/days/{attendance_day_id}/:
+    get:
+      operationId: days_retrieve
+      parameters:
+      - in: path
+        name: attendance_day_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - service-attendance-registry
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service-attendance-registry__AttendanceDay'
+          description: ''
+      description: 'Merged from service-owned OpenAPI export.
+
+
+        Owner repo: `service-attendance-registry`
+
+
+        Compose service: `attendance-registry-api`
+
+
+        Gateway prefix: `/api/attendance/`
+
+
+        Role summary: 기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+        Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+        Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+        Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+      x-clever-owner-repo: service-attendance-registry
+      x-clever-compose-service: attendance-registry-api
+      x-clever-gateway-prefix: /api/attendance/
+      x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+      x-clever-runtime-status: active runtime
+      x-clever-schema-source: service-owned-openapi
+  /api/attendance/health/:
+    get:
+      operationId: health_retrieve
+      tags:
+      - service-attendance-registry
+      responses:
+        '200':
+          description: No response body
+      description: 'Merged from service-owned OpenAPI export.
+
+
+        Owner repo: `service-attendance-registry`
+
+
+        Compose service: `attendance-registry-api`
+
+
+        Gateway prefix: `/api/attendance/`
+
+
+        Role summary: 기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+        Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+        Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+        Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+      x-clever-owner-repo: service-attendance-registry
+      x-clever-compose-service: attendance-registry-api
+      x-clever-gateway-prefix: /api/attendance/
+      x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+      x-clever-runtime-status: active runtime
+      x-clever-schema-source: service-owned-openapi
+  /api/attendance/internal/days:bulk-lookup/:
+    post:
+      operationId: internal_days:bulk_lookup_create
+      tags:
+      - service-attendance-registry
+      responses:
+        '200':
+          description: No response body
+      description: 'Merged from service-owned OpenAPI export.
+
+
+        Owner repo: `service-attendance-registry`
+
+
+        Compose service: `attendance-registry-api`
+
+
+        Gateway prefix: `/api/attendance/`
+
+
+        Role summary: 기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+        Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+        Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+        Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+      x-clever-owner-repo: service-attendance-registry
+      x-clever-compose-service: attendance-registry-api
+      x-clever-gateway-prefix: /api/attendance/
+      x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
+      x-clever-runtime-status: active runtime
+      x-clever-schema-source: service-owned-openapi
+  /api/attendance/internal/dispatch-signals:sync/:
+    post:
+      operationId: internal_dispatch_signals:sync_create
+      tags:
+      - service-attendance-registry
+      responses:
+        '200':
+          description: No response body
+      description: 'Merged from service-owned OpenAPI export.
+
+
+        Owner repo: `service-attendance-registry`
+
+
+        Compose service: `attendance-registry-api`
+
+
+        Gateway prefix: `/api/attendance/`
+
+
+        Role summary: 기사 x 일자 근태 truth와 dispatch-derived signal 해석
+
+
+        Owns: 기사 x 일자` attendance day truth, dispatch-derived signal resolution
+
+
+        Does not own: dispatch plan truth, delivery raw record, settlement run/item, payout/result truth
+
+
+        Depends on: service-dispatch-registry` phase 1 producer, delivery/payroll consumer'
+      x-clever-owner-repo: service-attendance-registry
+      x-clever-compose-service: attendance-registry-api
+      x-clever-gateway-prefix: /api/attendance/
       x-clever-source-of-truth-doc: docs/mappings/current-runtime-inventory.md
       x-clever-runtime-status: active runtime
       x-clever-schema-source: service-owned-openapi
@@ -2253,10 +2473,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2304,10 +2524,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2340,10 +2560,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2388,10 +2608,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2446,10 +2666,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2488,10 +2708,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2539,10 +2759,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2590,10 +2810,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2638,10 +2858,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -2696,10 +2916,10 @@ paths:
         Owns: source delivery record, daily aggregation input snapshot truth
 
 
-        Does not own: settlement run/item writes, payout/result truth, final operations view, payroll/result ownership
+        Does not own: settlement run/item writes, payout/result truth, attendance truth ownership, final operations view
 
 
-        Depends on: service-driver-profile`, `service-vehicle-assignment` later'
+        Depends on: service-driver-profile`, `service-attendance-registry`, `service-vehicle-assignment` later'
       x-clever-owner-repo: service-delivery-record
       x-clever-compose-service: delivery-record-api
       x-clever-gateway-prefix: /api/delivery-record/
@@ -7289,10 +7509,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7331,10 +7551,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7382,10 +7602,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7430,10 +7650,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7489,10 +7709,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7547,10 +7767,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7590,10 +7810,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7632,10 +7852,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7683,10 +7903,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7731,10 +7951,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7790,10 +8010,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7848,10 +8068,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7891,10 +8111,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7933,10 +8153,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -7984,10 +8204,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -8032,10 +8252,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -8091,10 +8311,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -8149,10 +8369,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -8192,10 +8412,10 @@ paths:
         Gateway prefix: `/api/settlement-registry/`
 
 
-        Role summary: 정산 정책, 버전, assignment registry
+        Role summary: 전역 정산 설정, 회사·플릿 단가표, 남아 있는 정책 호환 surface
 
 
-        Owns: settlement policy, policy version, company/fleet scoped policy assignment registry
+        Owns: global settlement config, company/fleet pricing table, remaining settlement policy compatibility registry surface
 
 
         Does not own: settlement run/item writes, delivery source input, payout/result truth
@@ -8240,10 +8460,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8282,10 +8503,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8333,10 +8555,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8381,10 +8604,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8440,10 +8664,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8498,10 +8723,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8541,10 +8767,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8583,10 +8810,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8634,10 +8862,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8682,10 +8911,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8741,10 +8971,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8799,10 +9030,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -8842,10 +9074,11 @@ paths:
         Owns: settlement run/item writes, deduction, incentive, payout_status, result truth
 
 
-        Does not own: settlement policy registry, delivery source truth, read-only operations view
+        Does not own: settlement policy registry, delivery source truth, attendance truth ownership, read-only operations
+        view
 
 
-        Depends on: service-delivery-record`, `service-settlement-registry`, `service-driver-profile'
+        Depends on: service-delivery-record`, `service-settlement-registry`, `service-attendance-registry`, `service-driver-profile'
       x-clever-owner-repo: service-settlement-payroll
       x-clever-compose-service: settlement-payroll-api
       x-clever-gateway-prefix: /api/settlements/
@@ -11651,6 +11884,55 @@ components:
         * `expired` - expired
 
         * `revoked` - revoked'
+    service-attendance-registry__AttendanceDay:
+      type: object
+      properties:
+        attendance_day_id:
+          type: string
+          format: uuid
+          readOnly: true
+        driver_id:
+          type: string
+          format: uuid
+        attendance_date:
+          type: string
+          format: date
+        final_status:
+          $ref: '#/components/schemas/service-attendance-registry__FinalStatusEnum'
+        decided_source_kind:
+          type: string
+          maxLength: 32
+        decided_signal_id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - attendance_date
+      - attendance_day_id
+      - created_at
+      - decided_signal_id
+      - driver_id
+      - final_status
+      - updated_at
+    service-attendance-registry__FinalStatusEnum:
+      enum:
+      - worked
+      - day_off
+      - exception
+      type: string
+      description: '* `worked` - worked
+
+        * `day_off` - day_off
+
+        * `exception` - exception'
     service-delivery-record__DailyDeliveryInputSnapshot:
       type: object
       properties:

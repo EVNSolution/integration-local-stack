@@ -8,6 +8,7 @@
         "account-db",
         "driver-db",
         "personnel-document-db",
+        "attendance-registry-db",
         "settlement-db",
         "settlement-registry-db",
         "delivery-record-db",
@@ -48,6 +49,12 @@
           "kind": "service_exec",
           "service": "personnel-document-db",
           "argv": ["pg_isready", "-U", "personnel_document_registry", "-d", "personnel_document_registry"]
+        },
+        {
+          "name": "attendance-registry-db",
+          "kind": "service_exec",
+          "service": "attendance-registry-db",
+          "argv": ["pg_isready", "-U", "attendance_registry", "-d", "attendance_registry"]
         },
         {
           "name": "settlement-db",
@@ -180,6 +187,7 @@
       "name": "wave-3-domain",
       "services": [
         "personnel-document-registry-api",
+        "attendance-registry-api",
         "delivery-record-api",
         "vehicle-asset-api",
         "dispatch-registry-api",
@@ -191,6 +199,12 @@
           "name": "personnel-document-registry",
           "kind": "service_http",
           "service": "personnel-document-registry-api",
+          "url": "http://127.0.0.1:8000/health/"
+        },
+        {
+          "name": "attendance-registry",
+          "kind": "service_http",
+          "service": "attendance-registry-api",
           "url": "http://127.0.0.1:8000/health/"
         },
         {
