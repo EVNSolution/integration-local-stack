@@ -43,8 +43,7 @@ services:
       start_period: 10s
 
   web-console:
-    build:
-      context: ../front-web-console
+    image: ${WEB_CONSOLE_IMAGE:?set WEB_CONSOLE_IMAGE}
     env_file:
       - ./infra/env/deploy/web-console.env.example
     expose:
