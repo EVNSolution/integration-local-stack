@@ -1,8 +1,12 @@
 # integration-local-stack
 
+## Purpose / Boundary
+
 이 repo는 `clever-msa-platform`의 로컬 통합 실행 셸이다.
 
 현재 `배송원 -> 배차 -> 정산` 로컬 검증의 절차, smoke, 장애 대응 정본은 [../../docs/runbooks/local-dispatch-settlement-stack.md](../../docs/runbooks/local-dispatch-settlement-stack.md) 이다.
+
+## Runtime Contract / Local Role
 
 현재 역할:
 - 여러 독립 service/front/gateway repo를 로컬에서 한 번에 띄우는 compose 진입점
@@ -42,13 +46,21 @@
 - gateway 서비스 소스
 - front 서비스 소스
 
-## Env Template Rule
+## Image Build / Deploy Contract
+
+- 이 repo는 deployable app image의 build owner가 아니다.
+- deployable service image는 각 child repo의 build workflow가 생산한다.
+- 이 repo는 local compose, env template, seed, smoke, host-hybrid helper를 소유한다.
+
+## Environment Files And Safety Notes
+
+### Env Template Rule
 
 - 로컬 통합 검증용 compose와 seed-runner는 `infra/env/local/` 템플릿만 사용한다.
 - 배포 runtime compose는 `infra/env/deploy/` 템플릿만 사용한다.
 - 로컬 편의 설정과 deploy runtime 설정을 같은 env 파일에서 관리하지 않는다.
 
-## Frontend Local Development Rule
+### Frontend Local Development Rule
 
 프런트 수정 중에는 `web-console` 이미지를 수정마다 다시 빌드하지 않는다.
 
@@ -80,7 +92,9 @@ npm run dev
 
 이 규칙의 목적은 frontend edit loop에서 Docker Desktop rebuild latency를 제거하고, 최종 통합 검증만 Docker image 기준으로 남기는 것이다.
 
-## Current Dev/Test/Deploy Flow
+## Local Run / Verification
+
+### Current Dev/Test/Deploy Flow
 
 현재 권장 흐름은 아래처럼 나눈다.
 
@@ -120,6 +134,14 @@ python3 ./scripts/run_local_startup.py --fresh
 - `front-web-console` repo에서 image를 만든다.
 - 실제 rollout은 service repo에서 직접 하지 않고 중앙 배포 repo에서 release bundle 기준으로 수행한다.
 - 관련 운영 기준은 `../../docs/superpowers/specs/2026-04-09-image-deploy-operating-policy-design.md`를 따른다.
+
+## Key Tests Or Verification Commands
+
+- staged local bring-up: `python3 ./scripts/run_local_startup.py --fresh`
+- infra-only local mode: `./scripts/up_dev_infra.sh`
+- dev gateway: `./scripts/up_dev_gateway.sh`
+- API docs refresh: `python3 ./scripts/refresh_api_docs.py`
+- dead-letter route smoke: `python3 ./scripts/verify_dead_letter_gateway_routes.py`
 
 ## Low CPU Hybrid Development
 
@@ -292,6 +314,12 @@ host Django 서비스 실행 helper:
 - current MSA API 문서 재생성 helper는 `./scripts/refresh_api_docs.py`
 - current MSA API 문서 preview helper는 `./scripts/preview_api_docs.py`
 - root repo GitHub Actions entry는 `../../.github/workflows/refresh-api-docs.yml`
+
+## Root Docs / Runbooks
+
+- [../../docs/runbooks/local-dispatch-settlement-stack.md](../../docs/runbooks/local-dispatch-settlement-stack.md)
+- [../../docs/README.md](../../docs/README.md)
+- [compose/api-docs/README.md](./compose/api-docs/README.md)
 
 ## Local Telemetry Smoke
 
