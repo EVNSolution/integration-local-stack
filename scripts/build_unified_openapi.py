@@ -169,7 +169,7 @@ def parse_table_after_heading(path: Path, heading: str) -> list[dict[str, str]]:
 
 
 def load_active_services() -> list[ServiceMetadata]:
-    inventory_rows = parse_table_after_heading(INVENTORY_PATH, "## Active Runtime Repos")
+    inventory_rows = parse_table_after_heading(INVENTORY_PATH, "## Active Runtime Source Slices")
     matrix_rows = parse_table_after_heading(RESPONSIBILITY_MATRIX_PATH, "## Matrix")
     matrix_by_repo = {row["Target repo"]: row for row in matrix_rows}
 

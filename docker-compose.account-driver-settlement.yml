@@ -158,6 +158,17 @@ services:
     expose:
       - "8000"
 
+  attendance-registry-api:
+    build:
+      context: ../service-attendance-registry
+    env_file:
+      - ./infra/env/local/attendance-registry.env.example
+    depends_on:
+      - attendance-registry-db
+      - dispatch-registry-api
+    expose:
+      - "8000"
+
   region-registry-api:
     build:
       context: ../service-region-registry
@@ -413,6 +424,15 @@ services:
       POSTGRES_DB: dispatch_registry
       POSTGRES_USER: dispatch_registry
       POSTGRES_PASSWORD: dispatch_registry
+    expose:
+      - "5432"
+
+  attendance-registry-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: attendance_registry
+      POSTGRES_USER: attendance_registry
+      POSTGRES_PASSWORD: attendance_registry
     expose:
       - "5432"
 
